@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Colores y Fondos — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Colores y Fondos — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">CSS</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Colores y Fondos</span>
+      </nav>
+
+                              <section id="css-colores" class="category css-section">
+        <h2><span class="lang-tag css-tag">CSS</span> Colores &amp; Fondos</h2>
+        <p class="category-desc">Formatos de color, gradientes y propiedades background.</p>
+        <div class="tags-grid">
+
+          <article class="tag-card wide" data-tag="color rgb rgba hsl hsla hex oklch background gradient colores">
+            <header class="card-header">
+              <code>Color Playground</code>
+              <span class="badge badge-css-color">Interactivo</span>
+            </header>
+            <p>Elige un color y ve todas sus representaciones en los formatos soportados por CSS.</p>
+            <div class="demo">
+              <div class="color-playground">
+                <div class="cp-controls">
+                  <label>Color base: <input type="color" id="cp-color" value="#3d7ef5" oninput="updateColorPlayground()"></label>
+                  <label>Opacidad: <input type="range" id="cp-alpha" min="0" max="100" value="100" oninput="updateColorPlayground()"> <output id="cp-alpha-val">100%</output></label>
+                </div>
+                <div id="cp-formats" class="cp-formats"></div>
+                <div id="cp-swatches" class="cp-swatches"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="background-color background-image linear-gradient radial-gradient conic-gradient repeating">
+            <header class="card-header">
+              <code>background-* · gradientes</code>
+              <span class="badge badge-css-color">Fondos</span>
+            </header>
+            <p>Color sólido, imágenes y los cuatro tipos de gradiente CSS.</p>
+            <div class="demo">
+              <div style="display:flex;flex-direction:column;gap:8px;font-size:.75rem;">
+                <div style="background:#3498db;padding:7px;border-radius:4px;color:white;">background-color</div>
+                <div style="background:linear-gradient(135deg,#667eea,#764ba2);padding:7px;border-radius:4px;color:white;">linear-gradient(135deg)</div>
+                <div style="background:radial-gradient(circle,#f093fb,#f5576c);padding:7px;border-radius:4px;color:white;">radial-gradient(circle)</div>
+                <div style="background:conic-gradient(from 0deg,#3d7ef5,#9b59b6,#e74c3c,#3d7ef5);padding:7px;border-radius:4px;color:white;">conic-gradient</div>
+                <div style="background:repeating-linear-gradient(45deg,#3d7ef533 0,#3d7ef533 10px,transparent 10px,transparent 20px);padding:7px;border-radius:4px;">repeating-linear-gradient</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="filter blur brightness contrast grayscale hue-rotate saturate sepia drop-shadow invert opacity">
+            <header class="card-header">
+              <code>filter · backdrop-filter</code>
+              <span class="badge badge-css-color">Filtros</span>
+            </header>
+            <p>Efectos visuales CSS: blur, brightness, contrast, grayscale, hue-rotate, sepia, invert, drop-shadow…</p>
+            <div class="demo">
+              <div class="filter-demos">
+                <div class="fd-item" style="filter:blur(2px)">blur</div>
+                <div class="fd-item" style="filter:brightness(1.7)">bright</div>
+                <div class="fd-item" style="filter:contrast(2)">contrast</div>
+                <div class="fd-item" style="filter:grayscale(1)">gray</div>
+                <div class="fd-item" style="filter:hue-rotate(90deg)">hue</div>
+                <div class="fd-item" style="filter:sepia(1)">sepia</div>
+                <div class="fd-item" style="filter:drop-shadow(3px 3px 4px #0007)">shadow</div>
+                <div class="fd-item" style="filter:invert(1)">invert</div>
+              </div>
+            </div>
+          </article>
+
+        
+          <article class="tag-card" data-tag="oklch lab lch color4 perceptual moderno espacio color">
+            <header class="card-header">
+              <code>oklch() · lab() · lch()</code>
+              <span class="badge badge-css-color">CSS Color 4</span>
+            </header>
+            <p>Espacios de color perceptualmente uniformes. <code>oklch(L C H)</code> — Luminosidad, Croma, Matiz — es el recomendado moderno por su predicibilidad.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-bottom:8px;">
+                <div style="height:32px;background:oklch(60% .15 0);border-radius:4px;" title="oklch(60% .15 0)"></div>
+                <div style="height:32px;background:oklch(60% .15 72);border-radius:4px;" title="oklch(60% .15 72)"></div>
+                <div style="height:32px;background:oklch(60% .15 144);border-radius:4px;" title="oklch(60% .15 144)"></div>
+                <div style="height:32px;background:oklch(60% .15 216);border-radius:4px;" title="oklch(60% .15 216)"></div>
+                <div style="height:32px;background:oklch(60% .15 288);border-radius:4px;" title="oklch(60% .15 288)"></div>
+              </div>
+              <p style="font-size:.72rem;color:#555;margin-bottom:6px;">Mismo L y C, diferente Hue → luminosidad perceptualmente uniforme</p>
+              <pre style="font-size:.72rem;"><code>color: oklch(70% 0.15 142);  /* L C H */
+color: lch(70% 35 142);      /* alternativa */
+color: lab(70% -20 30);      /* L a b */</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="color-mix mezcla interpolacion espacio two colors moderno">
+            <header class="card-header">
+              <code>color-mix()</code>
+              <span class="badge badge-css-color">Moderno</span>
+            </header>
+            <p>Mezcla dos colores en un espacio de color dado. Disponible desde Chrome 111+ / Safari 16.2+.</p>
+            <div class="demo">
+              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
+                <div style="background:color-mix(in srgb, #3d7ef5, #e74c3c);width:40px;height:40px;border-radius:4px;border:1px solid rgba(0,0,0,.1);" title="50% mix"></div>
+                <div style="background:color-mix(in srgb, #3d7ef5 80%, #e74c3c);width:40px;height:40px;border-radius:4px;border:1px solid rgba(0,0,0,.1);" title="80% blue"></div>
+                <div style="background:color-mix(in oklch, #3d7ef5, #e74c3c);width:40px;height:40px;border-radius:4px;border:1px solid rgba(0,0,0,.1);" title="oklch mix"></div>
+                <div style="background:color-mix(in hsl, blue, yellow);width:40px;height:40px;border-radius:4px;border:1px solid rgba(0,0,0,.1);" title="hsl mix"></div>
+              </div>
+              <pre style="font-size:.72rem;"><code>/* 50% mezcla en sRGB */
+color: color-mix(in srgb, blue, red);
+
+/* 80% azul en oklch */
+color: color-mix(in oklch, #3d7ef5 80%, #e74c3c);
+
+/* transparencia */
+color: color-mix(in srgb, blue 60%, transparent);</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="mix-blend-mode blend mode overlay multiply screen luminosity mezcla capas">
+            <header class="card-header">
+              <code>mix-blend-mode · isolation</code>
+              <span class="badge badge-css-color">Composición</span>
+            </header>
+            <p>Define cómo se mezcla el color de un elemento con el fondo. Similar a los modos de fusión de Photoshop.</p>
+            <div class="demo">
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <div style="position:relative;width:80px;height:56px;overflow:hidden;border-radius:4px;">
+                  <div style="position:absolute;width:50px;height:50px;background:#3d7ef5;border-radius:50%;top:3px;left:3px;"></div>
+                  <div style="position:absolute;width:50px;height:50px;background:#e74c3c;border-radius:50%;top:3px;left:27px;mix-blend-mode:multiply;"></div>
+                  <span style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-size:.6rem;font-weight:700;color:white;text-shadow:0 1px 2px #0008;">multiply</span>
+                </div>
+                <div style="position:relative;width:80px;height:56px;overflow:hidden;border-radius:4px;background:#111;">
+                  <div style="position:absolute;width:50px;height:50px;background:#3d7ef5;border-radius:50%;top:3px;left:3px;"></div>
+                  <div style="position:absolute;width:50px;height:50px;background:#e74c3c;border-radius:50%;top:3px;left:27px;mix-blend-mode:screen;"></div>
+                  <span style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-size:.6rem;font-weight:700;color:white;">screen</span>
+                </div>
+                <div style="position:relative;width:80px;height:56px;overflow:hidden;border-radius:4px;background:linear-gradient(135deg,#f39c12,#e74c3c);">
+                  <div style="position:absolute;inset:0;background:#3d7ef5;mix-blend-mode:overlay;"></div>
+                  <span style="position:absolute;bottom:2px;left:0;right:0;text-align:center;font-size:.6rem;font-weight:700;color:white;">overlay</span>
+                </div>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>mix-blend-mode: multiply | screen | overlay |
+                darken  | lighten | color-dodge |
+                color-burn | hard-light | soft-light |
+                difference | exclusion | hue |
+                saturation | color | luminosity</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="backdrop-filter blur brightness glassmorphism vidrio efecto">
+            <header class="card-header">
+              <code>backdrop-filter</code>
+              <span class="badge badge-css-color">Efectos</span>
+            </header>
+            <p>Aplica filtros (blur, brillo, contraste…) al área <em>detrás</em> del elemento, no al elemento en sí. Base del efecto "glassmorphism".</p>
+            <div class="demo">
+              <div style="position:relative;height:100px;border-radius:8px;overflow:hidden;background:linear-gradient(135deg,#3d7ef5,#a855f7,#e74c3c);">
+                <div style="position:absolute;inset:12px;border-radius:6px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px) brightness(1.1);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.85rem;">Glassmorphism</div>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>.glass {
+  background: rgba(255,255,255, 0.15);
+  backdrop-filter: blur(8px) brightness(1.1);
+  border: 1px solid rgba(255,255,255, 0.3);
+}</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="color contrast accesibilidad wcag contraste legibilidad">
+            <header class="card-header">
+              <code>Contraste y accesibilidad</code>
+              <span class="badge badge-css-color">A11y</span>
+            </header>
+            <p>WCAG 2.1 exige una relación de contraste mínima. AA requiere 4.5:1 para texto normal, AAA requiere 7:1. CSS Level 5 incluye <code>color-contrast()</code>.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:.75rem;">
+                <div style="background:#3d7ef5;color:white;padding:8px;border-radius:4px;font-weight:600;">✓ AA — blanco sobre azul<br><small style="opacity:.7;">contraste ~4.6:1</small></div>
+                <div style="background:#3d7ef5;color:#c0d0ff;padding:8px;border-radius:4px;font-weight:600;">✗ Falla — celeste sobre azul<br><small style="opacity:.7;">contraste ~1.9:1</small></div>
+                <div style="background:#1a2332;color:white;padding:8px;border-radius:4px;font-weight:600;">✓ AAA — blanco sobre oscuro<br><small style="opacity:.7;">contraste &gt;7:1</small></div>
+                <div style="background:#f4f6fb;color:#9ca3af;padding:8px;border-radius:4px;font-weight:600;">✗ Falla — gris claro<br><small style="opacity:.7;">contraste ~2.4:1</small></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="tipografia.html"><span>←</span> Tipografía</a>
+        <a class="pager-btn pager-next" href="animaciones.html">Transiciones y Animaciones <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

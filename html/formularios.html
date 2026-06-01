@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Formularios — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Formularios — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">HTML</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Formularios</span>
+      </nav>
+
+                              <section id="seccion-formularios" class="category">
+        <h2>Formularios</h2>
+        <p class="category-desc">
+          Etiquetas para capturar datos del usuario de todo tipo.
+        </p>
+
+        <div class="tags-grid">
+          <article class="tag-card wide" data-tag="form">
+            <header class="card-header">
+              <code>&lt;form&gt; — Todos los inputs</code>
+              <span class="badge badge-form">Formulario</span>
+            </header>
+            <p>
+              El formulario HTML soporta decenas de tipos de entrada. Aquí una
+              demostración completa e interactiva.
+            </p>
+            <div class="demo">
+              <form id="demo-form" onsubmit="mostrarDatosForm(event)">
+                <fieldset>
+                  <legend>Datos personales</legend>
+
+                  <div class="form-row">
+                    <label for="f-nombre">Nombre <small>(text)</small></label>
+                    <input
+                      type="text"
+                      id="f-nombre"
+                      name="nombre"
+                      placeholder="Tu nombre"
+                      autocomplete="given-name"
+                    />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="f-email">Email <small>(email)</small></label>
+                    <input
+                      type="email"
+                      id="f-email"
+                      name="email"
+                      placeholder="correo@ejemplo.com"
+                    />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="f-password"
+                      >Contraseña <small>(password)</small></label
+                    >
+                    <input
+                      type="password"
+                      id="f-password"
+                      name="password"
+                      placeholder="••••••"
+                    />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="f-tel">Teléfono <small>(tel)</small></label>
+                    <input
+                      type="tel"
+                      id="f-tel"
+                      name="tel"
+                      placeholder="+52 55 1234 5678"
+                    />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="f-numero">Número <small>(number)</small></label>
+                    <input
+                      type="number"
+                      id="f-numero"
+                      name="numero"
+                      min="0"
+                      max="100"
+                      step="5"
+                      value="50"
+                    />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="f-rango">Rango <small>(range)</small></label>
+                    <input
+                      type="range"
+                      id="f-rango"
+                      name="rango"
+                      min="0"
+                      max="100"
+                      value="50"
+                      oninput="
+                        document.getElementById('rango-val').textContent =
+                          this.value
+                      "
+                    />
+                    <output id="rango-val">50</output>
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Fechas y tiempo</legend>
+
+                  <div class="form-row">
+                    <label for="f-fecha">Fecha <small>(date)</small></label>
+                    <input type="date" id="f-fecha" name="fecha" />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="f-hora">Hora <small>(time)</small></label>
+                    <input type="time" id="f-hora" name="hora" />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="f-datetime"
+                      >Fecha y hora <small>(datetime-local)</small></label
+                    >
+                    <input
+                      type="datetime-local"
+                      id="f-datetime"
+                      name="datetime"
+                    />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="f-mes">Mes <small>(month)</small></label>
+                    <input type="month" id="f-mes" name="mes" />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="f-semana">Semana <small>(week)</small></label>
+                    <input type="week" id="f-semana" name="semana" />
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Selección y opciones</legend>
+
+                  <div class="form-row">
+                    <label for="f-select">Select <small>(select)</small></label>
+                    <select id="f-select" name="lenguaje">
+                      <optgroup label="Frontend">
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="js">JavaScript</option>
+                      </optgroup>
+                      <optgroup label="Backend">
+                        <option value="python">Python</option>
+                        <option value="node">Node.js</option>
+                      </optgroup>
+                    </select>
+                  </div>
+
+                  <div class="form-row">
+                    <label for="f-datalist"
+                      >Datalist <small>(input + datalist)</small></label
+                    >
+                    <input
+                      type="text"
+                      id="f-datalist"
+                      name="ciudad"
+                      list="ciudades"
+                      placeholder="Escribe una ciudad"
+                    />
+                    <datalist id="ciudades">
+                      <option value="Ciudad de México"></option>
+                      <option value="Guadalajara"></option>
+                      <option value="Monterrey"></option>
+                      <option value="Madrid"></option>
+                      <option value="Barcelona"></option>
+                      <option value="Buenos Aires"></option>
+                    </datalist>
+                  </div>
+
+                  <div class="form-row">
+                    <span>Radios <small>(radio)</small></span>
+                    <label
+                      ><input type="radio" name="genero" value="m" />
+                      Masculino</label
+                    >
+                    <label
+                      ><input type="radio" name="genero" value="f" />
+                      Femenino</label
+                    >
+                    <label
+                      ><input type="radio" name="genero" value="otro" />
+                      Otro</label
+                    >
+                  </div>
+
+                  <div class="form-row">
+                    <span>Checkboxes <small>(checkbox)</small></span>
+                    <label
+                      ><input
+                        type="checkbox"
+                        name="tech"
+                        value="html"
+                        checked
+                      />
+                      HTML</label
+                    >
+                    <label
+                      ><input type="checkbox" name="tech" value="css" />
+                      CSS</label
+                    >
+                    <label
+                      ><input type="checkbox" name="tech" value="js" />
+                      JavaScript</label
+                    >
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Área de texto y más</legend>
+
+                  <div class="form-row">
+                    <label for="f-textarea">Textarea</label>
+                    <textarea
+                      id="f-textarea"
+                      name="comentario"
+                      rows="3"
+                      cols="30"
+                      placeholder="Escribe tu comentario..."
+                    ></textarea>
+                  </div>
+
+                  <div class="form-row">
+                    <label for="f-color">Color <small>(color)</small></label>
+                    <input
+                      type="color"
+                      id="f-color"
+                      name="color"
+                      value="#3498db"
+                    />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="f-file">Archivo <small>(file)</small></label>
+                    <input
+                      type="file"
+                      id="f-file"
+                      name="archivo"
+                      accept=".jpg,.png,.pdf"
+                    />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="f-url">URL <small>(url)</small></label>
+                    <input
+                      type="url"
+                      id="f-url"
+                      name="url"
+                      placeholder="https://ejemplo.com"
+                    />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="f-search"
+                      >Búsqueda <small>(search)</small></label
+                    >
+                    <input
+                      type="search"
+                      id="f-search"
+                      name="busqueda"
+                      placeholder="Buscar..."
+                    />
+                  </div>
+
+                  <div class="form-row">
+                    <label>Hidden <small>(input hidden)</small></label>
+                    <input type="hidden" name="token" value="abc123-secret" />
+                    <small
+                      >Este input no se ve pero sí se envía:
+                      token=abc123-secret</small
+                    >
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Botones</legend>
+                  <div class="form-row buttons-row">
+                    <button type="submit">Submit</button>
+                    <button type="reset">Reset</button>
+                    <button type="button" onclick="alert('¡Botón button!')">
+                      Button
+                    </button>
+                    <input type="submit" value="Input submit" />
+                    <input
+                      type="image"
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='28'%3E%3Crect width='60' height='28' rx='4' fill='%232ecc71'/%3E%3Ctext x='30' y='19' text-anchor='middle' fill='white' font-size='11' font-family='sans-serif'%3EImagen%3C/text%3E%3C/svg%3E"
+                      alt="Botón imagen"
+                      width="60"
+                      height="28"
+                    />
+                  </div>
+                </fieldset>
+              </form>
+              <div
+                id="form-output"
+                class="form-output"
+                style="display: none"
+              ></div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="progress">
+            <header class="card-header">
+              <code>&lt;progress&gt;</code>
+              <span class="badge badge-form">Progreso</span>
+            </header>
+            <p>
+              Barra de progreso nativa. Atributos <code>value</code> y
+              <code>max</code> definen el estado actual.
+            </p>
+            <div class="demo">
+              <label
+                >Descarga: <progress id="prog" value="0" max="100">0%</progress>
+                <span id="prog-val">0%</span></label
+              >
+              <br /><button class="btn-demo" onclick="animarProgress()">
+                Simular progreso
+              </button>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="meter">
+            <header class="card-header">
+              <code>&lt;meter&gt;</code>
+              <span class="badge badge-form">Medidor</span>
+            </header>
+            <p>
+              Medidor de una magnitud escalar conocida. Diferente a
+              <code>progress</code>: representa un rango con valores óptimos.
+            </p>
+            <div class="demo">
+              <label
+                >Batería:
+                <meter
+                  value="75"
+                  min="0"
+                  max="100"
+                  low="20"
+                  high="80"
+                  optimum="100"
+                >
+                  75%
+                </meter>
+                75%</label
+              ><br />
+              <label
+                >Riesgo:
+                <meter
+                  value="85"
+                  min="0"
+                  max="100"
+                  low="33"
+                  high="67"
+                  optimum="0"
+                >
+                  85%
+                </meter>
+                85%</label
+              ><br />
+              <label
+                >Temperatura:
+                <meter
+                  value="22"
+                  min="0"
+                  max="40"
+                  low="5"
+                  high="35"
+                  optimum="22"
+                >
+                  22°C
+                </meter>
+                22°C óptimo</label
+              >
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="output">
+            <header class="card-header">
+              <code>&lt;output&gt;</code>
+              <span class="badge badge-form">Resultado</span>
+            </header>
+            <p>
+              Muestra el resultado de un cálculo o acción del usuario. Actúa
+              como contenedor dinámico de salida de formulario.
+            </p>
+            <div class="demo">
+              <form
+                oninput="
+                  calcOutput.value = parseInt(numA.value) + parseInt(numB.value)
+                "
+              >
+                <input
+                  type="number"
+                  id="numA"
+                  name="numA"
+                  value="5"
+                  style="width: 60px"
+                />
+                +
+                <input
+                  type="number"
+                  id="numB"
+                  name="numB"
+                  value="3"
+                  style="width: 60px"
+                />
+                =
+                <output name="calcOutput" for="numA numB">8</output>
+              </form>
+            </div>
+          </article>
+        
+          <article class="tag-card wide" data-tag="validacion constraint validation API checkValidity setCustomValidity reportValidity valid invalid">
+            <header class="card-header">
+              <code>Constraint Validation API — Playground</code>
+              <span class="badge badge-form">Interactivo</span>
+            </header>
+            <p>La API nativa de validación expone métodos y estados directamente en los elementos. Sin librerías externas.</p>
+            <div class="demo">
+              <form id="validation-form" onsubmit="return false;" style="display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;flex-direction:column;gap:4px;font-size:.8rem;">
+                  <label for="cv-email" style="font-weight:600;">Email (required + type)</label>
+                  <input type="email" id="cv-email" required placeholder="usuario@ejemplo.com" style="padding:7px;border:1px solid #e2e8f0;border-radius:5px;font-size:.82rem;outline:none;" oninput="checkInputValidity(this)">
+                  <span class="cv-msg" style="font-size:.72rem;"></span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px;font-size:.8rem;">
+                  <label for="cv-pass" style="font-weight:600;">Contraseña (minlength=8)</label>
+                  <input type="password" id="cv-pass" minlength="8" placeholder="mín. 8 caracteres" style="padding:7px;border:1px solid #e2e8f0;border-radius:5px;font-size:.82rem;outline:none;" oninput="checkInputValidity(this)">
+                  <span class="cv-msg" style="font-size:.72rem;"></span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px;font-size:.8rem;">
+                  <label for="cv-age" style="font-weight:600;">Edad (min=18, max=120)</label>
+                  <input type="number" id="cv-age" min="18" max="120" placeholder="18-120" style="padding:7px;border:1px solid #e2e8f0;border-radius:5px;font-size:.82rem;outline:none;" oninput="checkInputValidity(this)">
+                  <span class="cv-msg" style="font-size:.72rem;"></span>
+                </div>
+                <button type="button" class="btn-demo" onclick="validateAll()">Validar todo</button>
+              </form>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="pattern regex expresion regular input validacion formato DNI telefono postal">
+            <header class="card-header">
+              <code>pattern — expresiones regulares</code>
+              <span class="badge badge-form">Validación</span>
+            </header>
+            <p>Valida el valor contra una expresión regular. Solo aplica cuando el campo no está vacío (combinar con <code>required</code>).</p>
+            <div class="demo">
+              <form onsubmit="return false;" style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;">
+                <label>CP México (5 dígitos)
+                  <input type="text" pattern="[0-9]{5}" placeholder="06600" title="5 dígitos numéricos" style="display:block;width:100%;padding:5px;border:1px solid #e2e8f0;border-radius:4px;margin-top:2px;">
+                </label>
+                <label>Teléfono MX (+52 10 dígitos)
+                  <input type="tel" pattern="(\+?52)?[0-9]{10}" placeholder="+5255XXXXXXXX" style="display:block;width:100%;padding:5px;border:1px solid #e2e8f0;border-radius:4px;margin-top:2px;">
+                </label>
+              </form>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>&lt;input pattern="[A-Z]{3}[0-9]{4}"
+       title="3 letras + 4 dígitos"&gt;
+&lt;!-- title muestra el mensaje de error --&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="inputmode keyboard mobile teclado numerico decimal email tel url search">
+            <header class="card-header">
+              <code>inputmode · enterkeyhint</code>
+              <span class="badge badge-form">Móvil</span>
+            </header>
+            <p>Controla qué teclado virtual aparece en dispositivos táctiles sin cambiar el tipo de input. <code>enterkeyhint</code> cambia el botón de confirmación.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:.75rem;">
+                <label>numeric (solo números)<input type="text" inputmode="numeric" placeholder="012345" style="display:block;width:100%;padding:4px;border:1px solid #e2e8f0;border-radius:4px;margin-top:2px;font-size:.75rem;"></label>
+                <label>decimal (con coma)<input type="text" inputmode="decimal" placeholder="1.50" style="display:block;width:100%;padding:4px;border:1px solid #e2e8f0;border-radius:4px;margin-top:2px;font-size:.75rem;"></label>
+                <label>email (@)<input type="text" inputmode="email" placeholder="a@b.com" style="display:block;width:100%;padding:4px;border:1px solid #e2e8f0;border-radius:4px;margin-top:2px;font-size:.75rem;"></label>
+                <label>search (lupa)<input type="text" inputmode="search" placeholder="Buscar…" style="display:block;width:100%;padding:4px;border:1px solid #e2e8f0;border-radius:4px;margin-top:2px;font-size:.75rem;"></label>
+              </div>
+              <pre style="margin-top:6px;font-size:.72rem;"><code>enterkeyhint: "enter" | "done" | "go" |
+              "next" | "previous" | "search" | "send"</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="FormData API submit datos formulario fetch envio asincrono">
+            <header class="card-header">
+              <code>FormData API</code>
+              <span class="badge badge-form">JavaScript</span>
+            </header>
+            <p>Construye pares clave/valor a partir de un formulario para enviarlos con <code>fetch</code>. Soporta archivos y datos multipart de forma nativa.</p>
+            <div class="demo">
+              <form id="fd-form" style="display:flex;gap:6px;flex-wrap:wrap;font-size:.78rem;" onsubmit="demoFormData(event)">
+                <input name="usuario" type="text" placeholder="Usuario" required style="flex:1;min-width:100px;padding:5px;border:1px solid #e2e8f0;border-radius:4px;font-size:.78rem;">
+                <input name="rol" type="text" placeholder="Rol" style="flex:1;min-width:80px;padding:5px;border:1px solid #e2e8f0;border-radius:4px;font-size:.78rem;">
+                <button class="btn-demo" type="submit">Ver FormData</button>
+              </form>
+              <pre id="fd-output" style="margin-top:6px;font-size:.72rem;background:#1e1e2e;color:#a6e3a1;padding:8px;border-radius:5px;display:none;"></pre>
+              <pre style="margin-top:6px;font-size:.72rem;"><code>const fd = new FormData(form);
+// Iteración
+for (const [key, val] of fd) console.log(key, val);
+// Envío async
+fetch('/api', { method:'POST', body: fd });</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="form events eventos submit change input blur focus invalid reset formulario">
+            <header class="card-header">
+              <code>Eventos de formulario</code>
+              <span class="badge badge-form">Eventos</span>
+            </header>
+            <p>Los formularios e inputs emiten eventos específicos para detectar cambios, validación y envío.</p>
+            <div class="demo">
+              <div id="form-events-log" style="font-size:.72rem;font-family:monospace;background:#1e1e2e;color:#cdd6f4;padding:8px;border-radius:5px;min-height:60px;max-height:100px;overflow-y:auto;margin-bottom:8px;"></div>
+              <form onsubmit="logFormEvent(event,'submit')" onreset="logFormEvent(event,'reset')" style="display:flex;flex-wrap:wrap;gap:6px;font-size:.78rem;">
+                <input type="text" placeholder="Escribe aquí…" style="flex:1;padding:5px;border:1px solid #e2e8f0;border-radius:4px;font-size:.78rem;" oninput="logFormEvent(event,'input')" onchange="logFormEvent(event,'change')" onfocus="logFormEvent(event,'focus')" onblur="logFormEvent(event,'blur')">
+                <button class="btn-demo" type="submit">Submit</button>
+                <button type="reset" style="padding:7px 14px;border:1px solid #e2e8f0;border-radius:6px;cursor:pointer;font-size:.8rem;">Reset</button>
+              </form>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="tablas.html"><span>←</span> Tablas</a>
+        <a class="pager-btn pager-next" href="semantica.html">Semántica HTML5 <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

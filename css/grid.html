@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="CSS Grid — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>CSS Grid — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">CSS</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">CSS Grid</span>
+      </nav>
+
+                              <section id="css-grid" class="category css-section">
+        <h2><span class="lang-tag css-tag">CSS</span> CSS Grid</h2>
+        <p class="category-desc">Layout bidimensional. Controla filas y columnas al mismo tiempo.</p>
+        <div class="tags-grid">
+
+          <article class="tag-card wide" data-tag="grid-template-columns grid-template-rows fr repeat auto-fill minmax gap grid">
+            <header class="card-header">
+              <code>Grid Playground</code>
+              <span class="badge badge-css-grid">Interactivo</span>
+            </header>
+            <p>Cambia las propiedades del grid y observa la distribución. Incluye <code>fr</code>, <code>repeat()</code>, <code>minmax()</code>, <code>auto-fill</code>.</p>
+            <div class="demo">
+              <div class="grid-playground">
+                <div class="gp-controls">
+                  <label>grid-template-columns
+                    <select id="gp-cols" onchange="updateGrid()">
+                      <option value="1fr 1fr 1fr">1fr 1fr 1fr</option>
+                      <option value="repeat(4, 1fr)">repeat(4, 1fr)</option>
+                      <option value="200px 1fr 1fr">200px 1fr 1fr</option>
+                      <option value="repeat(auto-fill, minmax(80px,1fr))">auto-fill minmax(80px,1fr)</option>
+                      <option value="1fr 2fr 1fr">1fr 2fr 1fr</option>
+                      <option value="repeat(2, 1fr)">repeat(2, 1fr)</option>
+                    </select>
+                  </label>
+                  <label>grid-template-rows
+                    <select id="gp-rows" onchange="updateGrid()">
+                      <option value="auto">auto</option>
+                      <option value="80px 80px">80px 80px</option>
+                      <option value="1fr 2fr">1fr 2fr</option>
+                      <option value="repeat(3, 60px)">repeat(3, 60px)</option>
+                    </select>
+                  </label>
+                  <label>gap <input type="range" id="gp-gap" min="0" max="20" value="8" oninput="updateGrid()"> <output id="gp-gap-val">8px</output></label>
+                </div>
+                <div class="gp-container" id="gp-container">
+                  <div class="gp-item gp-special">1 col-span:2</div>
+                  <div class="gp-item">2</div>
+                  <div class="gp-item">3</div>
+                  <div class="gp-item">4</div>
+                  <div class="gp-item">5</div>
+                  <div class="gp-item">6</div>
+                </div>
+                <pre class="gp-code" id="gp-code">.grid { display: grid; }</pre>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="grid-column grid-row span placement celda">
+            <header class="card-header">
+              <code>grid-column · grid-row · span</code>
+              <span class="badge badge-css-grid">Placement</span>
+            </header>
+            <p>Controlan exactamente qué celdas ocupa cada ítem con líneas de grid (<code>1/3</code>) o <code>span N</code>.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:40px 40px 40px;gap:4px;font-size:.68rem;">
+                <div style="background:#3498db;color:white;border-radius:4px;display:flex;align-items:center;justify-content:center;grid-column:1/3;">col 1/3</div>
+                <div style="background:#e74c3c;color:white;border-radius:4px;display:flex;align-items:center;justify-content:center;grid-row:1/3;">row 1/3</div>
+                <div style="background:#2ecc71;color:white;border-radius:4px;display:flex;align-items:center;justify-content:center;">auto</div>
+                <div style="background:#9b59b6;color:white;border-radius:4px;display:flex;align-items:center;justify-content:center;grid-column:1/3;">col 1/3</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="grid-template-areas named layout areas visuales">
+            <header class="card-header">
+              <code>grid-template-areas</code>
+              <span class="badge badge-css-grid">Layout</span>
+            </header>
+            <p>Layout visual con nombres de área como un "mapa ASCII" en el CSS.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-areas:'header header' 'sidebar main' 'footer footer';grid-template-columns:80px 1fr;grid-template-rows:28px 60px 24px;gap:4px;font-size:.72rem;font-weight:600;">
+                <div style="grid-area:header;background:#3498db;color:white;border-radius:4px;display:flex;align-items:center;justify-content:center;">header</div>
+                <div style="grid-area:sidebar;background:#9b59b6;color:white;border-radius:4px;display:flex;align-items:center;justify-content:center;">sidebar</div>
+                <div style="grid-area:main;background:#2ecc71;color:white;border-radius:4px;display:flex;align-items:center;justify-content:center;">main</div>
+                <div style="grid-area:footer;background:#e67e22;color:white;border-radius:4px;display:flex;align-items:center;justify-content:center;">footer</div>
+              </div>
+            </div>
+          </article>
+
+        
+          <article class="tag-card" data-tag="grid-auto-flow dense row column relleno automatico implicit">
+            <header class="card-header">
+              <code>grid-auto-flow · dense</code>
+              <span class="badge badge-css-grid">Auto-placement</span>
+            </header>
+            <p>Controla cómo el algoritmo de auto-placement coloca los ítems. <code>dense</code> rellena huecos con ítems más pequeños.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-flow:dense;gap:4px;font-size:.7rem;margin-bottom:8px;">
+                <div style="background:#3d7ef5;color:white;padding:6px;border-radius:3px;text-align:center;grid-column:span 2;">span 2</div>
+                <div style="background:#a855f7;color:white;padding:6px;border-radius:3px;text-align:center;">1</div>
+                <div style="background:#2ecc71;color:white;padding:6px;border-radius:3px;text-align:center;grid-column:span 3;">span 3</div>
+                <div style="background:#e74c3c;color:white;padding:6px;border-radius:3px;text-align:center;">rellena</div>
+                <div style="background:#f39c12;color:white;padding:6px;border-radius:3px;text-align:center;">el</div>
+                <div style="background:#1abc9c;color:white;padding:6px;border-radius:3px;text-align:center;">hueco</div>
+              </div>
+              <pre style="font-size:.72rem;"><code>grid-auto-flow: row          /* default */
+grid-auto-flow: column
+grid-auto-flow: row dense    /* rellena huecos */
+grid-auto-flow: column dense</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="named lines lineas nombradas grid bracket corchetes personalizado">
+            <header class="card-header">
+              <code>Líneas nombradas</code>
+              <span class="badge badge-css-grid">Naming</span>
+            </header>
+            <p>Asigna nombres a las líneas del grid con corchetes <code>[]</code>. Hace el código más legible y mantenible que usar números de línea.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>/* Definición con nombres */
+grid-template-columns:
+  [start] 200px
+  [content-start] 1fr
+  [content-end aside-start] 240px
+  [aside-end end];
+
+/* Uso semántico */
+.main    { grid-column: content-start / content-end; }
+.aside   { grid-column: aside-start / aside-end; }
+.full    { grid-column: start / end; }
+
+/* Múltiples nombres por línea */
+grid-template-rows:
+  [header-top] 60px [header-bottom main-top] 1fr
+  [main-bottom footer-top] 50px [footer-bottom];</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="subgrid lineas heredadas grid-template-columns rows inherit parent hijo alineado">
+            <header class="card-header">
+              <code>subgrid</code>
+              <span class="badge badge-css-grid">Moderno</span>
+            </header>
+            <p>Un elemento hijo puede heredar las líneas del grid padre con <code>subgrid</code>. Permite alinear elementos nietos con el grid raíz.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;background:#f0f4ff;border:2px dashed #3d7ef5;border-radius:6px;padding:8px;">
+                <div style="background:#3d7ef5;color:white;padding:6px;border-radius:4px;font-size:.72rem;text-align:center;">Col 1</div>
+                <div style="display:grid;grid-column:span 2;grid-template-columns:subgrid;gap:8px;background:#faf5ff;border:1px dashed #a855f7;border-radius:4px;padding:4px;">
+                  <div style="background:#a855f7;color:white;padding:6px;border-radius:4px;font-size:.72rem;text-align:center;">Sub A</div>
+                  <div style="background:#a855f7;color:white;padding:6px;border-radius:4px;font-size:.72rem;text-align:center;">Sub B</div>
+                </div>
+              </div>
+              <pre style="margin-top:6px;font-size:.72rem;"><code>.parent { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.child  {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: subgrid; /* hereda 2 columnas */
+}</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card wide" data-tag="grid template areas layout visual header sidebar main footer builder">
+            <header class="card-header">
+              <code>grid-template-areas — Layout builder</code>
+              <span class="badge badge-css-grid">Interactivo</span>
+            </header>
+            <p>El layout de página más expresivo de CSS: define zonas con nombres y asigna elementos. El "mapa ASCII" del CSS.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:start;">
+                <div style="font-size:.73rem;">
+                  <p style="font-weight:700;margin-bottom:6px;">Selecciona un layout:</p>
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <button class="btn-demo" style="font-size:.68rem;padding:4px 8px;" onclick="setGridAreas('classic')">Classic (Header/Sidebar/Main/Footer)</button>
+                    <button class="btn-demo" style="font-size:.68rem;padding:4px 8px;" onclick="setGridAreas('holy')">Holy Grail</button>
+                    <button class="btn-demo" style="font-size:.68rem;padding:4px 8px;" onclick="setGridAreas('magazine')">Magazine</button>
+                    <button class="btn-demo" style="font-size:.68rem;padding:4px 8px;" onclick="setGridAreas('dashboard')">Dashboard</button>
+                  </div>
+                </div>
+                <div>
+                  <div id="ga-grid" style="display:grid;grid-template-areas:'header header' 'sidebar main' 'footer footer';grid-template-columns:120px 1fr;grid-template-rows:36px 80px 28px;gap:4px;margin-bottom:8px;">
+                    <div id="ga-header"  style="grid-area:header;background:#3d7ef5;color:white;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;">header</div>
+                    <div id="ga-sidebar" style="grid-area:sidebar;background:#a855f7;color:white;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;">sidebar</div>
+                    <div id="ga-main"    style="grid-area:main;background:#2ecc71;color:white;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;">main</div>
+                    <div id="ga-footer"  style="grid-area:footer;background:#f39c12;color:white;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;">footer</div>
+                  </div>
+                  <pre id="ga-code" style="font-size:.65rem;background:#1e1e2e;color:#cdd6f4;padding:6px;border-radius:4px;"></pre>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="grid-auto-columns rows implicit track tamaño automatico implícito">
+            <header class="card-header">
+              <code>grid-auto-columns · grid-auto-rows</code>
+              <span class="badge badge-css-grid">Implícito</span>
+            </header>
+            <p>Define el tamaño de filas/columnas creadas <em>implícitamente</em> (ítems que sobrepasan el grid explícito). <code>minmax()</code> es la combinación ideal.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>/* Grid explícito: 3 columnas, 1 fila */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  /* rows extra siempre ≥100px pero crecen con el contenido */
+}
+
+/* Solo columnas implícitas */
+.list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 200px; /* cada columna = 200px */
+}</code></pre>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="flexbox.html"><span>←</span> Flexbox</a>
+        <a class="pager-btn pager-next" href="tipografia.html">Tipografía <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

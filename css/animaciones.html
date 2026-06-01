@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Transiciones y Animaciones — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Transiciones y Animaciones — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">CSS</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Transiciones y Animaciones</span>
+      </nav>
+
+                              <section id="css-animaciones" class="category css-section">
+        <h2><span class="lang-tag css-tag">CSS</span> Transiciones &amp; Animaciones</h2>
+        <p class="category-desc"><code>transition</code>, <code>@keyframes</code>, <code>animation</code> y <code>transform</code>.</p>
+        <div class="tags-grid">
+
+          <article class="tag-card" data-tag="transition property duration timing-function easing delay">
+            <header class="card-header">
+              <code>transition</code>
+              <span class="badge badge-css-anim">Transición</span>
+            </header>
+            <p>Anima el cambio de una propiedad. Shorthand: <code>propiedad duración easing retardo</code>. Pasa el cursor sobre los bloques.</p>
+            <div class="demo">
+              <div class="transition-demos">
+                <div class="td-box" style="--tc:#3498db;transition:all .3s ease;">ease .3s</div>
+                <div class="td-box" style="--tc:#e74c3c;transition:all .5s linear;">linear .5s</div>
+                <div class="td-box" style="--tc:#2ecc71;transition:all .4s cubic-bezier(.68,-0.55,.265,1.55);">bounce</div>
+                <div class="td-box" style="--tc:#9b59b6;transition:background .2s,transform .4s .1s;">multi</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="transform translate rotate scale skew matrix perspective 3d">
+            <header class="card-header">
+              <code>transform</code>
+              <span class="badge badge-css-anim">Transform</span>
+            </header>
+            <p>Traslada, rota, escala, inclina o aplica matrices 2D/3D sin afectar el layout.</p>
+            <div class="demo">
+              <div class="transform-demos">
+                <div class="tr-box" style="transform:translateX(10px)">translateX</div>
+                <div class="tr-box" style="transform:rotate(15deg)">rotate 15°</div>
+                <div class="tr-box" style="transform:scale(1.2)">scale 1.2</div>
+                <div class="tr-box" style="transform:skewX(10deg)">skewX</div>
+                <div class="tr-box" style="transform:perspective(80px) rotateY(20deg)">3D rotateY</div>
+                <div class="tr-box" style="transform:rotate(10deg) scale(1.1) translateY(-4px)">múltiple</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card wide" data-tag="animation keyframes name duration iteration direction fill-mode play-state">
+            <header class="card-header">
+              <code>@keyframes · animation</code>
+              <span class="badge badge-css-anim">Animación</span>
+            </header>
+            <p>Transiciones entre múltiples estados. Propiedades: <code>name duration timing-function delay iteration-count direction fill-mode play-state</code>.</p>
+            <div class="demo">
+              <div class="anim-showcase">
+                <div class="anim-item an-pulse">pulse</div>
+                <div class="anim-item an-bounce">bounce</div>
+                <div class="anim-item an-spin">spin</div>
+                <div class="anim-item an-shake">shake</div>
+                <div class="anim-item an-float">float</div>
+                <div class="anim-item an-flip">flip</div>
+              </div>
+              <button class="btn-demo" id="anim-toggle" onclick="toggleAnimations()" style="margin-top:10px;">Pausar animaciones</button>
+              <pre style="margin-top:10px;"><code>@keyframes pulse {
+  0%, 100% { transform: scale(1);    }
+  50%       { transform: scale(1.15); }
+}
+.el { animation: pulse 1.5s ease-in-out infinite; }</code></pre>
+            </div>
+          </article>
+
+        
+          <article class="tag-card wide" data-tag="transition timing function easing cubic-bezier ease-in ease-out linear steps animacion suavizado">
+            <header class="card-header">
+              <code>transition-timing-function — Playground</code>
+              <span class="badge badge-css-anim">Easing</span>
+            </header>
+            <p>La función de temporización define la curva de aceleración de la transición. Pasa el cursor sobre cada bloque.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;">
+                <div style="padding:6px;background:#f8fafc;border-radius:6px;font-size:.72rem;text-align:center;">
+                  <div style="height:8px;background:#3d7ef5;border-radius:4px;transition:width 1s linear;width:30%;margin-bottom:4px;" onmouseenter="this.style.width='90%'" onmouseleave="this.style.width='30%'"></div>
+                  <code>linear</code>
+                </div>
+                <div style="padding:6px;background:#f8fafc;border-radius:6px;font-size:.72rem;text-align:center;">
+                  <div style="height:8px;background:#9b59b6;border-radius:4px;transition:width 1s ease;width:30%;margin-bottom:4px;" onmouseenter="this.style.width='90%'" onmouseleave="this.style.width='30%'"></div>
+                  <code>ease</code>
+                </div>
+                <div style="padding:6px;background:#f8fafc;border-radius:6px;font-size:.72rem;text-align:center;">
+                  <div style="height:8px;background:#e74c3c;border-radius:4px;transition:width 1s ease-in;width:30%;margin-bottom:4px;" onmouseenter="this.style.width='90%'" onmouseleave="this.style.width='30%'"></div>
+                  <code>ease-in</code>
+                </div>
+                <div style="padding:6px;background:#f8fafc;border-radius:6px;font-size:.72rem;text-align:center;">
+                  <div style="height:8px;background:#2ecc71;border-radius:4px;transition:width 1s ease-out;width:30%;margin-bottom:4px;" onmouseenter="this.style.width='90%'" onmouseleave="this.style.width='30%'"></div>
+                  <code>ease-out</code>
+                </div>
+                <div style="padding:6px;background:#f8fafc;border-radius:6px;font-size:.72rem;text-align:center;">
+                  <div style="height:8px;background:#f39c12;border-radius:4px;transition:width 1s ease-in-out;width:30%;margin-bottom:4px;" onmouseenter="this.style.width='90%'" onmouseleave="this.style.width='30%'"></div>
+                  <code>ease-in-out</code>
+                </div>
+                <div style="padding:6px;background:#f8fafc;border-radius:6px;font-size:.72rem;text-align:center;">
+                  <div style="height:8px;background:#1abc9c;border-radius:4px;transition:width 1s cubic-bezier(.68,-0.55,.265,1.55);width:30%;margin-bottom:4px;" onmouseenter="this.style.width='90%'" onmouseleave="this.style.width='30%'"></div>
+                  <code>bounce</code>
+                </div>
+                <div style="padding:6px;background:#f8fafc;border-radius:6px;font-size:.72rem;text-align:center;">
+                  <div style="height:8px;background:#e67e22;border-radius:4px;transition:width 1s steps(5,end);width:30%;margin-bottom:4px;" onmouseenter="this.style.width='90%'" onmouseleave="this.style.width='30%'"></div>
+                  <code>steps(5)</code>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="animation-delay stagger retraso cascada secuencia">
+            <header class="card-header">
+              <code>animation-delay · staggering</code>
+              <span class="badge badge-css-anim">Temporal</span>
+            </header>
+            <p><code>animation-delay</code> retrasa el inicio de la animación. Usando valores progresivos (staggering) se crean efectos en cascada.</p>
+            <div class="demo">
+              <div style="display:flex;gap:8px;padding:10px;background:#0f172a;border-radius:8px;">
+                <div style="width:24px;height:24px;background:#3d7ef5;border-radius:4px;animation:an-bounce .8s ease-in-out infinite;animation-delay:0s;"></div>
+                <div style="width:24px;height:24px;background:#a855f7;border-radius:4px;animation:an-bounce .8s ease-in-out infinite;animation-delay:0.1s;"></div>
+                <div style="width:24px;height:24px;background:#e74c3c;border-radius:4px;animation:an-bounce .8s ease-in-out infinite;animation-delay:0.2s;"></div>
+                <div style="width:24px;height:24px;background:#2ecc71;border-radius:4px;animation:an-bounce .8s ease-in-out infinite;animation-delay:0.3s;"></div>
+                <div style="width:24px;height:24px;background:#f39c12;border-radius:4px;animation:an-bounce .8s ease-in-out infinite;animation-delay:0.4s;"></div>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>.item:nth-child(1) { animation-delay: 0s;   }
+.item:nth-child(2) { animation-delay: 0.1s; }
+.item:nth-child(3) { animation-delay: 0.2s; }</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="animation-fill-mode forwards backwards both none estado final inicial">
+            <header class="card-header">
+              <code>animation-fill-mode</code>
+              <span class="badge badge-css-anim">Estado</span>
+            </header>
+            <p>Define si el elemento retiene los estilos del primer o último keyframe cuando la animación no está activa.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.73rem;">
+                <div>
+                  <button class="btn-demo" style="margin-bottom:6px;font-size:.7rem;" onclick="runFillDemo('none',this)">Animar none</button>
+                  <div id="fill-none" style="background:#3d7ef5;color:white;padding:4px 8px;border-radius:4px;font-size:.7rem;font-weight:700;display:inline-block;">none</div>
+                </div>
+                <div>
+                  <button class="btn-demo" style="margin-bottom:6px;font-size:.7rem;" onclick="runFillDemo('forwards',this)">Animar forwards</button>
+                  <div id="fill-fwd" style="background:#3d7ef5;color:white;padding:4px 8px;border-radius:4px;font-size:.7rem;font-weight:700;display:inline-block;">forwards</div>
+                </div>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>animation-fill-mode: none     /* vuelve al inicio */
+animation-fill-mode: forwards  /* se queda al final */
+animation-fill-mode: backwards /* empieza desde @0% */
+animation-fill-mode: both      /* forwards + backwards */</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="will-change performance GPU compositing layer aceleración hardware">
+            <header class="card-header">
+              <code>will-change</code>
+              <span class="badge badge-css-anim">Performance</span>
+            </header>
+            <p>Informa al navegador que una propiedad va a cambiar, permitiéndole optimizar con anticipación. Usar con moderación.</p>
+            <div class="demo">
+              <pre><code>/* Bueno: animaciones frecuentes */
+.modal-animated {
+  will-change: transform, opacity;
+}
+
+/* Evitar: aplicar a todo */
+* { will-change: transform; } /* ❌ consume VRAM */
+
+/* Limpiar tras la animación */
+el.addEventListener('transitionend', () => {
+  el.style.willChange = 'auto';
+});</code></pre>
+              <p style="font-size:.73rem;color:#555;margin-top:6px;">Propiedades recomendadas: <code>transform</code>, <code>opacity</code>. Crea un nuevo <em>compositing layer</em> en la GPU.</p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="animation-timeline scroll-driven view scroll progress ScrollTimeline ViewTimeline moderno">
+            <header class="card-header">
+              <code>animation-timeline</code>
+              <span class="badge badge-css-anim">Moderno</span>
+            </header>
+            <p>Vincula una animación al progreso del scroll (CSS 2023+). Sin JavaScript. El elemento se anima según cuánto has scrollado.</p>
+            <div class="demo">
+              <div style="height:80px;overflow-y:scroll;border:1px solid #e2e8f0;border-radius:6px;padding:8px;" id="scroll-anim-demo">
+                <div style="height:200px;background:linear-gradient(to bottom,#f0f4ff,#e8f0fe);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:#3d7ef5;font-weight:700;">↕ Scrollea aquí dentro</div>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>@keyframes reveal {
+  from { opacity: 0; transform: scaleX(0); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+.progress-bar {
+  animation: reveal linear;
+  animation-timeline: scroll(root);
+  animation-range: 0% 100%;
+}</code></pre>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="colores.html"><span>←</span> Colores y Fondos</a>
+        <a class="pager-btn pager-next" href="variables.html">Variables y Funciones <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

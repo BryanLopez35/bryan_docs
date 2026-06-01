@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Variables y Funciones — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Variables y Funciones — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">CSS</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Variables y Funciones</span>
+      </nav>
+
+                              <section id="css-variables" class="category css-section">
+        <h2><span class="lang-tag css-tag">CSS</span> Variables &amp; Funciones</h2>
+        <p class="category-desc">Custom Properties, <code>calc()</code>, <code>clamp()</code>, <code>min()</code>, <code>max()</code> y propiedades lógicas.</p>
+        <div class="tags-grid">
+
+          <article class="tag-card wide" data-tag="custom properties variables var css root herencia inherit">
+            <header class="card-header">
+              <code>--custom-property · var()</code>
+              <span class="badge badge-css-var">Variables</span>
+            </header>
+            <p>Declara con <code>--nombre: valor</code> en <code>:root</code> o en cualquier elemento. Usa con <code>var(--nombre)</code>. Se heredan en cascada.</p>
+            <div class="demo">
+              <div class="var-playground">
+                <div class="vp-controls">
+                  <label>--primary: <input type="color" id="var-primary" value="#3d7ef5" oninput="updateVarDemo()"></label>
+                  <label>--radius: <input type="range" id="var-radius" min="0" max="30" value="8" oninput="updateVarDemo()"> <output id="var-radius-val">8px</output></label>
+                  <label>--spacing: <input type="range" id="var-spacing" min="4" max="32" value="12" oninput="updateVarDemo()"> <output id="var-spacing-val">12px</output></label>
+                </div>
+                <div class="vp-preview" id="vp-preview">
+                  <div class="vp-card" id="vp-card-1">Tarjeta 1</div>
+                  <div class="vp-card" id="vp-card-2">Tarjeta 2</div>
+                  <div class="vp-card" id="vp-card-3">Tarjeta 3</div>
+                </div>
+                <pre class="vp-code" id="vp-code">:root { --primary: #3d7ef5; }</pre>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="calc clamp min max env function matemáticas">
+            <header class="card-header">
+              <code>calc() · clamp() · min() · max()</code>
+              <span class="badge badge-css-var">Funciones</span>
+            </header>
+            <p>Funciones matemáticas para valores dinámicos sin JavaScript.</p>
+            <div class="demo">
+              <pre><code>/* calc: mezcla unidades */
+width: calc(100% - 2rem);
+padding: calc(var(--sp) * 2);
+
+/* clamp(mín, ideal, máx) */
+font-size: clamp(1rem, 2.5vw, 2rem);
+width: clamp(200px, 50%, 800px);
+
+/* min / max */
+width: min(500px, 90vw);
+font-size: max(1rem, 2vw);</code></pre>
+              <div style="background:linear-gradient(90deg,#3d7ef5,#9b59b6);color:white;padding:8px;border-radius:6px;font-size:clamp(.7rem,2vw,1rem);margin-top:8px;">
+                Este texto usa <code style="background:rgba(255,255,255,.2);padding:1px 4px;">clamp()</code> — redimensiona la ventana
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="logical properties writing-mode block inline margin padding border">
+            <header class="card-header">
+              <code>Propiedades lógicas</code>
+              <span class="badge badge-css-var">Moderno</span>
+            </header>
+            <p>Alternativas lógicas a propiedades físicas. Se adaptan automáticamente al <code>writing-mode</code> y dirección del texto.</p>
+            <div class="demo">
+              <pre><code>/* Físico  →  Lógico */
+margin-top     → margin-block-start
+margin-bottom  → margin-block-end
+margin-left    → margin-inline-start
+margin-right   → margin-inline-end
+width          → inline-size
+height         → block-size
+border-top     → border-block-start</code></pre>
+            </div>
+          </article>
+
+        
+          <article class="tag-card" data-tag="@property tipo valor propiedad tipada syntax inherits initial-value">
+            <header class="card-header">
+              <code>@property</code>
+              <span class="badge badge-css-var">Moderno</span>
+            </header>
+            <p>Registra una propiedad custom con tipo, herencia y valor inicial. Permite animar propiedades que antes no eran animables.</p>
+            <div class="demo">
+              <div id="prop-demo" style="width:60px;height:60px;border-radius:50%;transition:--hue 1s;cursor:pointer;margin:0 auto 8px;" onclick="this.style.setProperty('--hue', this.style.getPropertyValue('--hue')==='260'?'10':'260')"></div>
+              <pre style="font-size:.72rem;"><code>@property --hue {
+  syntax: "&lt;number&gt;";
+  inherits: false;
+  initial-value: 220;
+}
+.el {
+  background: oklch(60% .2 var(--hue));
+  transition: --hue 1s; /* ahora animable */
+}
+/* haz clic en el círculo ↑ */</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="token design system tokens color spacing tipografia sistema diseño">
+            <header class="card-header">
+              <code>Design Tokens con CSS Variables</code>
+              <span class="badge badge-css-var">Arquitectura</span>
+            </header>
+            <p>Las propiedades custom son la base de los sistemas de tokens de diseño. Permiten un theming centralizado y consistente.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>/* Tokens primitivos */
+:root {
+  --color-blue-500: #3d7ef5;
+  --spacing-4: 16px;
+  --radius-md: 8px;
+}
+
+/* Tokens semánticos */
+:root {
+  --color-primary: var(--color-blue-500);
+  --space-component: var(--spacing-4);
+}
+
+/* Componente */
+.btn {
+  background: var(--color-primary);
+  padding: var(--space-component);
+  border-radius: var(--radius-md);
+}</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="dark mode prefers-color-scheme oscuro claro tema variables css">
+            <header class="card-header">
+              <code>Dark Mode con variables</code>
+              <span class="badge badge-css-var">Theming</span>
+            </header>
+            <p>Las CSS variables hacen trivial el modo oscuro: cambia los valores en <code>:root</code> según <code>prefers-color-scheme</code>.</p>
+            <div class="demo">
+              <div id="dark-mode-preview" style="border-radius:8px;padding:12px;border:1px solid var(--border);font-size:.8rem;transition:all .3s;">
+                <p style="font-weight:700;margin-bottom:4px;">Vista previa del tema</p>
+                <p style="font-size:.75rem;opacity:.7;">Texto secundario de ejemplo</p>
+                <button class="btn-demo" onclick="toggleDarkPreview()" style="margin-top:6px;font-size:.72rem;">Cambiar tema</button>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>:root {
+  --bg: #ffffff;
+  --text: #1a2332;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --text: #e2e8f0;
+  }
+}
+/* O con clase para toggle manual */
+.dark { --bg: #0f172a; --text: #e2e8f0; }</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="env safe-area notch viewport iPhone environmental variables">
+            <header class="card-header">
+              <code>env()</code>
+              <span class="badge badge-css-var">Viewport</span>
+            </header>
+            <p>Accede a variables definidas por el entorno del usuario (navegador/SO). El caso más común: <code>safe-area-inset</code> para notches de iPhone.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>/* Safe areas para iPhone X+ */
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left:   env(safe-area-inset-left);
+  padding-right:  env(safe-area-inset-right);
+}
+
+/* Con fallback */
+.nav {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+/* Variables disponibles */
+env(safe-area-inset-top)
+env(safe-area-inset-right)
+env(safe-area-inset-bottom)
+env(safe-area-inset-left)</code></pre>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="animaciones.html"><span>←</span> Transiciones y Animaciones</a>
+        <a class="pager-btn pager-next" href="pseudos.html">Pseudoclases y Pseudoelementos <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Tipografía — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Tipografía — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">CSS</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Tipografía</span>
+      </nav>
+
+                              <section id="css-tipografia" class="category css-section">
+        <h2><span class="lang-tag css-tag">CSS</span> Tipografía</h2>
+        <p class="category-desc">Propiedades que controlan fuente, tamaño, espaciado y alineación del texto.</p>
+        <div class="tags-grid">
+
+          <article class="tag-card wide" data-tag="font-family font-size font-weight font-style line-height letter-spacing text-align text-transform word-spacing white-space tipografia">
+            <header class="card-header">
+              <code>Tipografía Playground</code>
+              <span class="badge badge-css-typo">Interactivo</span>
+            </header>
+            <p>Controla todas las propiedades tipográficas en tiempo real.</p>
+            <div class="demo">
+              <div class="typo-playground">
+                <div class="tp-controls">
+                  <label>font-size <input type="range" id="tp-size" min="10" max="48" value="16" oninput="updateTypo()"> <output id="tp-size-val">16px</output></label>
+                  <label>font-weight <select id="tp-weight" onchange="updateTypo()"><option value="100">100 Thin</option><option value="300">300 Light</option><option value="400" selected>400 Normal</option><option value="600">600 SemiBold</option><option value="700">700 Bold</option><option value="900">900 Black</option></select></label>
+                  <label>line-height <input type="range" id="tp-lh" min="10" max="30" value="16" oninput="updateTypo()"> <output id="tp-lh-val">1.0</output></label>
+                  <label>letter-spacing <input type="range" id="tp-ls" min="-3" max="10" value="0" oninput="updateTypo()"> <output id="tp-ls-val">0px</output></label>
+                  <label>text-align <select id="tp-align" onchange="updateTypo()"><option>left</option><option>center</option><option>right</option><option>justify</option></select></label>
+                  <label>text-transform <select id="tp-transform" onchange="updateTypo()"><option value="none">none</option><option value="uppercase">uppercase</option><option value="lowercase">lowercase</option><option value="capitalize">capitalize</option></select></label>
+                </div>
+                <div class="tp-preview" id="tp-preview">El veloz murciélago hindú comía feliz cardillo y kiwi. La cigüeña tocaba el saxofón detrás del palenque de paja.</div>
+                <pre class="tp-code" id="tp-code">p { font-size: 16px; }</pre>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="text-shadow font-variant efectos texto">
+            <header class="card-header">
+              <code>text-shadow · font-variant</code>
+              <span class="badge badge-css-typo">Efectos</span>
+            </header>
+            <p><code>text-shadow</code> añade sombras al texto. <code>font-variant</code> activa small-caps y variantes tipográficas.</p>
+            <div class="demo">
+              <p style="text-shadow:2px 2px 4px rgba(0,0,0,.3);font-size:1.1rem;font-weight:700;">Sombra suave</p>
+              <p style="text-shadow:0 0 10px #3d7ef5,0 0 20px #3d7ef5;font-size:1.1rem;font-weight:700;color:#fff;background:#111;padding:6px;border-radius:4px;">Neon glow</p>
+              <p style="font-variant:small-caps;font-size:1rem;">Small Caps con font-variant</p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="font-face web font custom fuente tipografia">
+            <header class="card-header">
+              <code>@font-face · font-display</code>
+              <span class="badge badge-css-typo">Web Fonts</span>
+            </header>
+            <p>Carga fuentes personalizadas. <code>font-display: swap</code> muestra texto con fuente de respaldo mientras carga.</p>
+            <div class="demo">
+              <pre><code>@font-face {
+  font-family: 'MiFuente';
+  src: url('fuente.woff2') format('woff2'),
+       url('fuente.woff')  format('woff');
+  font-weight: 400 700; /* rango */
+  font-display: swap;
+}
+
+body { font-family: 'MiFuente', sans-serif; }</code></pre>
+            </div>
+          </article>
+
+        
+          <article class="tag-card wide" data-tag="text-decoration underline overline line-through style color thickness wavy dotted dashed">
+            <header class="card-header">
+              <code>text-decoration — Playground</code>
+              <span class="badge badge-css-typo">Decoración</span>
+            </header>
+            <p>Controla el subrayado y otras decoraciones de texto. Ahora con control fino de color, estilo y grosor.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;">
+                <div style="display:flex;flex-direction:column;gap:6px;font-size:.75rem;">
+                  <label>Línea <select id="td-line" onchange="updateTextDeco()"><option>underline</option><option>overline</option><option>line-through</option><option>underline overline</option></select></label>
+                  <label>Estilo <select id="td-style" onchange="updateTextDeco()"><option>solid</option><option>dashed</option><option>dotted</option><option>wavy</option><option>double</option></select></label>
+                  <label>Color <input type="color" id="td-color" value="#3d7ef5" oninput="updateTextDeco()"></label>
+                  <label>Grosor <input type="range" id="td-thick" min="1" max="6" value="2" oninput="updateTextDeco()"> <output id="td-thick-v">2</output>px</label>
+                  <label>Offset <input type="range" id="td-offset" min="-4" max="8" value="2" oninput="updateTextDeco()"> <output id="td-offset-v">2</output>px</label>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <p id="td-preview" style="font-size:1.1rem;font-weight:600;padding:12px;background:#f8fafc;border-radius:6px;text-align:center;text-decoration:underline solid #3d7ef5 2px;text-underline-offset:2px;">Texto de ejemplo</p>
+                  <pre id="td-code" style="font-size:.65rem;background:#1e1e2e;color:#cdd6f4;padding:6px;border-radius:4px;white-space:pre-wrap;"></pre>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="writing-mode vertical horizontal text orientation block inline japonés chino CJK">
+            <header class="card-header">
+              <code>writing-mode · text-orientation</code>
+              <span class="badge badge-css-typo">Dirección</span>
+            </header>
+            <p>Cambia la dirección del flujo del texto. Útil para etiquetas laterales, texto en japonés/chino y diseños creativos.</p>
+            <div class="demo">
+              <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;font-size:.8rem;">
+                <div style="writing-mode:horizontal-tb;background:#f0f4ff;padding:8px;border-radius:4px;font-weight:600;color:#3d7ef5;">horizontal-tb<br>(default)</div>
+                <div style="writing-mode:vertical-rl;background:#faf5ff;padding:8px;border-radius:4px;font-weight:600;color:#a855f7;">vertical-rl<br>Texto vertical</div>
+                <div style="writing-mode:vertical-lr;background:#f0fdf4;padding:8px;border-radius:4px;font-weight:600;color:#16a34a;">vertical-lr</div>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>/* Etiqueta lateral */
+.label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;  /* default */
+  transform: rotate(180deg);
+}</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="font-variant ligatures feature settings opentype numeros old-style contextual alternates">
+            <header class="card-header">
+              <code>font-variant · font-feature-settings</code>
+              <span class="badge badge-css-typo">OpenType</span>
+            </header>
+            <p>Activa características tipográficas avanzadas de las fuentes OpenType: ligaduras, números de estilo antiguo, fracciones, versalitas.</p>
+            <div class="demo">
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:.88rem;">
+                <div style="font-variant-numeric:oldstyle-nums;">Números old-style: 0123456789 (font-variant-numeric: oldstyle-nums)</div>
+                <div style="font-variant-numeric:tabular-nums;">Tabular: 1 11 111 1111 (alineación en tablas)</div>
+                <div style="font-variant-caps:small-caps;">Small caps: Texto en versalitas</div>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>/* Forma moderna */
+font-variant-numeric: oldstyle-nums;
+font-variant-ligatures: common-ligatures;
+font-variant-caps: small-caps;
+
+/* Forma de bajo nivel (más control) */
+font-feature-settings: "onum" 1, "liga" 1, "smcp" 1;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="variable fonts fuentes variables peso anchura inclinacion wght wdth ital slnt custom axis">
+            <header class="card-header">
+              <code>Variable Fonts</code>
+              <span class="badge badge-css-typo">Moderno</span>
+            </header>
+            <p>Una sola fuente con ejes de variación continuos (peso, anchura, inclinación). Elimina la necesidad de múltiples archivos de fuente.</p>
+            <div class="demo">
+              <div id="vf-preview" style="font-size:1.2rem;font-weight:400;padding:8px;background:#f8fafc;border-radius:4px;border:1px solid #e2e8f0;transition:all .15s;text-align:center;margin-bottom:8px;">Variable Font Demo</div>
+              <label style="font-size:.75rem;">font-weight <input type="range" id="vf-weight" min="100" max="900" step="10" value="400" oninput="document.getElementById('vf-preview').style.fontWeight=this.value;document.getElementById('vf-w-out').textContent=this.value"> <output id="vf-w-out">400</output></label>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>@font-face {
+  font-family: 'Inter';
+  src: url('Inter.woff2') format('woff2-variations');
+  font-weight: 100 900;  /* rango continuo */
+  font-display: swap;
+}
+/* Uso de ejes */
+.heading { font-variation-settings: 'wght' 750, 'wdth' 85; }</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="text-overflow ellipsis clip white-space nowrap truncar truncate overflow texto largo">
+            <header class="card-header">
+              <code>text-overflow · truncación</code>
+              <span class="badge badge-css-typo">Recorte</span>
+            </header>
+            <p>Controla cómo se muestra el texto que desborda su contenedor. Requiere <code>overflow: hidden</code> y <code>white-space: nowrap</code>.</p>
+            <div class="demo">
+              <div style="display:flex;flex-direction:column;gap:8px;font-size:.78rem;">
+                <div style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;background:#f8fafc;padding:6px;border-radius:4px;border:1px solid #e2e8f0;max-width:100%;">Una línea larga que se trunca con ellipsis cuando no cabe en el contenedor disponible</div>
+                <div style="overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;background:#f8fafc;padding:6px;border-radius:4px;border:1px solid #e2e8f0;">Varias líneas: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Truncado en 2 líneas.</div>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>/* 1 línea */
+.truncate {
+  overflow: hidden; white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* N líneas */
+.clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}</code></pre>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="grid.html"><span>←</span> CSS Grid</a>
+        <a class="pager-btn pager-next" href="colores.html">Colores y Fondos <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

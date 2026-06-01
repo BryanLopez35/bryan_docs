@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Estructura del Documento — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Estructura del Documento — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">HTML</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Estructura del Documento</span>
+      </nav>
+
+                              <section id="seccion-estructura" class="category">
+        <h2>Estructura del Documento</h2>
+        <p class="category-desc">
+          Etiquetas que forman el esqueleto de cualquier página HTML.
+        </p>
+
+        <div class="tags-grid">
+          <article class="tag-card" data-tag="<!DOCTYPE>">
+            <header class="card-header">
+              <code>&lt;!DOCTYPE html&gt;</code>
+              <span class="badge badge-meta">Declaración</span>
+            </header>
+            <p>
+              Declara que el documento usa HTML5. Sin esta línea el navegador puede entrar en
+              <strong>Quirks Mode</strong> (emulación de bugs de IE6), lo que rompe el modelo de
+              caja moderno y el espaciado CSS. Debe ser la <em>primera línea absoluta</em> del archivo,
+              sin nada antes (ni espacios ni BOM).
+            </p>
+            <div class="demo">
+              <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+  ...
+&lt;/html&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="html">
+            <header class="card-header">
+              <code>&lt;html&gt;</code>
+              <span class="badge badge-structure">Raíz</span>
+            </header>
+            <p>
+              Elemento raíz del documento. El atributo <code>lang</code> es
+              <strong>obligatorio para accesibilidad</strong>: permite que lectores de pantalla
+              pronuncien el idioma correctamente y que los motores de búsqueda lo indexen.
+              Usa códigos BCP 47: <code>es</code>, <code>es-MX</code>, <code>en-US</code>, <code>pt-BR</code>.
+            </p>
+            <div class="demo">
+              <pre><code>&lt;html lang="es"&gt;
+  &lt;head&gt;...&lt;/head&gt;
+  &lt;body&gt;...&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="head">
+            <header class="card-header">
+              <code>&lt;head&gt;</code>
+              <span class="badge badge-structure">Metadatos</span>
+            </header>
+            <p>
+              Contenedor de <strong>metadatos invisibles</strong>: título, charset, viewport,
+              estilos, scripts, SEO y más. Nada de lo que está aquí se renderiza directamente en la
+              página. El orden importa: <code>charset</code> y <code>viewport</code> deben ir primero.
+            </p>
+            <div class="demo">
+              <pre><code>&lt;head&gt;
+  &lt;title&gt;Mi Página&lt;/title&gt;
+  &lt;meta charset="UTF-8"&gt;
+&lt;/head&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="body">
+            <header class="card-header">
+              <code>&lt;body&gt;</code>
+              <span class="badge badge-structure">Contenido</span>
+            </header>
+            <p>
+              Contiene todo el contenido <strong>visible</strong> al usuario. Solo puede existir
+              <strong>uno</strong> por documento. El evento <code>DOMContentLoaded</code> se dispara
+              cuando el parser termina de leer el <code>&lt;body&gt;</code>; <code>load</code> espera
+              además a imágenes y recursos externos.
+            </p>
+            <div class="demo">
+              <pre><code>&lt;body&gt;
+  &lt;h1&gt;¡Hola mundo!&lt;/h1&gt;
+  &lt;p&gt;Contenido visible&lt;/p&gt;
+&lt;/body&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="title">
+            <header class="card-header">
+              <code>&lt;title&gt;</code>
+              <span class="badge badge-meta">Metadatos</span>
+            </header>
+            <p>
+              Aparece en la pestaña del navegador, en marcadores y en resultados de Google.
+              Recomendaciones SEO: <strong>50–60 caracteres</strong>, incluye la palabra clave
+              principal. Patrón habitual: <code>Página — Sitio</code>. Cada página debe tener
+              un título único y descriptivo.
+            </p>
+            <div class="demo">
+              <button class="btn-demo" onclick="demoTitle()">
+                Cambiar título de pestaña
+              </button>
+              <small id="title-demo-info"
+                >Haz clic para ver el efecto en la pestaña</small
+              >
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="meta">
+            <header class="card-header">
+              <code>&lt;meta&gt;</code>
+              <span class="badge badge-meta">Metadatos</span>
+            </header>
+            <p>
+              Elemento <strong>vacío</strong> (sin cierre) para metadatos del documento.
+              Los más importantes: <code>charset="UTF-8"</code> (obligatorio),
+              <code>name="viewport"</code> (responsive), <code>name="description"</code>
+              (150–160 chars para SEO), <code>name="robots"</code> (<code>noindex</code>,
+              <code>nofollow</code>), <code>name="theme-color"</code> (color de la barra del
+              navegador en móvil).
+            </p>
+            <div class="demo">
+              <pre><code>&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport"
+      content="width=device-width"&gt;
+&lt;meta name="description"
+      content="Mi descripción"&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="link">
+            <header class="card-header">
+              <code>&lt;link&gt;</code>
+              <span class="badge badge-meta">Metadatos</span>
+            </header>
+            <p>
+              Vincula recursos externos. El atributo <code>rel</code> define la relación:
+              <code>stylesheet</code>, <code>icon</code>, <code>canonical</code> (SEO sin
+              duplicados), <code>preload</code> / <code>prefetch</code> / <code>preconnect</code>
+              (optimización de carga), <code>alternate</code> (versiones en otros idiomas).
+              Elemento vacío — sin <code>type</code> para CSS en HTML5.
+            </p>
+            <div class="demo">
+              <pre><code>&lt;link rel="stylesheet"
+      href="styles.css"&gt;
+&lt;link rel="icon"
+      href="favicon.ico"&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="base">
+            <header class="card-header">
+              <code>&lt;base&gt;</code>
+              <span class="badge badge-meta">Metadatos</span>
+            </header>
+            <p>
+              Establece la URL base y el <code>target</code> por defecto para <em>todos</em> los
+              enlaces relativos del documento. <strong>Usar con cuidado:</strong> afecta también a
+              los anclajes de fragmento (<code>#seccion</code>), lo que puede romper la
+              navegación interna si no se calcula bien la URL base.
+            </p>
+            <div class="demo">
+              <pre><code>&lt;base href="https://ejemplo.com/"&gt;
+&lt;!-- Ahora todos los links
+     relativos usan esa base --&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="style">
+            <header class="card-header">
+              <code>&lt;style&gt;</code>
+              <span class="badge badge-meta">Estilos</span>
+            </header>
+            <p>
+              Permite incrustar CSS directamente en el documento HTML. Habitualmente se coloca en el <code>&lt;head&gt;</code>, aunque técnicamente puede aparecer en cualquier lugar del documento. El atributo <code>media</code> acepta una media query para aplicar los estilos solo bajo ciertas condiciones. A diferencia de <code>&lt;link rel="stylesheet"&gt;</code>, no requiere una petición HTTP adicional, lo que lo hace ideal para CSS crítico de primer render.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos principales</span>
+              <code>media</code><span class="attr-type">string</span><span class="attr-desc">Media query: aplica los estilos solo si la condición es verdadera (ej. <code>print</code>, <code>(max-width:600px)</code>)</span>
+            </div>
+            <p class="tag-tip">La técnica de "Critical CSS" incrusta en un <code>&lt;style&gt;</code> solo los estilos necesarios para el contenido visible al cargar (above-the-fold). El CSS restante se carga de forma asíncrona con <code>&lt;link rel="stylesheet"&gt;</code> para no bloquear el render.</p>
+            <div class="demo">
+              <pre><code>&lt;style&gt;
+  body {
+    background: #f0f0f0;
+    font-family: sans-serif;
+  }
+&lt;/style&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="div">
+            <header class="card-header">
+              <code>&lt;div&gt;</code>
+              <span class="badge badge-layout">Contenedor</span>
+            </header>
+            <p>
+              Contenedor genérico de <strong>bloque</strong> — ocupa todo el ancho disponible y
+              genera un salto de línea. Sin significado semántico. <strong>Cuándo no usarlo:</strong>
+              si el contenido tiene significado estructural, usa
+              <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;main&gt;</code>,
+              <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;aside&gt;</code> o
+              <code>&lt;footer&gt;</code>.
+            </p>
+            <div class="demo">
+              <button class="btn-demo" onclick="demoDiv()">
+                Agregar div coloreado
+              </button>
+              <div id="div-demo-area"></div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="span">
+            <header class="card-header">
+              <code>&lt;span&gt;</code>
+              <span class="badge badge-layout">Contenedor</span>
+            </header>
+            <p>
+              Contenedor genérico <strong>en línea</strong> — fluye dentro del texto, sin salto de
+              línea. Sin valor semántico. Antes de usarlo, pregunta: ¿el texto tiene significado?
+              Usa <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;mark&gt;</code> o
+              <code>&lt;abbr&gt;</code>. Reserva <code>&lt;span&gt;</code> exclusivamente para
+              aplicar estilos sin añadir semántica.
+            </p>
+            <div class="demo">
+              <p>
+                Texto con
+                <span style="color: #e74c3c; font-weight: bold">span rojo</span
+                >,
+                <span
+                  style="
+                    background: #f1c40f;
+                    padding: 2px 6px;
+                    border-radius: 3px;
+                  "
+                  >span amarillo</span
+                >
+                y
+                <span style="text-decoration: underline wavy #3498db"
+                  >span subrayado</span
+                >.
+              </p>
+            </div>
+          </article>
+        
+          <article class="tag-card wide" data-tag="block inline bloque linea flujo documento display div span comportamiento">
+            <header class="card-header">
+              <code>Block vs Inline — Playground</code>
+              <span class="badge badge-layout">Interactivo</span>
+            </header>
+            <p>
+              Los elementos de <strong>bloque</strong> (<code>div</code>, <code>p</code>,
+              <code>h1</code>…) ocupan todo el ancho y fuerzan salto de línea. Los
+              <strong>en línea</strong> (<code>span</code>, <code>a</code>, <code>strong</code>…)
+              fluyen dentro del texto sin interrumpirlo. CSS puede cambiar este comportamiento con
+              <code>display</code>.
+            </p>
+            <div class="demo">
+              <div id="bvi-preview" style="padding:10px;background:#f8fafc;border-radius:6px;font-size:.85rem;line-height:2;border:1px solid #e2e8f0;min-height:56px;">
+                <div style="background:#dbeafe;color:#1e40af;padding:3px 8px;border-radius:3px;margin:2px 0;border-left:3px solid #3d7ef5;">&lt;div&gt; — bloque inicial</div>
+                <span style="background:#fef3c7;color:#92400e;padding:1px 6px;border-radius:3px;margin:1px;">&lt;span&gt; 1</span>
+                <span style="background:#fef3c7;color:#92400e;padding:1px 6px;border-radius:3px;margin:1px;">&lt;span&gt; 2 en línea</span>
+              </div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
+                <button class="btn-demo" onclick="addBVI('div')">+ &lt;div&gt; (bloque)</button>
+                <button class="btn-demo" onclick="addBVI('p')">+ &lt;p&gt; (bloque)</button>
+                <button class="btn-demo" onclick="addBVI('span')">+ &lt;span&gt; (línea)</button>
+                <button class="btn-demo" onclick="addBVI('strong')">+ &lt;strong&gt; (línea)</button>
+                <button type="button" onclick="document.getElementById('bvi-preview').innerHTML=''" style="padding:7px 12px;border:1px solid #e2e8f0;border-radius:6px;cursor:pointer;font-size:.78rem;background:transparent;">Limpiar</button>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>/* Bloque: nueva línea, ocupa todo el ancho disponible */
+div, p, h1-h6, section, article, ul, ol  →  display: block
+
+/* Línea: fluye dentro del texto */
+span, a, strong, em, code, abbr          →  display: inline
+
+/* Se puede cambiar con CSS */
+span { display: block; }  /* convierte span en bloque */
+div  { display: inline; } /* convierte div en línea */</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="id class lang dir atributos globales data- tabindex contenteditable">
+            <header class="card-header">
+              <code>Atributos globales</code>
+              <span class="badge badge-structure">Atributos</span>
+            </header>
+            <p>
+              Atributos que pueden aplicarse a <strong>cualquier</strong> elemento HTML, independientemente del tipo de etiqueta. Se dividen en categorías: identificadores y clases (<code>id</code>, <code>class</code>), internacionalización (<code>lang</code>, <code>dir</code>, <code>translate</code>), accesibilidad (<code>tabindex</code>, <code>hidden</code>), datos personalizados (<code>data-*</code>) e interactividad (<code>contenteditable</code>, <code>draggable</code>, <code>spellcheck</code>). Conocerlos permite controlar el comportamiento de cualquier elemento sin importar su tipo.
+            </p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:.75rem;align-items:baseline;">
+                <code>id</code><span>Identificador único en el documento</span>
+                <code>class</code><span>Lista de clases CSS separadas por espacio</span>
+                <code>lang</code><span>Idioma del contenido del elemento</span>
+                <code>dir</code><span><code>ltr</code> | <code>rtl</code> | <code>auto</code> — dirección del texto</span>
+                <code>hidden</code><span>Oculta el elemento semánticamente</span>
+                <code>tabindex</code><span>Orden de foco con Tab (0 = natural, -1 = solo JS)</span>
+                <code>data-*</code><span>Datos personalizados accesibles por JS</span>
+                <code>title</code><span>Tooltip al pasar el cursor</span>
+                <code>translate</code><span><code>yes</code> | <code>no</code> — si debe traducirse</span>
+                <code>spellcheck</code><span>Revisión ortográfica del navegador</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="SEO meta og social descripcion robots canonical link favicon">
+            <header class="card-header">
+              <code>SEO esencial en el &lt;head&gt;</code>
+              <span class="badge badge-meta">SEO</span>
+            </header>
+            <p>
+              El <code>&lt;head&gt;</code> concentra las señales que los motores de búsqueda y las redes sociales usan para indexar, rankear y presentar tu página. Los elementos obligatorios son <code>charset</code>, <code>viewport</code>, <code>title</code> y <code>description</code>. La URL canónica evita penalizaciones por contenido duplicado. Las etiquetas Open Graph controlan la apariencia en Facebook, LinkedIn y WhatsApp. El favicon SVG es la recomendación moderna por ser vectorial y soportar modo oscuro.
+            </p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>&lt;head&gt;
+  &lt;!-- Obligatorios --&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Página — Sitio&lt;/title&gt;
+  &lt;meta name="description" content="Descripción 150-160 chars"&gt;
+
+  &lt;!-- Canónica (evita duplicados) --&gt;
+  &lt;link rel="canonical" href="https://ejemplo.com/pagina"&gt;
+
+  &lt;!-- Open Graph (Facebook, LinkedIn…) --&gt;
+  &lt;meta property="og:title"  content="Título"&gt;
+  &lt;meta property="og:image"  content="https://…/thumb.jpg"&gt;
+
+  &lt;!-- Twitter Card --&gt;
+  &lt;meta name="twitter:card"  content="summary_large_image"&gt;
+
+  &lt;!-- Favicon moderno --&gt;
+  &lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;
+&lt;/head&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="jerarquia encabezados outline documento h1 h2 h3 estructura accesibilidad lectores pantalla">
+            <header class="card-header">
+              <code>Jerarquía de encabezados</code>
+              <span class="badge badge-structure">Estructura</span>
+            </header>
+            <p>
+              Los encabezados <code>h1</code>–<code>h6</code> forman el <em>outline</em> (esquema) del documento. Los lectores de pantalla ofrecen atajos de teclado para saltar entre encabezados del mismo nivel, lo que convierte la jerarquía correcta en una función de navegación crítica. Los motores de búsqueda les otorgan peso semántico, especialmente al <code>h1</code>. La regla principal: no saltar niveles (<code>h1</code>→<code>h3</code> sin <code>h2</code> intermedio) y no elegir un nivel de encabezado por su tamaño visual — eso se controla con CSS.
+            </p>
+            <div class="demo">
+              <div style="font-size:.78rem;border-left:3px solid var(--accent);padding-left:12px;">
+                <div style="font-size:1.2em;font-weight:800;margin:2px 0;">h1 — Título único de la página</div>
+                <div style="font-size:1.05em;font-weight:700;margin:4px 0 2px 16px;border-left:2px solid #a855f7;padding-left:8px;">h2 — Sección principal</div>
+                <div style="font-size:.95em;font-weight:600;margin:2px 0 2px 32px;border-left:2px solid #2ecc71;padding-left:8px;">h3 — Subsección</div>
+                <div style="font-size:.95em;font-weight:700;margin:4px 0 2px 16px;border-left:2px solid #a855f7;padding-left:8px;">h2 — Otra sección</div>
+                <div style="font-size:.95em;font-weight:600;margin:2px 0 2px 32px;border-left:2px solid #2ecc71;padding-left:8px;">h3 — Subsección</div>
+              </div>
+              <p style="font-size:.72rem;color:#e74c3c;margin-top:8px;font-weight:600;">❌ Evitar: saltar niveles (h1 → h3) o usar encabezados solo por el tamaño visual.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        
+        <a class="pager-btn pager-next" href="texto.html">Texto y Tipografía <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+      let bviCount = 0;
+      function addBVI(tag) {
+        const preview = document.getElementById('bvi-preview');
+        if (!preview) return;
+        const el = document.createElement(tag);
+        const isBlock = ['div','p','section','article','h1','h2','h3','ul','ol','blockquote'].includes(tag);
+        bviCount++;
+        el.textContent = '<' + tag + '> #' + bviCount + ' — ' + (isBlock ? 'bloque' : 'línea');
+        el.style.cssText = isBlock
+          ? 'background:#dbeafe;color:#1e40af;padding:3px 8px;border-radius:3px;margin:2px 0;border-left:3px solid #3d7ef5;'
+          : 'background:#fef3c7;color:#92400e;padding:1px 6px;border-radius:3px;margin:1px;';
+        preview.appendChild(el);
+      }
+    </script>
+  </body>
+</html>

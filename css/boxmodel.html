@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Box Model — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Box Model — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">CSS</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Box Model</span>
+      </nav>
+
+                              <section id="css-boxmodel" class="category css-section">
+        <h2><span class="lang-tag css-tag">CSS</span> Box Model</h2>
+        <p class="category-desc">Cada elemento HTML es una caja: contenido, padding, border y margin.</p>
+        <div class="tags-grid">
+
+          <article class="tag-card wide" data-tag="box model margin padding border width height outline box-shadow box-sizing">
+            <header class="card-header">
+              <code>Box Model Playground</code>
+              <span class="badge badge-css-layout">Interactivo</span>
+            </header>
+            <p>Modifica cada capa del modelo de caja y observa el resultado en tiempo real.</p>
+            <div class="demo">
+              <div class="boxmodel-playground">
+                <div class="bm-controls">
+                  <label>margin <input type="range" id="bm-margin" min="0" max="40" value="16" oninput="updateBoxModel()"> <output id="bm-margin-val">16px</output></label>
+                  <label>padding <input type="range" id="bm-padding" min="0" max="40" value="16" oninput="updateBoxModel()"> <output id="bm-padding-val">16px</output></label>
+                  <label>border <input type="range" id="bm-border" min="0" max="16" value="4" oninput="updateBoxModel()"> <output id="bm-border-val">4px</output></label>
+                  <label>box-sizing <select id="bm-sizing" onchange="updateBoxModel()"><option value="content-box">content-box</option><option value="border-box">border-box</option></select></label>
+                </div>
+                <div class="bm-visual-wrap">
+                  <div class="bm-margin-box" id="bm-margin-box">
+                    <span class="bm-label">margin</span>
+                    <div class="bm-border-box" id="bm-border-box">
+                      <span class="bm-label">border</span>
+                      <div class="bm-padding-box" id="bm-padding-box">
+                        <span class="bm-label">padding</span>
+                        <div class="bm-content-box"><span>content</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <pre class="bm-code" id="bm-code"></pre>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="overflow hidden scroll auto clip visible">
+            <header class="card-header">
+              <code>overflow</code>
+              <span class="badge badge-css-layout">Desbordamiento</span>
+            </header>
+            <p>Controla qué ocurre cuando el contenido supera el tamaño de su caja.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.73rem;">
+                <div style="overflow:visible;height:52px;border:1px solid #ccc;border-radius:4px;padding:4px;">
+                  <strong>visible</strong><br><span style="background:#3498db;color:white;padding:1px 4px;">sale fuera de la caja</span>
+                </div>
+                <div style="overflow:hidden;height:52px;border:1px solid #ccc;border-radius:4px;padding:4px;">
+                  <strong>hidden</strong><br><span>el texto que sobrepase el alto se cortará y no será visible</span>
+                </div>
+                <div style="overflow:scroll;height:52px;border:1px solid #ccc;border-radius:4px;padding:4px;">
+                  <strong>scroll</strong><br><span>scroll siempre visible aunque no haga falta aquí</span>
+                </div>
+                <div style="overflow:auto;height:52px;border:1px solid #ccc;border-radius:4px;padding:4px;">
+                  <strong>auto</strong><br><span>scroll solo cuando el contenido no cabe en el espacio disponible</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="outline box-shadow inset sombra">
+            <header class="card-header">
+              <code>outline · box-shadow</code>
+              <span class="badge badge-css-layout">Decoración</span>
+            </header>
+            <p><code>outline</code> no forma parte del box model (no ocupa espacio). <code>box-shadow</code> añade sombras externas e internas (<code>inset</code>).</p>
+            <div class="demo">
+              <div style="display:flex;flex-direction:column;gap:8px;font-size:.8rem;">
+                <div style="outline:3px dashed #3498db;outline-offset:4px;padding:8px;border-radius:4px;">outline: no ocupa espacio</div>
+                <div style="box-shadow:4px 4px 0 #e74c3c;padding:8px;border-radius:4px;">box-shadow: 4px 4px 0</div>
+                <div style="box-shadow:0 4px 20px rgba(61,126,245,.4),inset 0 1px 0 rgba(255,255,255,.6);padding:8px;border-radius:8px;background:#fff;">múltiple + inset</div>
+              </div>
+            </div>
+          </article>
+
+        
+          <article class="tag-card wide" data-tag="border-radius playground esquinas redondeadas pill circulo">
+            <header class="card-header">
+              <code>border-radius — Playground</code>
+              <span class="badge badge-css-layout">Interactivo</span>
+            </header>
+            <p>Redondea las esquinas de cualquier elemento. Acepta 1–4 valores (TL TR BR BL) o valores <code>X/Y</code> para esquinas elípticas.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center;">
+                <div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:.75rem;margin-bottom:10px;">
+                    <label>TL <input type="range" id="br-tl" min="0" max="80" value="12" oninput="updateBR()"> <output id="br-tl-v">12</output>px</label>
+                    <label>TR <input type="range" id="br-tr" min="0" max="80" value="12" oninput="updateBR()"> <output id="br-tr-v">12</output>px</label>
+                    <label>BR <input type="range" id="br-br" min="0" max="80" value="12" oninput="updateBR()"> <output id="br-br-v">12</output>px</label>
+                    <label>BL <input type="range" id="br-bl" min="0" max="80" value="12" oninput="updateBR()"> <output id="br-bl-v">12</output>px</label>
+                  </div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button class="btn-demo" style="font-size:.7rem;" onclick="setBR(8,8,8,8)">Suave</button>
+                    <button class="btn-demo" style="font-size:.7rem;" onclick="setBR(50,50,50,50)">Pill</button>
+                    <button class="btn-demo" style="font-size:.7rem;" onclick="setBR(80,0,80,0)">Diagonal</button>
+                    <button class="btn-demo" style="font-size:.7rem;" onclick="setBR(0,0,0,0)">Cuadrado</button>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                  <div id="br-preview" style="width:100px;height:100px;background:linear-gradient(135deg,#3d7ef5,#a855f7);transition:border-radius .2s;border-radius:12px;"></div>
+                  <pre id="br-code" style="font-size:.68rem;background:#1e1e2e;color:#cdd6f4;padding:6px;border-radius:4px;width:100%;text-align:center;">border-radius: 12px</pre>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card wide" data-tag="box-shadow sombra playground inset multiple layer capas">
+            <header class="card-header">
+              <code>box-shadow — Playground</code>
+              <span class="badge badge-css-layout">Interactivo</span>
+            </header>
+            <p>Sombras en la caja del elemento. Soporta múltiples capas separadas por coma y sombras internas con <code>inset</code>.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;">
+                <div style="display:flex;flex-direction:column;gap:6px;font-size:.75rem;">
+                  <label>X offset <input type="range" id="sh-x" min="-30" max="30" value="4" oninput="updateShadow()"> <output id="sh-x-v">4</output>px</label>
+                  <label>Y offset <input type="range" id="sh-y" min="-30" max="30" value="6" oninput="updateShadow()"> <output id="sh-y-v">6</output>px</label>
+                  <label>Blur     <input type="range" id="sh-b" min="0" max="50" value="16" oninput="updateShadow()"> <output id="sh-b-v">16</output>px</label>
+                  <label>Spread   <input type="range" id="sh-s" min="-20" max="20" value="0" oninput="updateShadow()"> <output id="sh-s-v">0</output>px</label>
+                  <label>Color    <input type="color" id="sh-c" value="#00000040" oninput="updateShadow()"></label>
+                  <label><input type="checkbox" id="sh-i" onchange="updateShadow()"> inset</label>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                  <div id="sh-preview" style="width:90px;height:90px;background:white;border-radius:8px;border:1px solid #e2e8f0;transition:box-shadow .2s;box-shadow:4px 6px 16px 0 rgba(0,0,0,.25);"></div>
+                  <pre id="sh-code" style="font-size:.65rem;background:#1e1e2e;color:#cdd6f4;padding:6px;border-radius:4px;white-space:pre-wrap;max-width:160px;">box-shadow: 4px 6px 16px rgba(0,0,0,.25)</pre>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="scroll-margin scroll-padding snap behavior suave ancla anchor navegacion">
+            <header class="card-header">
+              <code>scroll-margin · scroll-padding</code>
+              <span class="badge badge-css-layout">Scroll</span>
+            </header>
+            <p><code>scroll-margin</code> añade margen al elemento cuando se navega a él con un ancla (<code>#id</code>) o con <code>scrollIntoView()</code>. <code>scroll-padding</code> va en el contenedor.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>/* Evita que el header fijo tape el target */
+:root { scroll-padding-top: 80px; }
+
+/* Margen extra en el elemento target */
+.section { scroll-margin-top: 100px; }
+
+/* CSS Scroll Snap */
+.container {
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+}
+.slide {
+  scroll-snap-align: start;
+  scroll-margin-left: 16px;
+}</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="margin padding border propiedades logicas block inline start end writing mode">
+            <header class="card-header">
+              <code>Propiedades lógicas del box model</code>
+              <span class="badge badge-css-layout">Lógico</span>
+            </header>
+            <p>Equivalentes lógicos de las propiedades físicas. Se adaptan automáticamente al <code>writing-mode</code> y dirección del texto.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:auto 1fr auto 1fr;gap:4px 10px;font-size:.73rem;align-items:center;">
+                <code>margin-top</code><span style="color:#555;">→</span><code>margin-block-start</code><span></span>
+                <code>margin-bottom</code><span style="color:#555;">→</span><code>margin-block-end</code><span></span>
+                <code>margin-left</code><span style="color:#555;">→</span><code>margin-inline-start</code><span></span>
+                <code>margin-right</code><span style="color:#555;">→</span><code>margin-inline-end</code><span></span>
+                <code>border-top</code><span style="color:#555;">→</span><code>border-block-start</code><span></span>
+                <code>width</code><span style="color:#555;">→</span><code>inline-size</code><span></span>
+                <code>height</code><span style="color:#555;">→</span><code>block-size</code><span></span>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>/* Shorthand lógico */
+margin-block:  8px 16px;   /* top / bottom */
+margin-inline: auto;        /* left / right */
+padding-block: 12px;
+inset-inline:  0;           /* left: 0; right: 0 */</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="margin shorthand top right bottom left auto centering centrar horizontalmente">
+            <header class="card-header">
+              <code>Shorthand de espaciado</code>
+              <span class="badge badge-css-layout">Referencia</span>
+            </header>
+            <p>Un valor, dos, tres o cuatro → lados en el sentido de las agujas del reloj. <code>auto</code> en margin centra horizontalmente un bloque.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.75rem;align-items:baseline;">
+                <code>margin: 16px</code><span>los 4 lados = 16px</span>
+                <code>margin: 8px 16px</code><span>↕ 8px  ↔ 16px</span>
+                <code>margin: 8px 12px 16px</code><span>top 8 · ↔ 12 · bottom 16</span>
+                <code>margin: 4px 8px 12px 16px</code><span>T R B L (horario)</span>
+                <code>margin: 0 auto</code><span>centra el elemento (necesita width)</span>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>.centrado { width: 800px; margin: 0 auto; }
+/* Moderno equivalente */
+.centrado { width: 800px; margin-inline: auto; }</code></pre>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="selectores.html"><span>←</span> Selectores</a>
+        <a class="pager-btn pager-next" href="display.html">Display y Posición <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

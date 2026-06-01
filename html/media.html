@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Imágenes y Media — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Imágenes y Media — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">HTML</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Imágenes y Media</span>
+      </nav>
+
+                              <section id="seccion-enlaces" class="category">
+        <h2>Enlaces, Imágenes y Media</h2>
+        <p class="category-desc">
+          Etiquetas para navegar, mostrar imágenes, vídeo, audio y contenido
+          embebido.
+        </p>
+
+        <div class="tags-grid">
+          <article class="tag-card" data-tag="a">
+            <header class="card-header">
+              <code>&lt;a&gt;</code>
+              <span class="badge badge-media">Enlace</span>
+            </header>
+            <p>
+              El hipervínculo fundamental. Atributos clave: <code>href</code> (URL, <code>mailto:</code>,
+              <code>tel:</code>, <code>#ancla</code>), <code>target="_blank"</code> (siempre añade
+              <code>rel="noopener noreferrer"</code> por seguridad), <code>download</code> (descarga
+              en vez de navegar), <code>rel="nofollow"</code> (SEO: no transferir autoridad a
+              ese enlace).
+            </p>
+            <div class="demo">
+              <a href="#top">Volver al inicio</a><br />
+              <a href="mailto:ejemplo@correo.com">Enviar email</a><br />
+              <a href="tel:+1234567890">Llamar</a><br />
+              <a href="#" download>Descargar archivo</a>
+            </div>
+          </article>
+
+          <article class="tag-card wide" data-tag="a href target rel download noopener noreferrer nofollow enlace atributos playground seguridad">
+            <header class="card-header">
+              <code>&lt;a&gt; Atributos — Playground</code>
+              <span class="badge badge-media">Interactivo</span>
+            </header>
+            <p>
+              Experimenta con los atributos del elemento <code>&lt;a&gt;</code> y observa cómo
+              cambia su comportamiento, el HTML generado y las advertencias de seguridad/SEO.
+            </p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:.78rem;">
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <label>href:
+                    <input type="text" id="an-href" value="#demo" oninput="updateAnchor()" style="display:block;width:100%;padding:5px;border:1px solid #e2e8f0;border-radius:4px;margin-top:2px;font-size:.75rem;">
+                  </label>
+                  <label>target:
+                    <select id="an-target" onchange="updateAnchor()" style="display:block;width:100%;padding:5px;border:1px solid #e2e8f0;border-radius:4px;margin-top:2px;font-size:.75rem;">
+                      <option value="">_self (mismo contexto)</option>
+                      <option value="_blank">_blank (nueva pestaña)</option>
+                      <option value="_top">_top (contexto raíz)</option>
+                    </select>
+                  </label>
+                  <label>rel:
+                    <select id="an-rel" onchange="updateAnchor()" style="display:block;width:100%;padding:5px;border:1px solid #e2e8f0;border-radius:4px;margin-top:2px;font-size:.75rem;">
+                      <option value="">— ninguno —</option>
+                      <option value="noopener noreferrer">noopener noreferrer (recomendado con _blank)</option>
+                      <option value="nofollow">nofollow (no transferir PageRank)</option>
+                      <option value="noopener">noopener</option>
+                      <option value="external">external</option>
+                      <option value="author">author</option>
+                    </select>
+                  </label>
+                  <label style="display:flex;gap:6px;align-items:center;font-size:.78rem;">
+                    <input type="checkbox" id="an-download" onchange="updateAnchor()"> download (forzar descarga)
+                  </label>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div>
+                    <div style="font-weight:600;margin-bottom:6px;font-size:.78rem;">Vista previa:</div>
+                    <a id="an-preview" href="#demo" style="display:inline-block;padding:8px 16px;background:var(--accent,#3d7ef5);color:white;border-radius:6px;text-decoration:none;font-size:.85rem;">Enlace de prueba</a>
+                  </div>
+                  <div id="an-note" style="font-size:.72rem;min-height:20px;padding:4px 8px;border-radius:4px;"></div>
+                  <pre id="an-code" style="font-size:.72rem;background:#1e1e2e;color:#cdd6f4;padding:8px;border-radius:5px;margin:0;overflow-x:auto;"></pre>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="img">
+            <header class="card-header">
+              <code>&lt;img&gt;</code>
+              <span class="badge badge-media">Imagen</span>
+            </header>
+            <p>
+              Incrusta una imagen. Atributos <strong>obligatorios</strong>: <code>src</code> y
+              <code>alt</code> (descripción para lectores de pantalla y cuando la imagen no carga;
+              usa <code>alt=""</code> para imágenes puramente decorativas). Siempre incluye
+              <code>width</code> y <code>height</code> para evitar el CLS (Cumulative Layout Shift).
+              Añade <code>loading="lazy"</code> en imágenes bajo el fold.
+            </p>
+            <div class="demo">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='80' viewBox='0 0 120 80'%3E%3Crect width='120' height='80' fill='%233498db'/%3E%3Ctext x='60' y='45' text-anchor='middle' fill='white' font-size='12' font-family='sans-serif'%3EImagen de prueba%3C/text%3E%3C/svg%3E"
+                alt="Imagen de prueba"
+                width="120"
+                height="80"
+              />
+              <p><small>alt="Imagen de prueba"</small></p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="picture">
+            <header class="card-header">
+              <code>&lt;picture&gt;</code>
+              <span class="badge badge-media">Imagen</span>
+            </header>
+            <p>
+              Permite múltiples fuentes de imagen responsivas. El navegador elige la más adecuada
+              según <code>media</code> (ancho de viewport) o <code>type</code> (formato soportado,
+              útil para WebP/AVIF con fallback a JPEG). El <code>&lt;img&gt;</code> al final es
+              <strong>obligatorio</strong> como fallback y para el atributo <code>alt</code>.
+            </p>
+            <div class="demo">
+              <pre><code>&lt;picture&gt;
+  &lt;source media="(min-width:800px)"
+    srcset="grande.jpg"&gt;
+  &lt;source media="(min-width:400px)"
+    srcset="mediana.jpg"&gt;
+  &lt;img src="pequeña.jpg" alt="..."&gt;
+&lt;/picture&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="figure">
+            <header class="card-header">
+              <code>&lt;figure&gt; / &lt;figcaption&gt;</code>
+              <span class="badge badge-media">Semántica</span>
+            </header>
+            <p>
+              Agrupa contenido ilustrativo autocontenido — imagen, diagrama, gráfico, fragmento de código, tabla — con su leyenda opcional <code>&lt;figcaption&gt;</code>. El contenido puede moverse a otra parte del documento sin afectar el flujo principal. <code>&lt;figcaption&gt;</code> puede ir al inicio o al final de <code>&lt;figure&gt;</code> y complementa (no duplica) el atributo <code>alt</code> de la imagen.
+            </p>
+            <p class="tag-tip">Si la imagen ya tiene un <code>alt</code> descriptivo y un <code>&lt;figcaption&gt;</code>, usa <code>alt=""</code> para evitar que los lectores de pantalla repitan la misma descripción dos veces. El <code>&lt;figcaption&gt;</code> será el texto accesible.</p>
+            <div class="demo">
+              <figure style="text-align: center; margin: 0">
+                <img
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='60'%3E%3Crect width='100' height='60' rx='8' fill='%232ecc71'/%3E%3Ctext x='50' y='35' text-anchor='middle' fill='white' font-size='11' font-family='sans-serif'%3EFigura%3C/text%3E%3C/svg%3E"
+                  alt="Ejemplo figure"
+                  width="100"
+                  height="60"
+                />
+                <figcaption>Leyenda de la imagen</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="video">
+            <header class="card-header">
+              <code>&lt;video&gt;</code>
+              <span class="badge badge-media">Media</span>
+            </header>
+            <p>
+              Incrusta vídeo HTML5 de forma nativa. Atributos importantes: <code>controls</code>
+              (muestra la barra del navegador), <code>muted</code> (necesario para
+              <code>autoplay</code> en la mayoría de navegadores), <code>poster</code> (imagen
+              mientras carga), <code>preload="none|metadata|auto"</code>,
+              <code>playsinline</code> (evita pantalla completa en iOS).
+            </p>
+            <div class="demo">
+              <pre><code>&lt;video controls width="320" poster="thumb.jpg"&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+  &lt;source src="video.webm" type="video/webm"&gt;
+  Tu navegador no soporta video.
+&lt;/video&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="audio">
+            <header class="card-header">
+              <code>&lt;audio&gt;</code>
+              <span class="badge badge-media">Media</span>
+            </header>
+            <p>
+              Incrusta audio HTML5 de forma nativa sin plugins. Admite múltiples <code>&lt;source&gt;</code> como fallback de formatos: el navegador usa el primero que soporta. El atributo <code>controls</code> muestra la barra de reproducción nativa del navegador. Para podcasts y música, ofrece formatos MP3 (soporte universal) y OGG/Opus (menor tamaño). El texto de fallback entre las etiquetas se muestra solo en navegadores muy antiguos.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos principales</span>
+              <code>controls</code><span class="attr-type">boolean</span><span class="attr-desc">Muestra la barra de reproducción nativa del navegador</span>
+              <code>autoplay</code><span class="attr-type">boolean</span><span class="attr-desc">Reproduce automáticamente (bloqueado por la mayoría de navegadores sin interacción previa)</span>
+              <code>loop</code><span class="attr-type">boolean</span><span class="attr-desc">Repite la reproducción en bucle</span>
+              <code>muted</code><span class="attr-type">boolean</span><span class="attr-desc">Inicia silenciado — necesario para que autoplay funcione</span>
+              <code>preload</code><span class="attr-type">enum</span><span class="attr-desc"><code>none</code> | <code>metadata</code> | <code>auto</code> — cuánto precargar</span>
+            </div>
+            <p class="tag-note">Los formatos más compatibles: <strong>MP3</strong> es universal (todos los navegadores modernos). <strong>OGG Vorbis</strong> tiene mejor compresión pero no lo soporta Safari sin plugins. Ofrece siempre MP3 como fuente final de fallback.</p>
+            <div class="demo">
+              <pre><code>&lt;audio controls&gt;
+  &lt;source src="audio.ogg" type="audio/ogg"&gt;
+  &lt;source src="audio.mp3" type="audio/mp3"&gt;
+  Tu navegador no soporta audio.
+&lt;/audio&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card wide" data-tag="video audio source track picture controls autoplay muted loop poster preload playground media atributos">
+            <header class="card-header">
+              <code>Video · Audio · Picture — Playground</code>
+              <span class="badge badge-media">Interactivo</span>
+            </header>
+            <p>
+              Experimenta con los atributos de <code>&lt;video&gt;</code>, <code>&lt;audio&gt;</code>
+              y <code>&lt;picture&gt;</code>. Activa y desactiva opciones para ver cómo cambia el
+              comportamiento y el HTML generado.
+            </p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:.78rem;">
+
+                <div>
+                  <div style="font-weight:700;margin-bottom:8px;color:#555;">&lt;video&gt; atributos:</div>
+                  <div style="display:flex;flex-direction:column;gap:5px;">
+                    <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="vm-controls" checked onchange="updateVM()"> <code>controls</code> — barra del navegador</label>
+                    <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="vm-muted" onchange="updateVM()"> <code>muted</code> — silenciado</label>
+                    <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="vm-autoplay" onchange="updateVM()"> <code>autoplay</code> — requiere muted</label>
+                    <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="vm-loop" onchange="updateVM()"> <code>loop</code> — repetir</label>
+                    <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="vm-playsinline" onchange="updateVM()"> <code>playsinline</code> — sin pantalla completa en iOS</label>
+                    <label>preload:
+                      <select id="vm-preload" onchange="updateVM()" style="padding:3px 6px;border:1px solid #e2e8f0;border-radius:4px;font-size:.75rem;margin-left:4px;">
+                        <option value="">auto (default)</option>
+                        <option value="metadata">metadata</option>
+                        <option value="none">none</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div style="margin-top:10px;font-weight:700;margin-bottom:6px;color:#555;">&lt;picture&gt; — fallback de formatos:</div>
+                  <div style="display:flex;flex-direction:column;gap:5px;">
+                    <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="vm-avif" checked onchange="updateVM()"> <code>source type="image/avif"</code></label>
+                    <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="vm-webp" checked onchange="updateVM()"> <code>source type="image/webp"</code></label>
+                    <div style="font-size:.72rem;color:#888;margin-top:2px;">El navegador usa el primer <code>&lt;source&gt;</code> que soporta</div>
+                  </div>
+                </div>
+
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <pre id="vm-video-code" style="font-size:.7rem;background:#1e1e2e;color:#cdd6f4;padding:8px;border-radius:5px;flex:1;overflow-x:auto;"></pre>
+                  <pre id="vm-picture-code" style="font-size:.7rem;background:#1e1e2e;color:#a6e3a1;padding:8px;border-radius:5px;overflow-x:auto;"></pre>
+                </div>
+
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="source">
+            <header class="card-header">
+              <code>&lt;source&gt;</code>
+              <span class="badge badge-media">Media</span>
+            </header>
+            <p>
+              Elemento vacío que especifica fuentes de medios alternativas dentro de <code>&lt;video&gt;</code>, <code>&lt;audio&gt;</code> y <code>&lt;picture&gt;</code>. El navegador evalúa los <code>&lt;source&gt;</code> en orden y usa el primero compatible. En <code>&lt;video&gt;</code>/<code>&lt;audio&gt;</code>, el atributo <code>type</code> permite al navegador descartar formatos no soportados sin descargarlos. En <code>&lt;picture&gt;</code>, usa <code>media</code> para condiciones de viewport y <code>type</code> para formatos de imagen.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos principales</span>
+              <code>src</code><span class="attr-type">URL</span><span class="attr-desc">URL del recurso (video y audio)</span>
+              <code>srcset</code><span class="attr-type">list</span><span class="attr-desc">Lista de imágenes responsivas (picture)</span>
+              <code>type</code><span class="attr-type">string</span><span class="attr-desc">Tipo MIME del recurso (ej. <code>video/mp4</code>, <code>image/webp</code>)</span>
+              <code>media</code><span class="attr-type">string</span><span class="attr-desc">Media query para selección condicional (picture)</span>
+            </div>
+            <p class="tag-note">Siempre incluye el atributo <code>type</code> en elementos <code>&lt;source&gt;</code> de video/audio. Sin él, el navegador debe descargar y probar cada archivo antes de decidir si puede reproducirlo, desperdiciando ancho de banda.</p>
+            <div class="demo">
+              <pre><code>&lt;source src="video.mp4"
+        type="video/mp4"
+        media="(min-width: 600px)"&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="track">
+            <header class="card-header">
+              <code>&lt;track&gt;</code>
+              <span class="badge badge-media">Media</span>
+            </header>
+            <p>
+              Define pistas de texto temporizadas para <code>&lt;video&gt;</code> y <code>&lt;audio&gt;</code> en formato WebVTT (<code>.vtt</code>). El atributo <code>kind</code> clasifica el tipo de pista: <code>subtitles</code> (traducción del audio), <code>captions</code> (subtítulos para sordos, incluye efectos de sonido), <code>descriptions</code> (descripción visual para ciegos), <code>chapters</code> (para navegación) y <code>metadata</code> (datos para scripts). El atributo <code>default</code> selecciona la pista activa por defecto.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos principales</span>
+              <code>src</code><span class="attr-type">URL</span><span class="attr-desc">URL del archivo WebVTT</span>
+              <code>kind</code><span class="attr-type">enum</span><span class="attr-desc"><code>subtitles</code> | <code>captions</code> | <code>descriptions</code> | <code>chapters</code> | <code>metadata</code></span>
+              <code>srclang</code><span class="attr-type">string</span><span class="attr-desc">Código de idioma (BCP 47): <code>es</code>, <code>en</code>, <code>fr</code></span>
+              <code>label</code><span class="attr-type">string</span><span class="attr-desc">Nombre legible que aparece en el selector de pistas del reproductor</span>
+              <code>default</code><span class="attr-type">boolean</span><span class="attr-desc">Activa esta pista por defecto si el usuario no ha elegido otra</span>
+            </div>
+            <p class="tag-note">Añadir subtítulos en <code>&lt;track kind="captions"&gt;</code> es un requisito de accesibilidad (WCAG 1.2.2) para todo video con audio. No es opcional si quieres cumplir estándares de accesibilidad.</p>
+            <div class="demo">
+              <pre><code>&lt;video controls&gt;
+  &lt;source src="video.mp4"&gt;
+  &lt;track kind="subtitles"
+    src="subs-es.vtt"
+    srclang="es"
+    label="Español" default&gt;
+&lt;/video&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="iframe">
+            <header class="card-header">
+              <code>&lt;iframe&gt;</code>
+              <span class="badge badge-media">Embebido</span>
+            </header>
+            <p>
+              Incrusta otra página HTML dentro de la actual. Atributos de seguridad importantes:
+              <code>sandbox</code> (restringe permisos), <code>allow</code> (permisos explícitos
+              como <code>"camera"</code>), <code>referrerpolicy</code>. Añade siempre
+              <code>title</code> para accesibilidad y <code>loading="lazy"</code> para
+              iframes fuera del viewport.
+            </p>
+            <div class="demo">
+              <pre><code>&lt;iframe
+  src="https://www.openstreetmap.org/export/embed.html"
+  width="300" height="200"
+  title="Mapa embebido"
+  loading="lazy"&gt;
+&lt;/iframe&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="embed">
+            <header class="card-header">
+              <code>&lt;embed&gt;</code>
+              <span class="badge badge-media">Embebido</span>
+            </header>
+            <p>
+              Incrusta contenido externo a través de un plugin del navegador. Fue diseñado originalmente para Flash y otros plugins, hoy prácticamente en desuso. Sus usos actuales más comunes son PDFs y SVGs directamente en el documento. Es un elemento vacío sin cierre. Para PDFs, <code>&lt;iframe&gt;</code> o <code>&lt;object&gt;</code> ofrecen más control y mejor fallback.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos principales</span>
+              <code>src</code><span class="attr-type">URL</span><span class="attr-desc">URL del recurso a incrustar</span>
+              <code>type</code><span class="attr-type">string</span><span class="attr-desc">Tipo MIME del contenido (ej. <code>application/pdf</code>)</span>
+              <code>width</code><span class="attr-type">integer</span><span class="attr-desc">Ancho en píxeles</span>
+              <code>height</code><span class="attr-type">integer</span><span class="attr-desc">Alto en píxeles</span>
+            </div>
+            <p class="tag-warn"><code>&lt;embed&gt;</code> no tiene mecanismo de fallback nativo: si el plugin no está disponible, no se muestra nada. Prefiere <code>&lt;object&gt;</code> (con contenido fallback) o <code>&lt;iframe&gt;</code> para PDFs en producción.</p>
+            <div class="demo">
+              <pre><code>&lt;embed src="archivo.pdf"
+       type="application/pdf"
+       width="400" height="300"&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="object">
+            <header class="card-header">
+              <code>&lt;object&gt;</code>
+              <span class="badge badge-media">Embebido</span>
+            </header>
+            <p>
+              Incrusta un recurso externo — PDF, imagen, HTML anidado o contenido de plugin. A diferencia de <code>&lt;embed&gt;</code>, admite contenido de fallback entre sus etiquetas de apertura y cierre: si el navegador no puede mostrar el objeto, renderiza el contenido interior. Puede anidarse: <code>&lt;object&gt;</code> → <code>&lt;object&gt;</code> → <code>&lt;p&gt;</code> fallback texto. Sus atributos <code>data</code>, <code>type</code>, <code>width</code> y <code>height</code> son los principales.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos principales</span>
+              <code>data</code><span class="attr-type">URL</span><span class="attr-desc">URL del recurso a incrustar</span>
+              <code>type</code><span class="attr-type">string</span><span class="attr-desc">Tipo MIME del recurso</span>
+              <code>width</code><span class="attr-type">integer</span><span class="attr-desc">Ancho del área embebida en píxeles</span>
+              <code>height</code><span class="attr-type">integer</span><span class="attr-desc">Alto del área embebida en píxeles</span>
+            </div>
+            <p class="tag-note">Para PDFs accesibles, <code>&lt;object&gt;</code> con fallback a un enlace de descarga es la solución más robusta: <code>&lt;object data="doc.pdf" type="application/pdf"&gt;&lt;a href="doc.pdf"&gt;Descargar PDF&lt;/a&gt;&lt;/object&gt;</code>.</p>
+            <div class="demo">
+              <pre><code>&lt;object data="archivo.pdf"
+        type="application/pdf"
+        width="400" height="300"&gt;
+  &lt;p&gt;Fallback si no carga&lt;/p&gt;
+&lt;/object&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="map-area">
+            <header class="card-header">
+              <code>&lt;map&gt; / &lt;area&gt;</code>
+              <span class="badge badge-media">Imagen</span>
+            </header>
+            <p>
+              Implementa mapas de imagen (image maps): zonas clicables sobre una imagen. <code>&lt;map&gt;</code> agrupa las zonas y se vincula a la imagen mediante el atributo <code>name</code> en el mapa y <code>usemap="#nombre"</code> en la imagen. Cada <code>&lt;area&gt;</code> define una zona con su forma (<code>rect</code>, <code>circle</code>, <code>poly</code>), coordenadas, enlace y texto alternativo. Hoy en día es poco usado, pero sigue siendo válido para diagramas interactivos.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos de &lt;area&gt;</span>
+              <code>shape</code><span class="attr-type">enum</span><span class="attr-desc"><code>rect</code> | <code>circle</code> | <code>poly</code> | <code>default</code></span>
+              <code>coords</code><span class="attr-type">list</span><span class="attr-desc">Coordenadas de la zona según su <code>shape</code></span>
+              <code>href</code><span class="attr-type">URL</span><span class="attr-desc">URL de destino al hacer clic</span>
+              <code>alt</code><span class="attr-type">string</span><span class="attr-desc">Texto alternativo obligatorio para accesibilidad</span>
+            </div>
+            <p class="tag-note">Para accesibilidad, cada <code>&lt;area&gt;</code> debe tener un atributo <code>alt</code> descriptivo. Los usuarios de teclado pueden tabular entre las zonas y activarlas con Enter.</p>
+            <div class="demo">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='80'%3E%3Crect x='5' y='5' width='90' height='70' rx='5' fill='%23e74c3c'/%3E%3Ctext x='50' y='45' text-anchor='middle' fill='white' font-size='12' font-family='sans-serif'%3ERojo%3C/text%3E%3Crect x='105' y='5' width='90' height='70' rx='5' fill='%233498db'/%3E%3Ctext x='150' y='45' text-anchor='middle' fill='white' font-size='12' font-family='sans-serif'%3EAzul%3C/text%3E%3C/svg%3E"
+                alt="Mapa de imagen"
+                usemap="#demo-map"
+                width="200"
+                height="80"
+              />
+              <map name="demo-map">
+                <area
+                  shape="rect"
+                  coords="5,5,95,75"
+                  alt="Rojo"
+                  onclick="alert('Zona Roja')"
+                  href="#"
+                />
+                <area
+                  shape="rect"
+                  coords="105,5,195,75"
+                  alt="Azul"
+                  onclick="alert('Zona Azul')"
+                  href="#"
+                />
+              </map>
+              <p><small>Haz clic en cada zona</small></p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="canvas">
+            <header class="card-header">
+              <code>&lt;canvas&gt;</code>
+              <span class="badge badge-media">Gráficos</span>
+            </header>
+            <p>
+              Lienzo de dibujo programático controlado enteramente por JavaScript. Soporta dos APIs: el contexto 2D (<code>getContext('2d')</code>) para gráficos rasterizados, y WebGL/WebGPU (<code>getContext('webgl')</code>) para gráficos 3D acelerados por GPU. El contenido del canvas es píxeles, no DOM — no es accesible por lectores de pantalla. Por eso el texto de fallback entre las etiquetas es importante, y en visualizaciones complejas se debe añadir <code>role="img"</code> y <code>aria-label</code>.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos principales</span>
+              <code>width</code><span class="attr-type">integer</span><span class="attr-desc">Ancho del lienzo en píxeles (default: 300)</span>
+              <code>height</code><span class="attr-type">integer</span><span class="attr-desc">Alto del lienzo en píxeles (default: 150)</span>
+            </div>
+            <p class="tag-warn">Define siempre <code>width</code> y <code>height</code> como atributos HTML, no solo con CSS. Los atributos definen la resolución interna del canvas; CSS solo escala su visualización, lo que puede causar imágenes borrosas en pantallas de alta densidad (Retina).</p>
+            <div class="demo">
+              <canvas
+                id="demo-canvas"
+                width="200"
+                height="100"
+                style="border: 1px solid #ccc; border-radius: 4px"
+              ></canvas>
+              <br /><button class="btn-demo" onclick="dibujarCanvas()">
+                Dibujar en canvas
+              </button>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="svg">
+            <header class="card-header">
+              <code>&lt;svg&gt;</code>
+              <span class="badge badge-media">Gráficos</span>
+            </header>
+            <p>
+              Gráficos vectoriales escalables incrustados directamente en el HTML. Los SVG son parte del DOM: sus elementos son accesibles, estilizables con CSS, animables con CSS/SMIL/JS y seleccionables con JavaScript. No pierden calidad al escalar, por lo que son ideales para iconos, logos, diagramas e ilustraciones en cualquier resolución. Para SVGs decorativos, añade <code>aria-hidden="true"</code>; para SVGs significativos, usa <code>&lt;title&gt;</code> y <code>&lt;desc&gt;</code> dentro del SVG.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos principales</span>
+              <code>viewBox</code><span class="attr-type">string</span><span class="attr-desc">Define el sistema de coordenadas interno: <code>min-x min-y ancho alto</code></span>
+              <code>width / height</code><span class="attr-type">string</span><span class="attr-desc">Dimensiones del SVG en el documento (admite CSS units)</span>
+              <code>aria-hidden</code><span class="attr-type">boolean</span><span class="attr-desc"><code>true</code> para iconos decorativos sin significado independiente</span>
+            </div>
+            <p class="tag-tip">Usar <code>viewBox</code> sin <code>width</code>/<code>height</code> fijos hace el SVG responsivo: se adapta al tamaño del contenedor con CSS (<code>svg { width: 100%; height: auto; }</code>).</p>
+            <div class="demo">
+              <svg width="180" height="80" viewBox="0 0 180 80">
+                <circle cx="40" cy="40" r="35" fill="#e74c3c" opacity=".8" />
+                <rect
+                  x="75"
+                  y="10"
+                  width="50"
+                  height="60"
+                  rx="8"
+                  fill="#3498db"
+                  opacity=".8"
+                />
+                <polygon
+                  points="155,10 180,70 130,70"
+                  fill="#2ecc71"
+                  opacity=".8"
+                />
+              </svg>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="listas.html"><span>←</span> Listas</a>
+        <a class="pager-btn pager-next" href="tablas.html">Tablas <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+      function updateVM() {
+        var controls    = document.getElementById('vm-controls')?.checked;
+        var muted       = document.getElementById('vm-muted')?.checked;
+        var autoplay    = document.getElementById('vm-autoplay')?.checked;
+        var loop        = document.getElementById('vm-loop')?.checked;
+        var playsinline = document.getElementById('vm-playsinline')?.checked;
+        var preload     = document.getElementById('vm-preload')?.value;
+        var avif        = document.getElementById('vm-avif')?.checked;
+        var webp        = document.getElementById('vm-webp')?.checked;
+        var vCode       = document.getElementById('vm-video-code');
+        var pCode       = document.getElementById('vm-picture-code');
+
+        var attrs = '';
+        if (controls)    attrs += '\n  controls';
+        if (muted)       attrs += '\n  muted';
+        if (autoplay)    attrs += '\n  autoplay';
+        if (loop)        attrs += '\n  loop';
+        if (playsinline) attrs += '\n  playsinline';
+        if (preload)     attrs += '\n  preload="' + preload + '"';
+        attrs += '\n  width="640" height="360"';
+
+        var note = '';
+        if (autoplay && !muted) note = '\n  <!-- ⚠️ autoplay suele bloquearse sin muted -->';
+
+        if (vCode) vCode.textContent =
+          '<video' + attrs + '>' + note +
+          '\n  <source src="video.mp4"  type="video/mp4">' +
+          '\n  <source src="video.webm" type="video/webm">' +
+          '\n  <track kind="subtitles" src="subs-es.vtt" srclang="es" label="Español" default>' +
+          '\n  Tu navegador no soporta video.' +
+          '\n</video>';
+
+        var sources = '';
+        if (avif) sources += '\n  <source type="image/avif" srcset="foto.avif">';
+        if (webp) sources += '\n  <source type="image/webp" srcset="foto.webp">';
+        sources += '\n  <img src="foto.jpg" alt="Descripción" width="800" height="600">';
+
+        if (pCode) pCode.textContent =
+          '<picture>' + sources + '\n</picture>\n\n' +
+          '<!-- El navegador prueba los <source> en orden;\n     el primer formato soportado gana.\n     <img> es el fallback obligatorio. -->';
+      }
+      updateVM();
+
+      function updateAnchor() {
+        const href     = document.getElementById('an-href')?.value || '#';
+        const target   = document.getElementById('an-target')?.value || '';
+        const rel      = document.getElementById('an-rel')?.value || '';
+        const download = document.getElementById('an-download')?.checked || false;
+        const preview  = document.getElementById('an-preview');
+        const code     = document.getElementById('an-code');
+        const note     = document.getElementById('an-note');
+
+        if (preview) {
+          preview.href = href;
+          if (target) preview.target = target; else preview.removeAttribute('target');
+          if (rel)    preview.rel = rel;        else preview.removeAttribute('rel');
+          if (download) preview.setAttribute('download', ''); else preview.removeAttribute('download');
+        }
+
+        let attrs = 'href="' + href + '"';
+        if (target)   attrs += '\n     target="' + target + '"';
+        if (rel)      attrs += '\n     rel="' + rel + '"';
+        if (download) attrs += '\n     download';
+        if (code) code.textContent = '<a ' + attrs + '>\n  Enlace de prueba\n</a>';
+
+        const warnings = [];
+        if (target === '_blank' && !rel.includes('noopener')) {
+          warnings.push('⚠️ Añade rel="noopener noreferrer" con target="_blank" para evitar ataques de tabnapping.');
+        }
+        if (download) warnings.push('ℹ️ download fuerza descarga; el navegador sugiere el nombre del archivo del href.');
+        if (rel === 'nofollow') warnings.push('ℹ️ nofollow indica a Google que no transfiera PageRank a este enlace.');
+        if (note) {
+          note.textContent = warnings.join(' ');
+          note.style.background = warnings.some(w => w.startsWith('⚠')) ? '#fef2f2' : '#f0fdf4';
+          note.style.color = warnings.some(w => w.startsWith('⚠')) ? '#dc2626' : '#16a34a';
+          note.style.display = warnings.length ? 'block' : 'none';
+        }
+      }
+      document.addEventListener('DOMContentLoaded', updateAnchor);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Introducción a HTML — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>HTML — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+        <nav class="breadcrumb" aria-label="Ruta de navegación">
+          <a href="../index.html">BryanDocs</a>
+          <span class="breadcrumb-sep" aria-hidden="true">›</span>
+          <span aria-current="page">HTML</span>
+        </nav>
+
+        <!-- ── HERO ─────────────────────────────────────────────── -->
+        <div class="html-hero">
+          <h2><span class="hero-accent">HTML</span> — HyperText Markup Language</h2>
+          <p>
+            El lenguaje de marcado estándar para crear la estructura del contenido en la web.
+            Define el significado y la organización de cada elemento que el navegador renderiza,
+            desde un título hasta un formulario de pago.
+          </p>
+          <div class="html-hero-meta">
+            <div class="hero-stat">
+              <strong>1993</strong>
+              <span>Primera especificación pública</span>
+            </div>
+            <div class="hero-stat">
+              <strong>HTML5</strong>
+              <span>Living Standard (WHATWG)</span>
+            </div>
+            <div class="hero-stat">
+              <strong>~110</strong>
+              <span>Elementos en la especificación</span>
+            </div>
+            <div class="hero-stat">
+              <strong>A11y</strong>
+              <span>Accesibilidad desde la semántica</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── ¿QUÉ ES HTML? ───────────────────────────────────── -->
+        <div id="pg-que-es" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> ¿Qué es HTML?</h3>
+          <p>
+            <strong>HTML (HyperText Markup Language)</strong> es el lenguaje de marcado con el que se define
+            la <em>estructura y el significado</em> del contenido web. No es un lenguaje de programación —
+            no tiene variables, bucles ni condiciones — sino un sistema de <strong>etiquetas</strong>
+            (tags) que envuelven el contenido para decirle al navegador qué es cada pieza: un título,
+            un párrafo, una imagen, un enlace, un formulario…
+          </p>
+          <p>
+            Fue creado por <strong>Tim Berners-Lee</strong> en el CERN en 1991. La versión actual,
+            <strong>HTML5</strong>, es un estándar vivo mantenido por el WHATWG (Web Hypertext Application
+            Technology Working Group) con contribuciones continuas. Los navegadores actualizan su soporte
+            de forma incremental, sin versiones mayores futuras planeadas.
+          </p>
+          <p>
+            HTML trabaja siempre junto a <strong>CSS</strong> (que da estilo visual) y
+            <strong>JavaScript</strong> (que añade comportamiento e interactividad). Los tres forman
+            la tríada fundamental del desarrollo frontend:
+          </p>
+          <div class="web-pillars">
+            <div class="pillar pillar-html">
+              <strong>HTML</strong>
+              <p>Estructura y semántica del contenido. Define <em>qué es</em> cada cosa.</p>
+            </div>
+            <div class="pillar pillar-css">
+              <strong>CSS</strong>
+              <p>Presentación visual. Define <em>cómo se ve</em> cada cosa.</p>
+            </div>
+            <div class="pillar pillar-js">
+              <strong>JavaScript</strong>
+              <p>Comportamiento dinámico. Define <em>qué hace</em> cada cosa.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── ANATOMÍA DE UN ELEMENTO ────────────────────────── -->
+        <div id="pg-anatomia" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span> Anatomía de un elemento HTML</h3>
+          <p>Un elemento HTML típico tiene cuatro partes: etiqueta de apertura, atributos, contenido y etiqueta de cierre.</p>
+
+          <div class="anatomy-wrap">
+            <div class="anatomy" aria-label="Diagrama de un elemento HTML">
+              <div class="anatomy-part">
+                <span class="anatomy-code anatomy-tag">&lt;a</span>
+                <span class="anatomy-label">etiqueta<br>de apertura</span>
+              </div>
+              <div class="anatomy-sep">&nbsp;</div>
+              <div class="anatomy-part">
+                <span class="anatomy-code anatomy-attr">href</span>
+                <span class="anatomy-label">nombre del<br>atributo</span>
+              </div>
+              <div class="anatomy-sep anatomy-label" style="padding-top:2px;">=</div>
+              <div class="anatomy-part">
+                <span class="anatomy-code anatomy-val">"https://ejemplo.com"</span>
+                <span class="anatomy-label">valor del<br>atributo</span>
+              </div>
+              <div class="anatomy-part">
+                <span class="anatomy-code anatomy-tag">&gt;</span>
+                <span class="anatomy-label">&nbsp;</span>
+              </div>
+              <div class="anatomy-sep">&nbsp;</div>
+              <div class="anatomy-part">
+                <span class="anatomy-code anatomy-cont">Visita el sitio</span>
+                <span class="anatomy-label">contenido<br>del elemento</span>
+              </div>
+              <div class="anatomy-sep">&nbsp;</div>
+              <div class="anatomy-part">
+                <span class="anatomy-code anatomy-close">&lt;/a&gt;</span>
+                <span class="anatomy-label">etiqueta<br>de cierre</span>
+              </div>
+            </div>
+          </div>
+
+          <ul style="margin-top:14px;">
+            <li><strong>Etiqueta de apertura</strong> — <code>&lt;nombre&gt;</code>. Inicia el elemento. Puede incluir atributos.</li>
+            <li><strong>Atributos</strong> — pares <code>nombre="valor"</code> separados por espacios dentro de la etiqueta de apertura. Los booleanos no necesitan valor: <code>&lt;input disabled&gt;</code>.</li>
+            <li><strong>Contenido</strong> — texto, otros elementos HTML, o ambos. Puede estar vacío.</li>
+            <li><strong>Etiqueta de cierre</strong> — <code>&lt;/nombre&gt;</code>. Obligatoria en la mayoría de elementos. Los elementos vacíos no la tienen.</li>
+          </ul>
+        </div>
+
+        <!-- ── TIPOS DE ELEMENTOS ─────────────────────────────── -->
+        <div id="pg-tipos" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span> Tipos de elementos</h3>
+          <p>Los elementos HTML se clasifican según su comportamiento de renderizado por defecto:</p>
+
+          <div class="elem-types">
+            <div class="elem-type elem-type-block">
+              <h4>Elementos de bloque</h4>
+              <p>Ocupan todo el ancho disponible y fuerzan un salto de línea antes y después. Se apilan verticalmente.</p>
+              <div>
+                <code>&lt;div&gt;</code> <code>&lt;p&gt;</code> <code>&lt;h1&gt;–&lt;h6&gt;</code>
+                <code>&lt;ul&gt;</code> <code>&lt;ol&gt;</code> <code>&lt;table&gt;</code>
+                <code>&lt;form&gt;</code> <code>&lt;section&gt;</code> <code>&lt;article&gt;</code>
+                <code>&lt;header&gt;</code> <code>&lt;main&gt;</code> <code>&lt;footer&gt;</code>
+                <code>&lt;blockquote&gt;</code> <code>&lt;pre&gt;</code>
+              </div>
+            </div>
+            <div class="elem-type elem-type-inline">
+              <h4>Elementos en línea</h4>
+              <p>Fluyen dentro del texto, solo ocupan el espacio de su contenido y no fuerzan saltos de línea.</p>
+              <div>
+                <code>&lt;span&gt;</code> <code>&lt;a&gt;</code> <code>&lt;strong&gt;</code>
+                <code>&lt;em&gt;</code> <code>&lt;code&gt;</code> <code>&lt;img&gt;</code>
+                <code>&lt;button&gt;</code> <code>&lt;label&gt;</code> <code>&lt;abbr&gt;</code>
+                <code>&lt;mark&gt;</code> <code>&lt;kbd&gt;</code> <code>&lt;time&gt;</code>
+                <code>&lt;sub&gt;</code> <code>&lt;sup&gt;</code>
+              </div>
+            </div>
+            <div class="elem-type elem-type-void">
+              <h4>Elementos vacíos (void)</h4>
+              <p>No tienen contenido ni etiqueta de cierre. Pueden escribirse como <code>&lt;br&gt;</code> o <code>&lt;br /&gt;</code> — ambas son válidas en HTML5.</p>
+              <div>
+                <code>&lt;br&gt;</code> <code>&lt;hr&gt;</code> <code>&lt;img&gt;</code>
+                <code>&lt;input&gt;</code> <code>&lt;link&gt;</code> <code>&lt;meta&gt;</code>
+                <code>&lt;source&gt;</code> <code>&lt;track&gt;</code> <code>&lt;wbr&gt;</code>
+                <code>&lt;area&gt;</code> <code>&lt;base&gt;</code> <code>&lt;col&gt;</code>
+                <code>&lt;embed&gt;</code>
+              </div>
+            </div>
+          </div>
+
+          <p style="margin-top:12px;">
+            CSS puede cambiar el comportamiento de cualquier elemento con <code>display: block</code>,
+            <code>display: inline</code>, <code>display: flex</code> o <code>display: grid</code>,
+            pero el HTML semántico no cambia.
+          </p>
+        </div>
+
+        <!-- ── ATRIBUTOS GLOBALES ────────────────────────────── -->
+        <div id="pg-atributos" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span> Atributos globales</h3>
+          <p>Todos los elementos HTML aceptan estos atributos independientemente de su tipo:</p>
+          <div class="tag-attrs" style="margin-top:10px;">
+            <span class="tag-attrs-header">Atributos que acepta cualquier elemento</span>
+            <code>id</code><span class="attr-type">string</span><span class="attr-desc">Identificador único en el documento. Usado por CSS, JS y anclas de enlace.</span>
+            <code>class</code><span class="attr-type">list</span><span class="attr-desc">Lista de clases CSS separadas por espacios. No tiene que ser única.</span>
+            <code>lang</code><span class="attr-type">BCP 47</span><span class="attr-desc">Idioma del contenido: <code>es</code>, <code>en</code>, <code>fr</code>, <code>pt-BR</code>…</span>
+            <code>dir</code><span class="attr-type">enum</span><span class="attr-desc"><code>ltr</code> (izq. a der.), <code>rtl</code> (der. a izq.), <code>auto</code> (detecta el idioma).</span>
+            <code>hidden</code><span class="attr-type">boolean</span><span class="attr-desc">Oculta el elemento semánticamente. Equivale a <code>display:none</code> pero con significado HTML.</span>
+            <code>tabindex</code><span class="attr-type">integer</span><span class="attr-desc"><code>0</code> = enfocable en orden natural, <code>-1</code> = solo por JS, valores positivos no recomendados.</span>
+            <code>contenteditable</code><span class="attr-type">enum</span><span class="attr-desc"><code>true</code>, <code>false</code>, <code>plaintext-only</code>. Hace el elemento editable por el usuario.</span>
+            <code>data-*</code><span class="attr-type">string</span><span class="attr-desc">Datos personalizados accesibles desde JS via <code>element.dataset</code>.</span>
+            <code>title</code><span class="attr-type">string</span><span class="attr-desc">Tooltip al pasar el cursor. En <code>&lt;abbr&gt;</code>, contiene la expansión.</span>
+            <code>aria-*</code><span class="attr-type">varies</span><span class="attr-desc">Atributos de accesibilidad ARIA: roles, estados y propiedades para tecnologías asistivas.</span>
+          </div>
+        </div>
+
+        <!-- ── ESTRUCTURA BÁSICA ──────────────────────────────── -->
+        <div id="pg-estructura" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span> Estructura básica de un documento HTML5</h3>
+          <p>Todo documento HTML debe comenzar con esta estructura mínima. Cada parte tiene un propósito específico:</p>
+
+          <div class="boilerplate-block" role="region" aria-label="Plantilla base HTML5">
+            <div class="bp-line"><span><span class="bp-tag">&lt;!DOCTYPE html&gt;</span> <span class="bp-com">← Activa el modo estándar (sin DOCTYPE → Quirks Mode)</span></span></div>
+            <div class="bp-line"><span><span class="bp-tag">&lt;html</span> <span class="bp-attr">lang</span>=<span class="bp-val">"es"</span><span class="bp-tag">&gt;</span> <span class="bp-com">← Elemento raíz; lang es obligatorio para a11y</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;<span class="bp-tag">&lt;head&gt;</span> <span class="bp-com">← Metadatos, invisible para el usuario</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-tag">&lt;meta</span> <span class="bp-attr">charset</span>=<span class="bp-val">"UTF-8"</span><span class="bp-tag">&gt;</span> <span class="bp-com">← Siempre primero; evita errores de codificación</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-tag">&lt;meta</span> <span class="bp-attr">name</span>=<span class="bp-val">"viewport"</span> <span class="bp-attr">content</span>=<span class="bp-val">"width=device-width, initial-scale=1.0"</span><span class="bp-tag">&gt;</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-com">← viewport: activa el diseño responsive en móviles</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-tag">&lt;title&gt;</span><span class="bp-text">Título de la Página — Nombre del Sitio</span><span class="bp-tag">&lt;/title&gt;</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-com">← Aparece en la pestaña, marcadores y resultados Google (50-60 chars)</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-tag">&lt;meta</span> <span class="bp-attr">name</span>=<span class="bp-val">"description"</span> <span class="bp-attr">content</span>=<span class="bp-val">"Descripción de la página (150-160 chars)"</span><span class="bp-tag">&gt;</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-tag">&lt;link</span> <span class="bp-attr">rel</span>=<span class="bp-val">"stylesheet"</span> <span class="bp-attr">href</span>=<span class="bp-val">"styles.css"</span><span class="bp-tag">&gt;</span> <span class="bp-com">← CSS externo</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;<span class="bp-tag">&lt;/head&gt;</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;<span class="bp-tag">&lt;body&gt;</span> <span class="bp-com">← Todo el contenido visible va aquí</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-tag">&lt;header&gt;</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-tag">&lt;h1&gt;</span><span class="bp-text">Título principal de la página</span><span class="bp-tag">&lt;/h1&gt;</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-tag">&lt;/header&gt;</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-tag">&lt;main&gt;</span> <span class="bp-com">← Contenido único de esta página</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-tag">&lt;article&gt;</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-text">Contenido principal...</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-tag">&lt;/article&gt;</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-tag">&lt;/main&gt;</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-tag">&lt;footer&gt;</span><span class="bp-text">© 2025 Mi Sitio</span><span class="bp-tag">&lt;/footer&gt;</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="bp-tag">&lt;script</span> <span class="bp-attr">src</span>=<span class="bp-val">"app.js"</span> <span class="bp-attr">defer</span><span class="bp-tag">&gt;&lt;/script&gt;</span> <span class="bp-com">← JS al final o con defer</span></span></div>
+            <div class="bp-line"><span>&nbsp;&nbsp;<span class="bp-tag">&lt;/body&gt;</span></span></div>
+            <div class="bp-line"><span><span class="bp-tag">&lt;/html&gt;</span></span></div>
+          </div>
+        </div>
+
+        <!-- ── SEMÁNTICA Y ACCESIBILIDAD ──────────────────────── -->
+        <div id="pg-semantica" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M12 10l-4 8"/><path d="M12 10l4 8"/><line x1="8" y1="14" x2="16" y2="14"/></svg></span> Semántica y accesibilidad</h3>
+          <p>
+            <strong>HTML semántico</strong> significa usar el elemento correcto para cada tipo de contenido,
+            no el que quede mejor visualmente. Un <code>&lt;nav&gt;</code> le dice al navegador (y a los
+            lectores de pantalla) que ese bloque es navegación; un <code>&lt;div&gt;</code> no dice nada.
+          </p>
+          <p>
+            Los beneficios son concretos: los <strong>lectores de pantalla</strong> ofrecen atajos de
+            teclado basados en landmarks semánticos (<code>&lt;main&gt;</code>, <code>&lt;nav&gt;</code>,
+            <code>&lt;aside&gt;</code>), los <strong>motores de búsqueda</strong> entienden mejor la
+            jerarquía del contenido, y el <strong>código es más mantenible</strong> para otros
+            desarrolladores.
+          </p>
+          <ul>
+            <li>Usa <code>&lt;button&gt;</code> para acciones, <code>&lt;a&gt;</code> para navegación — nunca al revés.</li>
+            <li>Añade <code>lang</code> en <code>&lt;html&gt;</code>. Es requerimiento WCAG 3.1.1 (Level A).</li>
+            <li>Todo <code>&lt;img&gt;</code> necesita <code>alt</code>. Las imágenes decorativas usan <code>alt=""</code>.</li>
+            <li>Los formularios deben vincular <code>&lt;label&gt;</code> a sus <code>&lt;input&gt;</code> con <code>for</code>/<code>id</code>.</li>
+            <li>No uses encabezados (<code>h1–h6</code>) solo por el tamaño visual — respeta la jerarquía.</li>
+          </ul>
+        </div>
+
+        <!-- ── SECCIONES DE ESTA GUÍA ────────────────────────── -->
+        <div id="pg-secciones" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Secciones de esta guía</h3>
+          <p>Cada sección cubre un grupo temático de etiquetas con documentación detallada, atributos y demos interactivos:</p>
+
+          <div class="html-sections-grid">
+
+            <a class="html-sec-card" href="estructura.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Estructura del Documento</span>
+              <span class="html-sec-card-desc">
+                <code>&lt;!DOCTYPE&gt;</code>, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>,
+                <code>&lt;body&gt;</code>, <code>&lt;title&gt;</code>, <code>&lt;meta&gt;</code>,
+                <code>&lt;link&gt;</code>, <code>&lt;style&gt;</code>, <code>&lt;div&gt;</code>,
+                <code>&lt;span&gt;</code>, atributos globales y SEO.
+              </span>
+              <span class="html-sec-card-count">13 elementos y conceptos →</span>
+            </a>
+
+            <a class="html-sec-card" href="texto.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7V4h16v3"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg> Texto y Tipografía</span>
+              <span class="html-sec-card-desc">
+                Encabezados, párrafos, énfasis semántico, citas, código, abreviaturas,
+                marcas de tiempo, tipografía especial y saltos de línea.
+              </span>
+              <span class="html-sec-card-count">29 elementos →</span>
+            </a>
+
+            <a class="html-sec-card" href="listas.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1" fill="currentColor"/><circle cx="3" cy="12" r="1" fill="currentColor"/><circle cx="3" cy="18" r="1" fill="currentColor"/></svg> Listas</span>
+              <span class="html-sec-card-desc">
+                <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code>,
+                listas de definición <code>&lt;dl&gt;</code>, <code>&lt;menu&gt;</code>,
+                estilos de marcador y contadores CSS.
+              </span>
+              <span class="html-sec-card-count">9 elementos y conceptos →</span>
+            </a>
+
+            <a class="html-sec-card" href="media.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> Imágenes y Media</span>
+              <span class="html-sec-card-desc">
+                <code>&lt;a&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;picture&gt;</code>,
+                <code>&lt;video&gt;</code>, <code>&lt;audio&gt;</code>, <code>&lt;canvas&gt;</code>,
+                <code>&lt;svg&gt;</code>, iframes y medios embebidos.
+              </span>
+              <span class="html-sec-card-count">16 elementos →</span>
+            </a>
+
+            <a class="html-sec-card" href="tablas.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="9" x2="9" y2="21"/></svg> Tablas</span>
+              <span class="html-sec-card-desc">
+                <code>&lt;table&gt;</code>, <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>,
+                <code>&lt;tr&gt;</code>, <code>&lt;th&gt;</code>, <code>&lt;td&gt;</code>,
+                <code>colspan</code>, <code>rowspan</code>, accesibilidad y estilos.
+              </span>
+              <span class="html-sec-card-count">7 elementos y conceptos →</span>
+            </a>
+
+            <a class="html-sec-card" href="formularios.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8a2 2 0 0 0-2 2v2h12V5a2 2 0 0 0-2-2z"/></svg> Formularios</span>
+              <span class="html-sec-card-desc">
+                <code>&lt;form&gt;</code>, todos los tipos de <code>&lt;input&gt;</code>,
+                <code>&lt;select&gt;</code>, <code>&lt;textarea&gt;</code>, validación nativa,
+                <code>FormData</code> API y eventos de formulario.
+              </span>
+              <span class="html-sec-card-count">20 elementos y conceptos →</span>
+            </a>
+
+            <a class="html-sec-card" href="semantica.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Semántica HTML5</span>
+              <span class="html-sec-card-desc">
+                <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>,
+                <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>,
+                <code>&lt;footer&gt;</code>, <code>&lt;dialog&gt;</code>, <code>&lt;template&gt;</code>.
+              </span>
+              <span class="html-sec-card-count">14 elementos →</span>
+            </a>
+
+            <a class="html-sec-card" href="interactivo.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Interactividad y Accesibilidad</span>
+              <span class="html-sec-card-desc">
+                Atributos <code>tabindex</code>, <code>contenteditable</code>, <code>draggable</code>,
+                <code>aria-*</code>, ARIA landmarks, navegación por teclado y Web Components.
+              </span>
+              <span class="html-sec-card-count">11 conceptos →</span>
+            </a>
+
+            <a class="html-sec-card" href="meta.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M6.34 17.66l-1.41 1.41M20 12h2M2 12h2M17.66 17.66l1.41 1.41M4.93 4.93l1.41 1.41M12 20v2M12 2v2"/></svg> Scripts y Meta</span>
+              <span class="html-sec-card-desc">
+                <code>&lt;script&gt;</code> con <code>defer</code>/<code>async</code>,
+                <code>loading="lazy"</code>, <code>srcset</code>, Open Graph,
+                Resource Hints, JSON-LD, Web App Manifest y PWA.
+              </span>
+              <span class="html-sec-card-count">10 conceptos →</span>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- ── REFERENCIA RÁPIDA ──────────────────────────────── -->
+        <div id="pg-referencia" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><polyline points="3 6 4 7 6 5"/><polyline points="3 12 4 13 6 11"/><polyline points="3 18 4 19 6 17"/></svg></span> Referencia rápida de reglas esenciales</h3>
+          <ul>
+            <li>Siempre incluye <code>&lt;!DOCTYPE html&gt;</code> como primera línea.</li>
+            <li>Siempre incluye <code>lang</code> en <code>&lt;html&gt;</code>.</li>
+            <li>Siempre incluye <code>&lt;meta charset="UTF-8"&gt;</code> como primer hijo de <code>&lt;head&gt;</code>.</li>
+            <li>Un solo <code>&lt;h1&gt;</code> por página. No saltes niveles de encabezado.</li>
+            <li>Todo <code>&lt;img&gt;</code> necesita <code>alt</code>; las imágenes decorativas usan <code>alt=""</code>.</li>
+            <li>No uses tablas para maquetar páginas — usa CSS Flexbox o Grid.</li>
+            <li>Usa elementos semánticos (<code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>) antes de recurrir a <code>&lt;div&gt;</code>.</li>
+            <li>Añade <code>rel="noopener noreferrer"</code> a todos los enlaces con <code>target="_blank"</code>.</li>
+            <li>Los scripts externos deben tener <code>defer</code> o colocarse antes de <code>&lt;/body&gt;</code>.</li>
+            <li>Valida tu HTML en <code>validator.w3.org</code> antes de publicar.</li>
+          </ul>
+        </div>
+
+        <nav class="section-pager" aria-label="Siguiente sección">
+          <a class="pager-btn pager-next" href="estructura.html">Estructura del Documento <span>→</span></a>
+        </nav>
+
+      </main>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

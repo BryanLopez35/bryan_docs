@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Responsive y @Rules — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Responsive y @Rules — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">CSS</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Responsive y @Rules</span>
+      </nav>
+
+                              <section id="css-responsive" class="category css-section">
+        <h2><span class="lang-tag css-tag">CSS</span> Responsive &amp; @Rules</h2>
+        <p class="category-desc">Media queries, container queries, @layer, @supports y unidades CSS.</p>
+        <div class="tags-grid">
+
+          <article class="tag-card" data-tag="media query responsive breakpoint min-width max-width prefers dark-mode">
+            <header class="card-header">
+              <code>@media</code>
+              <span class="badge badge-css-resp">Responsive</span>
+            </header>
+            <p>Aplica estilos según características del dispositivo. Base del diseño responsivo.</p>
+            <div class="demo">
+              <div class="mq-demo" id="mq-demo">
+                <div class="mq-indicator"></div>
+                <p id="mq-label" style="font-size:.8rem;margin:0;">Redimensiona la ventana</p>
+              </div>
+              <pre style="margin-top:8px;"><code>/* Mobile first */
+.wrap { padding: 16px; }
+
+@media (min-width: 768px) {
+  .wrap { padding: 32px; }
+}
+@media (prefers-color-scheme: dark) {
+  body { background: #111; color: #fff; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; }
+}
+@media print { nav { display: none; } }</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="container query cqw cqh cqi cqb inline-size">
+            <header class="card-header">
+              <code>@container</code>
+              <span class="badge badge-css-resp">Container Query</span>
+            </header>
+            <p>Aplica estilos según el tamaño del <em>contenedor padre</em>, no del viewport. CSS moderno (2023+).</p>
+            <div class="demo">
+              <pre><code>.wrap {
+  container-type: inline-size;
+  container-name: tarjeta;
+}
+
+@container tarjeta (min-width: 300px) {
+  .tarjeta { flex-direction: row; }
+}
+
+/* Unidades de contenedor */
+.titulo { font-size: 5cqi; }
+/* cqw  cqh  cqi  cqb  cqmin  cqmax */</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="layer cascade import supports at-rule">
+            <header class="card-header">
+              <code>@layer · @supports · @import</code>
+              <span class="badge badge-css-resp">@Rules</span>
+            </header>
+            <p><code>@layer</code> organiza la cascada en capas explícitas. <code>@supports</code> aplica estilos según soporte del navegador.</p>
+            <div class="demo">
+              <pre><code>/* @layer — orden de cascada */
+@layer reset, base, components, utils;
+
+@layer base { h1 { font-size: 2rem; } }
+@layer utils { .mt-4 { margin-top: 1rem; } }
+
+/* @supports */
+@supports (display: grid) {
+  .layout { display: grid; }
+}
+@supports not (backdrop-filter: blur(4px)) {
+  .glass { background: rgba(255,255,255,.9); }
+}</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="units px em rem vh vw vmin vmax ch ex fr dvh svh cqi unidades css">
+            <header class="card-header">
+              <code>Unidades CSS</code>
+              <span class="badge badge-css-resp">Unidades</span>
+            </header>
+            <p>Absolutas (px), relativas al elemento (em, %), al root (rem), al viewport (vw/vh) y al contenedor (cqi).</p>
+            <div class="demo">
+              <div class="units-table">
+                <div class="ut-row"><code>px</code><span>Píxel absoluto</span></div>
+                <div class="ut-row"><code>%</code><span>Relativo al padre</span></div>
+                <div class="ut-row"><code>em</code><span>Relativo al font-size del elemento</span></div>
+                <div class="ut-row"><code>rem</code><span>Relativo al :root font-size (16px)</span></div>
+                <div class="ut-row"><code>vw / vh</code><span>1% del ancho/alto del viewport</span></div>
+                <div class="ut-row"><code>dvh</code><span>Dynamic viewport height (móvil correcto)</span></div>
+                <div class="ut-row"><code>ch</code><span>Ancho del carácter "0"</span></div>
+                <div class="ut-row"><code>fr</code><span>Fracción del espacio libre en grid</span></div>
+                <div class="ut-row"><code>cqi</code><span>1% del inline-size del contenedor</span></div>
+              </div>
+            </div>
+          </article>
+
+        
+          <article class="tag-card wide" data-tag="fluid typography tipografia fluida clamp vw viewport responsive texto escalable">
+            <header class="card-header">
+              <code>Tipografía fluida con clamp()</code>
+              <span class="badge badge-css-resp">Tipografía</span>
+            </header>
+            <p>Escala el tamaño de fuente proporcionalmente al viewport, con límites mínimo y máximo. Sin breakpoints.</p>
+            <div class="demo">
+              <div id="fluid-typo-preview" style="font-size:clamp(1rem,2.5vw,2rem);font-weight:700;color:var(--text);background:#f8fafc;padding:12px;border-radius:6px;border:1px solid #e2e8f0;transition:all .2s;text-align:center;">
+                Redimensiona la ventana para ver el cambio
+              </div>
+              <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+                <label style="display:flex;align-items:center;gap:6px;font-size:.75rem;">
+                  min: <input type="range" id="ft-min" min="12" max="20" value="16" oninput="updateFluidTypo()" style="width:80px;">
+                  <output id="ft-min-val">1rem</output>
+                </label>
+                <label style="display:flex;align-items:center;gap:6px;font-size:.75rem;">
+                  ideal: <input type="range" id="ft-ideal" min="1" max="5" step="0.1" value="2.5" oninput="updateFluidTypo()" style="width:80px;">
+                  <output id="ft-ideal-val">2.5vw</output>
+                </label>
+                <label style="display:flex;align-items:center;gap:6px;font-size:.75rem;">
+                  max: <input type="range" id="ft-max" min="24" max="64" value="32" oninput="updateFluidTypo()" style="width:80px;">
+                  <output id="ft-max-val">2rem</output>
+                </label>
+              </div>
+              <pre id="ft-code" style="margin-top:8px;font-size:.72rem;background:#1e1e2e;color:#cdd6f4;padding:8px;border-radius:5px;">font-size: clamp(1rem, 2.5vw, 2rem);</pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="object-fit object-position cover contain fill none scale-down imagen video recorte">
+            <header class="card-header">
+              <code>object-fit · object-position</code>
+              <span class="badge badge-css-resp">Media</span>
+            </header>
+            <p>Controla cómo <code>&lt;img&gt;</code>, <code>&lt;video&gt;</code> u otros elementos reemplazados llenan su caja de contenido.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;font-size:.7rem;text-align:center;">
+                <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100'%3E%3Crect width='200' height='100' fill='%233d7ef5'/%3E%3Ccircle cx='100' cy='50' r='40' fill='white' opacity='.3'/%3E%3C/svg%3E" style="width:70px;height:70px;object-fit:fill;border:1px solid #ccc;border-radius:4px;display:block;margin:0 auto 3px;" alt=""><code>fill</code></div>
+                <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100'%3E%3Crect width='200' height='100' fill='%233d7ef5'/%3E%3Ccircle cx='100' cy='50' r='40' fill='white' opacity='.3'/%3E%3C/svg%3E" style="width:70px;height:70px;object-fit:contain;border:1px solid #ccc;border-radius:4px;display:block;margin:0 auto 3px;background:#f0f4ff;" alt=""><code>contain</code></div>
+                <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100'%3E%3Crect width='200' height='100' fill='%233d7ef5'/%3E%3Ccircle cx='100' cy='50' r='40' fill='white' opacity='.3'/%3E%3C/svg%3E" style="width:70px;height:70px;object-fit:cover;border:1px solid #ccc;border-radius:4px;display:block;margin:0 auto 3px;" alt=""><code>cover</code></div>
+                <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100'%3E%3Crect width='200' height='100' fill='%233d7ef5'/%3E%3Ccircle cx='100' cy='50' r='40' fill='white' opacity='.3'/%3E%3C/svg%3E" style="width:70px;height:70px;object-fit:none;border:1px solid #ccc;border-radius:4px;display:block;margin:0 auto 3px;background:#f0f4ff;" alt=""><code>none</code></div>
+              </div>
+              <pre style="margin-top:6px;font-size:.72rem;"><code>img { object-fit: cover; object-position: center top; }</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="dvh svh lvh dvw svb dynamic static large viewport units iphone barra navegacion">
+            <header class="card-header">
+              <code>dvh · svh · lvh · dvw · cqw</code>
+              <span class="badge badge-css-resp">Unidades modernas</span>
+            </header>
+            <p>Las unidades de viewport dinámicas solucionan el problema clásico de <code>100vh</code> en iOS donde la barra del navegador ocupa espacio extra.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;font-size:.72rem;text-align:center;margin-bottom:8px;">
+                <div style="background:#fef3c7;border-radius:6px;padding:8px;"><code>lvh</code><br><small style="color:#555;">Large viewport<br>(sin barras)</small></div>
+                <div style="background:#e8f0fe;border-radius:6px;padding:8px;"><code>svh</code><br><small style="color:#555;">Small viewport<br>(con barras)</small></div>
+                <div style="background:#ecfdf5;border-radius:6px;padding:8px;"><code>dvh</code><br><small style="color:#555;">Dynamic<br>(cambia al scroll)</small></div>
+              </div>
+              <pre style="font-size:.72rem;"><code>/* Antes — problema en móvil */
+.hero { height: 100vh; }
+
+/* Ahora — correcto */
+.hero { height: 100dvh; }
+
+/* Mínimo seguro */
+.panel { min-height: 100svh; }</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="prefers-reduced-motion accesibilidad animacion reducida movimiento">
+            <header class="card-header">
+              <code>prefers-reduced-motion</code>
+              <span class="badge badge-css-resp">Accesibilidad</span>
+            </header>
+            <p>Media query para respetar la preferencia del usuario de reducir animaciones. Importante para personas con vértigo o epilepsia fotosensible.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>/* Patrón recomendado */
+.animated {
+  animation: spin 2s linear infinite;
+  transition: transform .3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated {
+    animation: none;
+    transition: none;
+  }
+  /* O versión más suave */
+  .animated {
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* En JS */
+const noMotion = matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="print media query impresion @media print pagina papel">
+            <header class="card-header">
+              <code>@media print</code>
+              <span class="badge badge-css-resp">Impresión</span>
+            </header>
+            <p>Estilos aplicados solo al imprimir. Elimina navegación, ajusta fuentes, fuerza colores para papel y evita cortes en el contenido.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>@media print {
+  /* Ocultar elementos de UI */
+  nav, header, footer, .sidebar,
+  .ads, button { display: none !important; }
+
+  /* Optimizar tipografía */
+  body {
+    font-size: 12pt;
+    color: black;
+    background: white;
+  }
+
+  /* Evitar cortes en tarjetas */
+  .card  { break-inside: avoid; }
+  h2, h3 { break-after: avoid; }
+
+  /* Mostrar URLs */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: .8em;
+    color: #555;
+  }
+}</code></pre>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="pseudos.html"><span>←</span> Pseudoclases y Pseudoelementos</a>
+        
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

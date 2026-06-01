@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Tablas — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Tablas — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">HTML</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Tablas</span>
+      </nav>
+
+                              <section id="seccion-tablas" class="category">
+        <h2>Tablas</h2>
+        <p class="category-desc">
+          Etiquetas para organizar datos en filas y columnas.
+        </p>
+
+        <div class="tags-grid">
+          <article class="tag-card wide" data-tag="table">
+            <header class="card-header">
+              <code>&lt;table&gt; y todas sus etiquetas</code>
+              <span class="badge badge-table">Tabla</span>
+            </header>
+            <p>
+              Sistema de etiquetas anidadas: <code>table</code> →
+              <code>thead</code>/<code>tbody</code>/<code>tfoot</code> → <code>tr</code> →
+              <code>th</code>/<code>td</code>. <strong>Las tablas son solo para datos
+              tabulares</strong>, nunca para maquetar páginas. Usa siempre
+              <code>&lt;caption&gt;</code>, <code>scope</code> en los <code>&lt;th&gt;</code>
+              y <code>&lt;thead&gt;</code>/<code>&lt;tbody&gt;</code> para accesibilidad completa.
+            </p>
+            <div class="demo">
+              <table>
+                <caption>
+                  Lista de lenguajes web
+                </caption>
+                <colgroup>
+                  <col style="background: #fff9e6" />
+                  <col style="background: #e8f4f8" />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col">Lenguaje</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Uso</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>HTML</td>
+                    <td>Marcado</td>
+                    <td>Estructura</td>
+                  </tr>
+                  <tr>
+                    <td>CSS</td>
+                    <td>Estilos</td>
+                    <td>Presentación</td>
+                  </tr>
+                  <tr>
+                    <td>JavaScript</td>
+                    <td>Programación</td>
+                    <td>Comportamiento</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">Combinados</td>
+                    <td>Web completa</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="3">
+                      <small
+                        >Tabla demostrativa con thead, tbody, tfoot, caption,
+                        colgroup, col, th, td, colspan</small
+                      >
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </article>
+
+          <article class="tag-card wide" data-tag="tabla estilos border-collapse zebra striped hover sticky thead css visual playground">
+            <header class="card-header">
+              <code>Tabla Estilizada — Playground</code>
+              <span class="badge badge-table">Interactivo</span>
+            </header>
+            <p>
+              Las tablas HTML son solo estructura; el estilo viene de CSS. Activa las opciones para
+              ver los patrones más comunes en tablas de datos.
+            </p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:180px 1fr;gap:12px;">
+                <div style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;">
+                  <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="ts-collapse" onchange="updateTS()" checked> border-collapse: collapse</label>
+                  <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="ts-zebra" onchange="updateTS()"> Filas alternadas (zebra)</label>
+                  <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="ts-hover" onchange="updateTS()"> Hover en filas</label>
+                  <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="ts-border" onchange="updateTS()" checked> Bordes en celdas</label>
+                  <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="ts-striped-col" onchange="updateTS()"> Primera col destacada</label>
+                  <label>Padding de celdas:
+                    <select id="ts-size" onchange="updateTS()" style="display:block;width:100%;padding:3px;border:1px solid #e2e8f0;border-radius:4px;margin-top:2px;font-size:.75rem;">
+                      <option value="4px 6px">Compacto</option>
+                      <option value="8px" selected>Normal</option>
+                      <option value="12px 16px">Espacioso</option>
+                    </select>
+                  </label>
+                </div>
+                <div style="overflow-x:auto;">
+                  <table id="ts-table" style="width:100%;font-size:.78rem;border-collapse:collapse;">
+                    <thead>
+                      <tr id="ts-thead-row">
+                        <th style="text-align:left;background:#f0f4ff;padding:8px;">Producto</th>
+                        <th style="text-align:right;background:#f0f4ff;padding:8px;">Precio</th>
+                        <th style="text-align:center;background:#f0f4ff;padding:8px;">Stock</th>
+                        <th style="text-align:center;background:#f0f4ff;padding:8px;">Estado</th>
+                      </tr>
+                    </thead>
+                    <tbody id="ts-tbody">
+                      <tr><td style="padding:8px;">Laptop Pro</td><td style="padding:8px;text-align:right;">$1,299</td><td style="padding:8px;text-align:center;">12</td><td style="padding:8px;text-align:center;">✅</td></tr>
+                      <tr><td style="padding:8px;">Mouse Inalámbrico</td><td style="padding:8px;text-align:right;">$49</td><td style="padding:8px;text-align:center;">84</td><td style="padding:8px;text-align:center;">✅</td></tr>
+                      <tr><td style="padding:8px;">Teclado Mecánico</td><td style="padding:8px;text-align:right;">$129</td><td style="padding:8px;text-align:center;">0</td><td style="padding:8px;text-align:center;">❌</td></tr>
+                      <tr><td style="padding:8px;">Monitor 4K</td><td style="padding:8px;text-align:right;">$599</td><td style="padding:8px;text-align:center;">5</td><td style="padding:8px;text-align:center;">⚠️</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <pre id="ts-code" style="margin-top:8px;font-size:.72rem;background:#1e1e2e;color:#cdd6f4;padding:8px;border-radius:5px;overflow-x:auto;"></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="caption titulo tabla accesibilidad descripcion">
+            <header class="card-header">
+              <code>&lt;caption&gt;</code>
+              <span class="badge badge-table">Accesibilidad</span>
+            </header>
+            <p>
+              Título visible de la tabla. Debe ser siempre el <strong>primer hijo</strong> de <code>&lt;table&gt;</code>. Los lectores de pantalla lo anuncian antes de enumerar los datos, permitiendo al usuario decidir si le interesa antes de escuchar todo el contenido. Su posición visual se controla con CSS: <code>caption-side: top | bottom</code>. Para tablas complejas, puede complementarse con <code>aria-describedby</code> apuntando a un párrafo de descripción externo.
+            </p>
+            <p class="tag-note">Toda tabla de datos debe tener un <code>&lt;caption&gt;</code> o un <code>aria-label</code> equivalente. WCAG 1.3.1 requiere que la estructura de la tabla sea determinable por programas de asistencia.</p>
+            <div class="demo">
+              <table style="width:100%;font-size:.78rem;border-collapse:collapse;">
+                <caption style="caption-side:top;font-weight:700;color:#555;padding-bottom:6px;text-align:left;">Tabla: Ventas por trimestre</caption>
+                <thead><tr><th style="background:#f0f4ff;padding:5px;border:1px solid #e2e8f0;text-align:left;">Q</th><th style="background:#f0f4ff;padding:5px;border:1px solid #e2e8f0;text-align:left;">Ventas</th></tr></thead>
+                <tbody>
+                  <tr><td style="padding:5px;border:1px solid #e2e8f0;">Q1</td><td style="padding:5px;border:1px solid #e2e8f0;">$12,400</td></tr>
+                  <tr><td style="padding:5px;border:1px solid #e2e8f0;">Q2</td><td style="padding:5px;border:1px solid #e2e8f0;">$18,200</td></tr>
+                </tbody>
+              </table>
+              <pre style="margin-top:6px;font-size:.72rem;"><code>&lt;table&gt;
+  &lt;caption&gt;Ventas por trimestre&lt;/caption&gt;
+  ...
+&lt;/table&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card wide" data-tag="colspan rowspan fusion celdas span tabla interactivo">
+            <header class="card-header">
+              <code>colspan · rowspan — Playground</code>
+              <span class="badge badge-table">Interactivo</span>
+            </header>
+            <p>Permiten que una celda ocupe múltiples columnas (<code>colspan</code>) o filas (<code>rowspan</code>). Haz clic en una celda para ver sus atributos.</p>
+            <div class="demo">
+              <table id="cs-table" style="border-collapse:collapse;width:100%;font-size:.78rem;text-align:center;cursor:pointer;">
+                <thead>
+                  <tr>
+                    <th colspan="2" style="background:#3d7ef5;color:white;padding:8px;border:1px solid #2560d6;" onclick="showCellInfo('colspan=&quot;2&quot;','Ocupa 2 columnas')">Encabezado (colspan=2)</th>
+                    <th rowspan="2" style="background:#a855f7;color:white;padding:8px;border:1px solid #7c3aed;" onclick="showCellInfo('rowspan=&quot;2&quot;','Ocupa 2 filas')">Vertical<br>(rowspan=2)</th>
+                  </tr>
+                  <tr>
+                    <th style="background:#f0f4ff;padding:8px;border:1px solid #e2e8f0;" onclick="showCellInfo('scope=&quot;col&quot;','Celda de encabezado')">Col A</th>
+                    <th style="background:#f0f4ff;padding:8px;border:1px solid #e2e8f0;" onclick="showCellInfo('scope=&quot;col&quot;','Celda de encabezado')">Col B</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="padding:8px;border:1px solid #e2e8f0;" onclick="showCellInfo('','Celda normal')">Dato 1</td>
+                    <td style="padding:8px;border:1px solid #e2e8f0;" onclick="showCellInfo('','Celda normal')">Dato 2</td>
+                    <td style="padding:8px;border:1px solid #e2e8f0;" onclick="showCellInfo('','Celda normal')">Dato 3</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p id="cell-info" style="margin-top:6px;font-size:.75rem;padding:6px 10px;background:#f8fafc;border-radius:4px;color:#555;">Haz clic en una celda para ver sus atributos</p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="th scope col row colgroup accesibilidad tabla headers">
+            <header class="card-header">
+              <code>&lt;th scope&gt; · accesibilidad</code>
+              <span class="badge badge-table">A11y</span>
+            </header>
+            <p>
+              El atributo <code>scope</code> en <code>&lt;th&gt;</code> asocia el encabezado con
+              las celdas correctas. Valores: <code>col</code> (encabezado de columna),
+              <code>row</code> (encabezado de fila), <code>colgroup</code>/<code>rowgroup</code>
+              (para grupos). Indispensable para lectores de pantalla. Sin <code>scope</code>,
+              los lectores de pantalla no pueden inferir qué columna o fila corresponde a cada dato.
+            </p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;Nombre&lt;/th&gt;     &lt;!-- encabezado de columna --&gt;
+      &lt;th scope="col"&gt;Puntuación&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;Ana&lt;/th&gt;        &lt;!-- encabezado de fila --&gt;
+      &lt;td&gt;95&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;!-- scope="colgroup"/"rowgroup" para grupos --&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="colgroup col estilo columna ancho background tabla">
+            <header class="card-header">
+              <code>&lt;colgroup&gt; · &lt;col&gt;</code>
+              <span class="badge badge-table">Estilo</span>
+            </header>
+            <p>
+              <code>&lt;colgroup&gt;</code> agrupa columnas de una tabla para aplicarles estilos de forma centralizada. Cada <code>&lt;col&gt;</code> dentro representa una columna (o varias con <code>span</code>). Evitan repetir clases en cada <code>&lt;td&gt;</code> de la columna. Importante: solo admiten un subconjunto de propiedades CSS — <code>width</code>, <code>visibility</code>, <code>background</code> y <code>border</code>. Propiedades como <code>padding</code>, <code>text-align</code> o <code>font-size</code> no se pueden aplicar a nivel de columna.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos principales de &lt;col&gt;</span>
+              <code>span</code><span class="attr-type">integer</span><span class="attr-desc">Número de columnas consecutivas que abarca este elemento (default: 1)</span>
+            </div>
+            <p class="tag-warn">Si necesitas alinear o dar padding a una columna, debes hacerlo con clases en los <code>&lt;td&gt;</code> o con CSS de selector <code>:nth-child()</code>. <code>&lt;col&gt;</code> no puede cambiar <code>text-align</code> ni <code>padding</code>.</p>
+            <div class="demo">
+              <table style="border-collapse:collapse;width:100%;font-size:.78rem;">
+                <colgroup>
+                  <col style="background:#fef3c7;width:40%;">
+                  <col style="background:#e8f0fe;width:30%;">
+                  <col>
+                </colgroup>
+                <thead><tr><th style="padding:5px;border:1px solid #e2e8f0;text-align:left;">Producto</th><th style="padding:5px;border:1px solid #e2e8f0;text-align:left;">Precio</th><th style="padding:5px;border:1px solid #e2e8f0;text-align:left;">Stock</th></tr></thead>
+                <tbody><tr><td style="padding:5px;border:1px solid #e2e8f0;">Laptop</td><td style="padding:5px;border:1px solid #e2e8f0;">$999</td><td style="padding:5px;border:1px solid #e2e8f0;">12</td></tr></tbody>
+              </table>
+              <pre style="margin-top:6px;font-size:.72rem;"><code>&lt;colgroup&gt;
+  &lt;col style="background:#fef3c7; width:40%"&gt;
+  &lt;col style="background:#e8f0fe; width:30%"&gt;
+  &lt;col&gt;  &lt;!-- columna sin estilo --&gt;
+&lt;/colgroup&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="responsive tabla scroll horizontal overflow wrapper wrapper mobile">
+            <header class="card-header">
+              <code>Tablas responsivas</code>
+              <span class="badge badge-table">Responsive</span>
+            </header>
+            <p>
+              Las tablas con muchas columnas se desbordan en pantallas pequeñas porque su ancho mínimo está determinado por el contenido. Hay dos estrategias principales: (1) scroll horizontal — envuelve la tabla en un <code>&lt;div style="overflow-x: auto"&gt;</code> para que el usuario pueda desplazarse; (2) transformación a lista — con <code>display: block</code> en todos los elementos de la tabla y <code>td::before { content: attr(data-label) ": " }</code> para mostrar la etiqueta de columna como encabezado de cada valor.
+            </p>
+            <p class="tag-tip">La estrategia de scroll horizontal es la más simple y mantiene la estructura de tabla para lectores de pantalla. La transformación a lista requiere añadir <code>data-label</code> a cada <code>&lt;td&gt;</code> pero ofrece mejor UX en móvil para tablas complejas.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>&lt;!-- Estrategia 1: scroll horizontal --&gt;
+&lt;div style="overflow-x: auto;"&gt;
+  &lt;table&gt;...&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;!-- Estrategia 2: lista en móvil (CSS) --&gt;
+@media (max-width: 600px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  thead tr { display: none; } /* oculta th */
+  td::before {
+    content: attr(data-label) ": ";
+    font-weight: 700;
+  }
+}
+/* En el HTML: &lt;td data-label="Nombre"&gt;Ana&lt;/td&gt; */</code></pre>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="media.html"><span>←</span> Imágenes y Media</a>
+        <a class="pager-btn pager-next" href="formularios.html">Formularios <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+      function updateTS() {
+        const table   = document.getElementById('ts-table');
+        const tbody   = document.getElementById('ts-tbody');
+        const theadR  = document.getElementById('ts-thead-row');
+        const code    = document.getElementById('ts-code');
+        if (!table || !tbody) return;
+
+        const collapse = document.getElementById('ts-collapse')?.checked;
+        const zebra    = document.getElementById('ts-zebra')?.checked;
+        const hover    = document.getElementById('ts-hover')?.checked;
+        const border   = document.getElementById('ts-border')?.checked;
+        const firstCol = document.getElementById('ts-striped-col')?.checked;
+        const pad      = document.getElementById('ts-size')?.value || '8px';
+
+        table.style.borderCollapse = collapse ? 'collapse' : 'separate';
+        table.style.borderSpacing  = collapse ? '0' : '4px';
+
+        // thead cells
+        theadR && theadR.querySelectorAll('th').forEach((th, i) => {
+          th.style.padding = pad;
+          th.style.background = (firstCol && i === 0) ? '#e0e7ff' : '#f0f4ff';
+          th.style.border = border ? '1px solid #e2e8f0' : 'none';
+          th.style.borderBottom = '2px solid #c7d2fe';
+        });
+
+        // tbody rows + cells
+        Array.from(tbody.querySelectorAll('tr')).forEach((row, i) => {
+          const isEven = i % 2 === 1;
+          row.style.background = zebra && isEven ? '#f8fafc' : '';
+          Array.from(row.querySelectorAll('td')).forEach((td, ci) => {
+            td.style.padding = pad;
+            td.style.border  = border ? '1px solid #e2e8f0' : 'none';
+            if (firstCol && ci === 0) { td.style.fontWeight = '600'; td.style.background = '#f5f3ff'; }
+            else { td.style.fontWeight = ''; if (!zebra || !isEven) td.style.background = ''; }
+          });
+          if (hover) {
+            row.onmouseenter = () => row.style.background = '#eff6ff';
+            row.onmouseleave = () => row.style.background = (zebra && isEven) ? '#f8fafc' : '';
+          } else {
+            row.onmouseenter = null; row.onmouseleave = null;
+          }
+        });
+
+        const css = [
+          'table { border-collapse: ' + (collapse ? 'collapse' : 'separate') + '; }',
+          'td, th { padding: ' + pad + '; }',
+          border  ? 'td, th { border: 1px solid #e2e8f0; }' : null,
+          zebra   ? 'tbody tr:nth-child(even) { background: #f8fafc; }' : null,
+          hover   ? 'tbody tr:hover { background: #eff6ff; }' : null,
+          firstCol ? 'td:first-child { font-weight: 600; background: #f5f3ff; }' : null,
+        ].filter(Boolean);
+        if (code) code.textContent = css.join('\n');
+      }
+      document.addEventListener('DOMContentLoaded', updateTS);
+    </script>
+  </body>
+</html>

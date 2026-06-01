@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Introducción a CSS — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>CSS — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+        <nav class="breadcrumb" aria-label="Ruta de navegación">
+          <a href="../index.html">BryanDocs</a>
+          <span class="breadcrumb-sep" aria-hidden="true">›</span>
+          <span aria-current="page">CSS</span>
+        </nav>
+
+        <!-- ── HERO ─────────────────────────────────────────────── -->
+        <div class="css-hero">
+          <h2><span class="hero-accent">CSS</span> — Cascading Style Sheets</h2>
+          <p>
+            El lenguaje de estilos que controla cómo se ve y cómo se dispone cada elemento HTML.
+            Separa la presentación visual del contenido estructural, permitiendo que un mismo HTML
+            tenga apariencias completamente distintas.
+          </p>
+          <div class="html-hero-meta">
+            <div class="hero-stat">
+              <strong>1996</strong>
+              <span>CSS 1 publicado por W3C</span>
+            </div>
+            <div class="hero-stat">
+              <strong>CSS3</strong>
+              <span>Módulos en constante evolución</span>
+            </div>
+            <div class="hero-stat">
+              <strong>~600</strong>
+              <span>Propiedades en la especificación</span>
+            </div>
+            <div class="hero-stat">
+              <strong>Cascada</strong>
+              <span>Herencia + especificidad + orden</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PLAYGROUND LIVE ────────────────────────────────── -->
+        <div id="pg-playground" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg></span> Playground — CSS en vivo</h3>
+          <p>
+            Escribe CSS en el editor y observa el resultado en tiempo real. El bloque
+            <code>.caja</code> es el elemento objetivo. Experimenta con cualquier propiedad.
+          </p>
+          <div class="css-live-playground">
+            <div class="css-live-pane">
+              <div class="css-live-pane-label">CSS</div>
+              <textarea class="css-live-textarea" id="css-live-input" spellcheck="false" autocomplete="off" autocorrect="off">/* Edita este CSS y mira el resultado → */
+
+.caja {
+  background: #a855f7;
+  color: white;
+  padding: 28px 32px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(168, 85, 247, .35);
+  letter-spacing: .5px;
+  transition: all .3s ease;
+}
+
+.caja:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 48px rgba(168, 85, 247, .45);
+}</textarea>
+            </div>
+            <div class="css-live-pane">
+              <div class="css-live-pane-label">Resultado</div>
+              <div class="css-live-preview">
+                <div class="caja">¡Edita el CSS!</div>
+              </div>
+            </div>
+          </div>
+          <style id="css-live-style"></style>
+        </div>
+
+        <!-- ── ¿QUÉ ES CSS? ───────────────────────────────────── -->
+        <div id="pg-que-es" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span> ¿Qué es CSS?</h3>
+          <p>
+            <strong>CSS (Cascading Style Sheets)</strong> es el lenguaje que describe la
+            <em>presentación visual</em> de un documento HTML. Controla colores, tipografías,
+            espaciados, tamaños, posiciones, animaciones y prácticamente cualquier aspecto visual
+            de una página web.
+          </p>
+          <p>
+            La palabra clave es <strong>"cascada"</strong>: cuando múltiples reglas compiten por
+            estilizar el mismo elemento, el navegador resuelve el conflicto mediante un algoritmo
+            determinista basado en <em>origen</em>, <em>especificidad</em> e <em>importancia</em>.
+            Entender la cascada es fundamental para escribir CSS predecible.
+          </p>
+          <p>
+            CSS fue creado por <strong>Håkon Wium Lie</strong> en 1994 y se publicó como estándar
+            W3C en 1996. Desde CSS3 (2011), el lenguaje se divide en <strong>módulos independientes</strong>
+            (selectores, layout, colores, animaciones…) que evolucionan a su propio ritmo.
+          </p>
+        </div>
+
+        <!-- ── ANATOMÍA DE UNA REGLA CSS ─────────────────────── -->
+        <div id="pg-anatomia" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span> Anatomía de una regla CSS</h3>
+          <p>Una regla CSS tiene dos partes: el <strong>selector</strong> (qué elemento se estiliza) y el <strong>bloque de declaraciones</strong> (qué estilos se aplican).</p>
+
+          <div class="rule-anatomy-wrap">
+            <div class="rule-anatomy">
+              <div class="ra-line">
+                <span class="ra-sel">h2.titulo</span>
+                <span class="ra-brace">,&nbsp;</span>
+                <span class="ra-sel">.card &gt; p</span>
+                <span class="ra-brace">&nbsp;{</span>
+                <span class="ra-comment">/* selector — qué elementos */</span>
+              </div>
+              <div class="ra-line">
+                <span class="ra-prop">color</span>
+                <span class="ra-colon">:</span>
+                <span class="ra-val">#1a2332</span>
+                <span class="ra-semi">;</span>
+                <span class="ra-comment">/* propiedad: valor */</span>
+              </div>
+              <div class="ra-line">
+                <span class="ra-prop">font-size</span>
+                <span class="ra-colon">:</span>
+                <span class="ra-val">1.25rem</span>
+                <span class="ra-semi">;</span>
+                <span class="ra-comment">/* unidades relativas al padre */</span>
+              </div>
+              <div class="ra-line">
+                <span class="ra-prop">margin-block</span>
+                <span class="ra-colon">:</span>
+                <span class="ra-val">0 1em</span>
+                <span class="ra-semi">;</span>
+                <span class="ra-comment">/* propiedad lógica: top bottom */</span>
+              </div>
+              <div class="ra-line">
+                <span class="ra-brace">}</span>
+              </div>
+            </div>
+          </div>
+
+          <ul style="margin-top:14px;">
+            <li><strong>Selector</strong> — identifica los elementos a los que se aplica la regla. Puede ser un tipo (<code>p</code>), una clase (<code>.card</code>), un ID (<code>#hero</code>), un combinador (<code>ul &gt; li</code>) o una pseudo-clase (<code>:hover</code>).</li>
+            <li><strong>Propiedad</strong> — el aspecto visual a controlar (<code>color</code>, <code>font-size</code>, <code>margin</code>…). Hay ~600 propiedades estándar.</li>
+            <li><strong>Valor</strong> — qué valor toma esa propiedad. Puede ser un color, una longitud, una palabra clave o una función CSS (<code>calc()</code>, <code>clamp()</code>, <code>var()</code>).</li>
+            <li><strong>Declaración</strong> — par propiedad + valor separados por <code>:</code> y terminados en <code>;</code>.</li>
+            <li><strong>Regla</strong> — selector + bloque de declaraciones entre llaves <code>{ }</code>.</li>
+          </ul>
+        </div>
+
+        <!-- ── LA CASCADA ─────────────────────────────────────── -->
+        <div id="pg-cascada" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span> La Cascada — cómo se resuelven los conflictos</h3>
+          <p>
+            Cuando múltiples reglas aplican a un mismo elemento, la cascada determina cuál gana.
+            Se evalúan en este orden de prioridad (mayor número = mayor prioridad):
+          </p>
+
+          <div class="cascade-layers">
+            <div class="cascade-layer cascade-l1">
+              <div class="cascade-layer-num">5</div>
+              <span class="cascade-layer-title">!important</span>
+              <span class="cascade-layer-desc">Anula todo lo demás. Usar con extrema moderación — rompe el flujo normal de la cascada y dificulta el mantenimiento.</span>
+            </div>
+            <div class="cascade-layer cascade-l2">
+              <div class="cascade-layer-num">4</div>
+              <span class="cascade-layer-title">Estilos en línea</span>
+              <span class="cascade-layer-desc"><code>style="color: red"</code> directamente en el HTML. Muy alta especificidad pero difícil de sobreescribir y mantener.</span>
+            </div>
+            <div class="cascade-layer cascade-l3">
+              <div class="cascade-layer-num">3</div>
+              <span class="cascade-layer-title">Especificidad del selector</span>
+              <span class="cascade-layer-desc">ID &gt; clase/atributo/pseudo-clase &gt; tipo/pseudo-elemento. La especificidad más alta gana entre reglas del mismo origen.</span>
+            </div>
+            <div class="cascade-layer cascade-l4">
+              <div class="cascade-layer-num">2</div>
+              <span class="cascade-layer-title">Orden en el código</span>
+              <span class="cascade-layer-desc">Entre reglas de igual especificidad, la última declarada gana. Base del sistema de temas y overrides.</span>
+            </div>
+            <div class="cascade-layer cascade-l5">
+              <div class="cascade-layer-num">1</div>
+              <span class="cascade-layer-title">Herencia</span>
+              <span class="cascade-layer-desc">Propiedades como <code>color</code>, <code>font-family</code> o <code>line-height</code> se heredan del elemento padre si no se sobreescriben.</span>
+            </div>
+          </div>
+
+          <p style="margin-top: 10px;">
+            <strong>Propiedades heredables</strong> (se propagan a los hijos):
+            <code>color</code>, <code>font-*</code>, <code>line-height</code>, <code>text-align</code>,
+            <code>cursor</code>, <code>visibility</code>, <code>list-style</code>…
+            <br>
+            <strong>No heredables</strong> (deben declararse explícitamente):
+            <code>margin</code>, <code>padding</code>, <code>border</code>, <code>background</code>,
+            <code>width</code>, <code>height</code>, <code>display</code>, <code>position</code>…
+            Usa <code>inherit</code> para forzar herencia en cualquier propiedad.
+          </p>
+        </div>
+
+        <!-- ── CALCULADORA DE ESPECIFICIDAD ──────────────────── -->
+        <div id="pg-especificidad" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="18" x2="12" y2="18"/></svg></span> Calculadora de Especificidad</h3>
+          <p>
+            La especificidad se representa como tres números <strong>(a, b, c)</strong>:
+            <strong style="color:#9d174d;">a</strong> = selectores ID,
+            <strong style="color:#92400e;">b</strong> = clases, atributos y pseudo-clases,
+            <strong style="color:#1d4ed8;">c</strong> = tipos y pseudo-elementos.
+            Un selector con mayor valor en <em>a</em> siempre gana sin importar los otros.
+          </p>
+
+          <div class="spec-calc-wrap">
+            <div class="spec-calc-input-row">
+              <input type="text" class="spec-calc-input" id="spec-input"
+                placeholder="Escribe un selector… ej: #nav .item:hover"
+                value="#nav .item:hover"
+                oninput="calcSpec(this.value)">
+            </div>
+            <div class="spec-boxes-row">
+              <div class="spec-box-group spec-id">
+                <div class="spec-box-val" id="spec-a">0</div>
+                <div class="spec-box-label">ID<br>#id</div>
+              </div>
+              <div class="spec-sep">,</div>
+              <div class="spec-box-group spec-cls">
+                <div class="spec-box-val" id="spec-b">0</div>
+                <div class="spec-box-label">Clase<br>.cls :pseu [attr]</div>
+              </div>
+              <div class="spec-sep">,</div>
+              <div class="spec-box-group spec-typ">
+                <div class="spec-box-val" id="spec-c">0</div>
+                <div class="spec-box-label">Tipo<br>div ::before</div>
+              </div>
+            </div>
+            <div class="spec-explanation" id="spec-explanation">
+              Escribe un selector para ver su especificidad.
+            </div>
+          </div>
+
+          <div style="margin-top:14px;font-size:.78rem;display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+              <span style="font-weight:700;color:#555;min-width:180px;">Ejemplos rápidos:</span>
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <button class="btn-demo" onclick="document.getElementById('spec-input').value=this.dataset.sel;calcSpec(this.dataset.sel)" data-sel="*" style="font-size:.72rem;padding:4px 10px;">* <span style="color:rgba(255,255,255,.7)">(0,0,0)</span></button>
+              <button class="btn-demo" onclick="document.getElementById('spec-input').value=this.dataset.sel;calcSpec(this.dataset.sel)" data-sel="li" style="font-size:.72rem;padding:4px 10px;">li <span style="color:rgba(255,255,255,.7)">(0,0,1)</span></button>
+              <button class="btn-demo" onclick="document.getElementById('spec-input').value=this.dataset.sel;calcSpec(this.dataset.sel)" data-sel=".card" style="font-size:.72rem;padding:4px 10px;">.card <span style="color:rgba(255,255,255,.7)">(0,1,0)</span></button>
+              <button class="btn-demo" onclick="document.getElementById('spec-input').value=this.dataset.sel;calcSpec(this.dataset.sel)" data-sel="ul li.active" style="font-size:.72rem;padding:4px 10px;">ul li.active <span style="color:rgba(255,255,255,.7)">(0,1,2)</span></button>
+              <button class="btn-demo" onclick="document.getElementById('spec-input').value=this.dataset.sel;calcSpec(this.dataset.sel)" data-sel="#header .nav a:hover" style="font-size:.72rem;padding:4px 10px;">#header .nav a:hover <span style="color:rgba(255,255,255,.7)">(1,2,1)</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── EL BOX MODEL ───────────────────────────────────── -->
+        <div id="pg-boxmodel" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="7" y="7" width="10" height="10" rx="1"/></svg></span> El Box Model</h3>
+          <p>
+            Todo elemento HTML es una caja rectangular. El <strong>Box Model</strong> define las
+            cuatro capas que componen esa caja, de adentro hacia afuera:
+          </p>
+
+          <div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;margin:14px 0;">
+            <!-- Visual box model -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0;font-size:.7rem;font-weight:700;text-align:center;flex-shrink:0;">
+              <div style="background:#fde68a;padding:10px 20px;border-radius:8px;color:#92400e;width:100%;">
+                <div style="font-size:.65rem;margin-bottom:6px;opacity:.7;">margin</div>
+                <div style="background:#fdba74;padding:8px 16px;border-radius:6px;border:3px solid #374151;color:#1a2332;">
+                  <div style="font-size:.65rem;margin-bottom:4px;opacity:.7;">border</div>
+                  <div style="background:#bbf7d0;padding:8px 12px;border-radius:4px;color:#166534;">
+                    <div style="font-size:.65rem;margin-bottom:4px;opacity:.7;">padding</div>
+                    <div style="background:#93c5fd;padding:8px 12px;border-radius:3px;color:#1e3a5f;">
+                      contenido
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Descriptions -->
+            <div style="flex:1;min-width:220px;font-size:.8rem;display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;gap:10px;align-items:center;">
+                <div style="width:14px;height:14px;background:#93c5fd;border-radius:2px;flex-shrink:0;"></div>
+                <span><strong>Content</strong> — el contenido real (texto, imagen). Controlado por <code>width</code> y <code>height</code>.</span>
+              </div>
+              <div style="display:flex;gap:10px;align-items:center;">
+                <div style="width:14px;height:14px;background:#bbf7d0;border-radius:2px;flex-shrink:0;"></div>
+                <span><strong>Padding</strong> — espacio interior entre el contenido y el borde. Tiene el color de fondo del elemento.</span>
+              </div>
+              <div style="display:flex;gap:10px;align-items:center;">
+                <div style="width:14px;height:14px;background:#fdba74;border:2px solid #374151;border-radius:2px;flex-shrink:0;"></div>
+                <span><strong>Border</strong> — línea alrededor del padding. Suma al tamaño total (salvo con <code>box-sizing: border-box</code>).</span>
+              </div>
+              <div style="display:flex;gap:10px;align-items:center;">
+                <div style="width:14px;height:14px;background:#fde68a;border-radius:2px;flex-shrink:0;"></div>
+                <span><strong>Margin</strong> — espacio exterior entre la caja y otros elementos. Transparente (no hereda el fondo).</span>
+              </div>
+              <div style="background:#eff6ff;border-left:3px solid #3b82f6;padding:8px 10px;border-radius:4px;font-size:.76rem;color:#1e40af;margin-top:4px;">
+                <strong>Regla #1 de CSS moderno:</strong> añade siempre <code>*, *::before, *::after { box-sizing: border-box; }</code> — hace que <code>width</code> incluya padding y border, evitando desbordamientos inesperados.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── UNIDADES CSS ───────────────────────────────────── -->
+        <div id="pg-unidades" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.3 8.7l-8-8a1 1 0 0 0-1.4 0l-9 9a1 1 0 0 0 0 1.4l8 8a1 1 0 0 0 1.4 0l9-9a1 1 0 0 0 0-1.4z"/><line x1="10.4" y1="6.5" x2="7.6" y2="9.3"/><line x1="14.2" y1="10.3" x2="11.4" y2="13.1"/></svg></span> Unidades CSS</h3>
+          <p>
+            Las unidades CSS se dividen en <strong>absolutas</strong> (valor fijo en el mundo físico)
+            y <strong>relativas</strong> (dependen de otro valor de referencia). Para diseño web
+            se prefieren las relativas porque escalan con el usuario y el viewport.
+          </p>
+
+          <div class="units-grid-2col">
+            <div class="units-group">
+              <div class="units-group-title">Absolutas</div>
+              <div class="unit-row"><code>px</code><span>Píxel CSS. Referencia en pantallas: 1px = 1/96 pulgada en pantallas estándar.</span></div>
+              <div class="unit-row"><code>pt</code><span>Punto tipográfico. 1pt = 1.333px. Solo para impresión.</span></div>
+              <div class="unit-row"><code>cm / mm</code><span>Centímetros / milímetros. Útiles en CSS para impresión.</span></div>
+            </div>
+
+            <div class="units-group">
+              <div class="units-group-title">Relativas al elemento</div>
+              <div class="unit-row"><code>em</code><span>Relativo al <code>font-size</code> del <em>propio</em> elemento. Se acumula en nesting.</span></div>
+              <div class="unit-row"><code>rem</code><span>Relativo al <code>font-size</code> del elemento raíz (<code>html</code>). No se acumula. Preferido para tamaños de texto.</span></div>
+              <div class="unit-row"><code>ch</code><span>Ancho del carácter "0" en la fuente actual. Útil para limitar anchos de texto legible.</span></div>
+              <div class="unit-row"><code>ex</code><span>Altura de la x minúscula. Raramente usado en producción.</span></div>
+            </div>
+
+            <div class="units-group">
+              <div class="units-group-title">Relativas al viewport</div>
+              <div class="unit-row"><code>vw</code><span>1% del ancho del viewport. <code>100vw</code> = ancho completo de la ventana.</span></div>
+              <div class="unit-row"><code>vh</code><span>1% de la altura del viewport. Problema en móvil con barras del browser — usar <code>dvh</code>.</span></div>
+              <div class="unit-row"><code>dvh</code><span>Dynamic viewport height — incluye/excluye las barras móviles según estén visibles. Recomendado para alturas <code>100dvh</code>.</span></div>
+              <div class="unit-row"><code>vmin / vmax</code><span>El menor / mayor valor entre <code>vw</code> y <code>vh</code>. Útil para elementos cuadrados fluidos.</span></div>
+            </div>
+
+            <div class="units-group">
+              <div class="units-group-title">Porcentajes y funciones</div>
+              <div class="unit-row"><code>%</code><span>Relativo al valor del mismo atributo del padre. En <code>width</code>, al ancho del padre; en <code>font-size</code>, al del padre.</span></div>
+              <div class="unit-row"><code>calc()</code><span>Mezcla unidades: <code>calc(100% - 2rem)</code>. Operaciones: +, -, *, /.</span></div>
+              <div class="unit-row"><code>clamp()</code><span>Valor entre un mínimo y máximo. Ideal para tipografía fluida: <code>clamp(1rem, 2.5vw, 2rem)</code>.</span></div>
+              <div class="unit-row"><code>min() / max()</code><span>Toma el menor / mayor entre dos valores. Ej: <code>width: min(600px, 100%)</code>.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SELECTORES RÁPIDOS ─────────────────────────────── -->
+        <div id="pg-selectores" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></span> Selectores más usados</h3>
+          <p>Los selectores son el mecanismo por el que CSS identifica qué elementos estilizar. Combinados, permiten una precisión quirúrgica.</p>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;font-size:.78rem;">
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Selectores básicos</span>
+              <code>*</code><span class="attr-type">universal</span><span class="attr-desc">Todos los elementos</span>
+              <code>div</code><span class="attr-type">tipo</span><span class="attr-desc">Elemento por nombre de tag</span>
+              <code>.clase</code><span class="attr-type">clase</span><span class="attr-desc">Elementos con ese <code>class</code></span>
+              <code>#id</code><span class="attr-type">id</span><span class="attr-desc">El elemento con ese <code>id</code> único</span>
+              <code>[attr]</code><span class="attr-type">atributo</span><span class="attr-desc">Tienen ese atributo; <code>[href^="https"]</code> comienza con</span>
+            </div>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Combinadores</span>
+              <code>A B</code><span class="attr-type">descendiente</span><span class="attr-desc">B dentro de A (cualquier nivel)</span>
+              <code>A > B</code><span class="attr-type">hijo</span><span class="attr-desc">B hijo directo de A</span>
+              <code>A + B</code><span class="attr-type">hermano adyacente</span><span class="attr-desc">B inmediatamente después de A</span>
+              <code>A ~ B</code><span class="attr-type">hermano general</span><span class="attr-desc">Todos los B hermanos de A</span>
+              <code>A, B</code><span class="attr-type">lista</span><span class="attr-desc">Aplica la regla a A y a B</span>
+            </div>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Pseudo-clases de estado</span>
+              <code>:hover</code><span class="attr-type">interacción</span><span class="attr-desc">Cursor encima del elemento</span>
+              <code>:focus</code><span class="attr-type">interacción</span><span class="attr-desc">Elemento con foco de teclado</span>
+              <code>:active</code><span class="attr-type">interacción</span><span class="attr-desc">Elemento siendo clicado</span>
+              <code>:checked</code><span class="attr-type">formulario</span><span class="attr-desc">Checkbox o radio seleccionado</span>
+              <code>:disabled</code><span class="attr-type">formulario</span><span class="attr-desc">Control de formulario deshabilitado</span>
+            </div>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Pseudo-clases estructurales</span>
+              <code>:first-child</code><span class="attr-type">posición</span><span class="attr-desc">Primer hijo de su padre</span>
+              <code>:last-child</code><span class="attr-type">posición</span><span class="attr-desc">Último hijo de su padre</span>
+              <code>:nth-child(n)</code><span class="attr-type">posición</span><span class="attr-desc"><code>2n</code> = pares, <code>2n+1</code> = impares, <code>3n</code> = cada tercero</span>
+              <code>:not(sel)</code><span class="attr-type">negación</span><span class="attr-desc">Elementos que NO coinciden con el selector</span>
+              <code>:is(A, B)</code><span class="attr-type">lista forgiving</span><span class="attr-desc">Toma la especificidad del selector más específico</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── PROPIEDADES POR CATEGORÍA ─────────────────────── -->
+        <div id="pg-propiedades" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Propiedades por categoría</h3>
+          <p>Las ~600 propiedades CSS se agrupan en módulos temáticos. Estas son las más usadas en cada categoría:</p>
+
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;font-size:.78rem;">
+            <details open>
+              <summary><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="7" y="7" width="10" height="10" rx="1"/></svg> Box Model y Layout</summary>
+              <div style="padding:8px 12px;font-size:.77rem;color:var(--text-muted);display:flex;flex-wrap:wrap;gap:4px;">
+                <code>width</code> <code>height</code> <code>min-width</code> <code>max-width</code>
+                <code>padding</code> <code>margin</code> <code>border</code> <code>box-sizing</code>
+                <code>overflow</code> <code>display</code> <code>position</code> <code>top/right/bottom/left</code>
+                <code>z-index</code> <code>float</code> <code>clear</code>
+              </div>
+            </details>
+            <details>
+              <summary><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="6" height="10" rx="1"/><rect x="9" y="4" width="6" height="16" rx="1"/><rect x="16" y="7" width="6" height="10" rx="1"/></svg> Flexbox</summary>
+              <div style="padding:8px 12px;font-size:.77rem;color:var(--text-muted);display:flex;flex-wrap:wrap;gap:4px;">
+                <code>display: flex</code> <code>flex-direction</code> <code>flex-wrap</code>
+                <code>justify-content</code> <code>align-items</code> <code>align-content</code>
+                <code>gap</code> <code>flex</code> <code>flex-grow</code> <code>flex-shrink</code>
+                <code>flex-basis</code> <code>order</code> <code>align-self</code>
+              </div>
+            </details>
+            <details>
+              <summary><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg> CSS Grid</summary>
+              <div style="padding:8px 12px;font-size:.77rem;color:var(--text-muted);display:flex;flex-wrap:wrap;gap:4px;">
+                <code>display: grid</code> <code>grid-template-columns</code> <code>grid-template-rows</code>
+                <code>grid-template-areas</code> <code>gap</code> <code>grid-column</code> <code>grid-row</code>
+                <code>repeat()</code> <code>fr</code> <code>minmax()</code> <code>auto-fill</code> <code>auto-fit</code>
+                <code>place-items</code> <code>place-content</code>
+              </div>
+            </details>
+            <details>
+              <summary><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7V4h16v3"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg> Tipografía</summary>
+              <div style="padding:8px 12px;font-size:.77rem;color:var(--text-muted);display:flex;flex-wrap:wrap;gap:4px;">
+                <code>font-family</code> <code>font-size</code> <code>font-weight</code> <code>font-style</code>
+                <code>line-height</code> <code>letter-spacing</code> <code>word-spacing</code>
+                <code>text-align</code> <code>text-decoration</code> <code>text-transform</code>
+                <code>white-space</code> <code>word-break</code> <code>text-overflow</code>
+              </div>
+            </details>
+            <details>
+              <summary><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg> Colores y Fondos</summary>
+              <div style="padding:8px 12px;font-size:.77rem;color:var(--text-muted);display:flex;flex-wrap:wrap;gap:4px;">
+                <code>color</code> <code>background</code> <code>background-color</code> <code>background-image</code>
+                <code>background-size</code> <code>background-position</code> <code>opacity</code>
+                <code>linear-gradient()</code> <code>radial-gradient()</code> <code>conic-gradient()</code>
+                <code>mix-blend-mode</code> <code>filter</code>
+              </div>
+            </details>
+            <details>
+              <summary><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg> Efectos y Animación</summary>
+              <div style="padding:8px 12px;font-size:.77rem;color:var(--text-muted);display:flex;flex-wrap:wrap;gap:4px;">
+                <code>transition</code> <code>animation</code> <code>@keyframes</code> <code>transform</code>
+                <code>box-shadow</code> <code>text-shadow</code> <code>border-radius</code>
+                <code>clip-path</code> <code>backdrop-filter</code> <code>will-change</code>
+                <code>animation-delay</code> <code>animation-fill-mode</code>
+              </div>
+            </details>
+            <details>
+              <summary><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18" stroke-width="3"/></svg> Responsive y @Rules</summary>
+              <div style="padding:8px 12px;font-size:.77rem;color:var(--text-muted);display:flex;flex-wrap:wrap;gap:4px;">
+                <code>@media</code> <code>@layer</code> <code>@container</code> <code>@import</code>
+                <code>@font-face</code> <code>@supports</code>
+                <code>aspect-ratio</code> <code>object-fit</code> <code>object-position</code>
+              </div>
+            </details>
+            <details>
+              <summary><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg> Variables y Funciones</summary>
+              <div style="padding:8px 12px;font-size:.77rem;color:var(--text-muted);display:flex;flex-wrap:wrap;gap:4px;">
+                <code>--nombre</code> <code>var()</code> <code>calc()</code> <code>clamp()</code>
+                <code>min()</code> <code>max()</code> <code>env()</code> <code>attr()</code>
+                <code>:root</code> <code>currentColor</code> <code>counter()</code> <code>counters()</code>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <!-- ── SECCIONES DE ESTA GUÍA ─────────────────────────── -->
+        <div id="pg-secciones" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Secciones de esta guía</h3>
+          <p>11 secciones con documentación detallada, ejemplos visuales y playgrounds interactivos para cada módulo CSS:</p>
+
+          <div class="html-sections-grid">
+            <a class="html-sec-card css-sec-card" href="selectores.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg> Selectores</span>
+              <span class="html-sec-card-desc">Tipos, clases, IDs, atributos, combinadores, pseudo-clases estructurales y de estado. Especificidad y selector highlighter interactivo.</span>
+              <span class="html-sec-card-count">12 conceptos →</span>
+            </a>
+            <a class="html-sec-card css-sec-card" href="boxmodel.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="7" y="7" width="10" height="10" rx="1"/></svg> Box Model</span>
+              <span class="html-sec-card-desc">content, padding, border, margin, <code>box-sizing</code>, collapse de márgenes, <code>outline</code> y playground interactivo del modelo de caja.</span>
+              <span class="html-sec-card-count">8 conceptos →</span>
+            </a>
+            <a class="html-sec-card css-sec-card" href="display.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="9" x2="9" y2="21"/></svg> Display y Posición</span>
+              <span class="html-sec-card-desc"><code>display</code>, <code>position</code> (static, relative, absolute, fixed, sticky), <code>z-index</code>, stacking context, <code>float</code> y <code>overflow</code>.</span>
+              <span class="html-sec-card-count">6 conceptos →</span>
+            </a>
+            <a class="html-sec-card css-sec-card" href="flexbox.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="6" height="10" rx="1"/><rect x="9" y="4" width="6" height="16" rx="1"/><rect x="16" y="7" width="6" height="10" rx="1"/></svg> Flexbox</span>
+              <span class="html-sec-card-desc">Contenedor y elementos flex, ejes principal y cruzado, alineación, ordenación y playground con todas las propiedades.</span>
+              <span class="html-sec-card-count">12 conceptos →</span>
+            </a>
+            <a class="html-sec-card css-sec-card" href="grid.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg> CSS Grid</span>
+              <span class="html-sec-card-desc">Filas y columnas, <code>fr</code>, <code>repeat()</code>, <code>minmax()</code>, <code>grid-template-areas</code>, <code>auto-fill</code>, subgrid y playground.</span>
+              <span class="html-sec-card-count">14 conceptos →</span>
+            </a>
+            <a class="html-sec-card css-sec-card" href="tipografia.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7V4h16v3"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg> Tipografía</span>
+              <span class="html-sec-card-desc"><code>font-family</code>, <code>font-size</code>, <code>line-height</code>, <code>text-decoration</code>, tipografía fluida con <code>clamp()</code> y playground tipográfico.</span>
+              <span class="html-sec-card-count">14 conceptos →</span>
+            </a>
+            <a class="html-sec-card css-sec-card" href="colores.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg> Colores y Fondos</span>
+              <span class="html-sec-card-desc">Formatos de color (HEX, RGB, HSL, oklch), gradientes, <code>background</code> avanzado, <code>filter</code>, <code>mix-blend-mode</code> y playground de colores.</span>
+              <span class="html-sec-card-count">10 conceptos →</span>
+            </a>
+            <a class="html-sec-card css-sec-card" href="animaciones.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg> Transiciones y Animaciones</span>
+              <span class="html-sec-card-desc"><code>transition</code>, <code>animation</code>, <code>@keyframes</code>, <code>transform</code>, <code>animation-fill-mode</code>, <code>will-change</code> y ejemplos interactivos.</span>
+              <span class="html-sec-card-count">12 conceptos →</span>
+            </a>
+            <a class="html-sec-card css-sec-card" href="variables.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg> Variables y Funciones</span>
+              <span class="html-sec-card-desc">Propiedades personalizadas (<code>--var</code>), <code>var()</code>, <code>calc()</code>, <code>clamp()</code>, <code>@layer</code>, <code>@supports</code> y playground de variables.</span>
+              <span class="html-sec-card-count">8 conceptos →</span>
+            </a>
+            <a class="html-sec-card css-sec-card" href="pseudos.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Pseudoclases y Pseudoelementos</span>
+              <span class="html-sec-card-desc">Estado (<code>:hover</code>, <code>:focus</code>), estructurales (<code>:nth-child</code>), formularios (<code>:valid</code>), <code>::before</code>, <code>::after</code>, <code>::marker</code>.</span>
+              <span class="html-sec-card-count">20 conceptos →</span>
+            </a>
+            <a class="html-sec-card css-sec-card" href="responsive.html">
+              <span class="html-sec-card-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18" stroke-width="3"/></svg> Responsive y @Rules</span>
+              <span class="html-sec-card-desc"><code>@media</code>, <code>@container</code>, breakpoints, <code>aspect-ratio</code>, <code>object-fit</code>, <code>@font-face</code> y visualizador de media queries.</span>
+              <span class="html-sec-card-count">8 conceptos →</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- ── REFERENCIA RÁPIDA CSS ──────────────────────────── -->
+        <div id="pg-reglas" class="intro-section">
+          <h3><span class="intro-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><polyline points="3 6 4 7 6 5"/><polyline points="3 12 4 13 6 11"/><polyline points="3 18 4 19 6 17"/></svg></span> Reglas esenciales</h3>
+          <ul>
+            <li>Siempre incluye <code>*, *::before, *::after { box-sizing: border-box; }</code> como reset base.</li>
+            <li>Prefiere <code>rem</code> para tipografía y <code>em</code> para espaciados relativos al componente.</li>
+            <li>Usa <code>clamp(min, ideal, max)</code> para valores fluidos que no necesitan media queries.</li>
+            <li>Evita <code>!important</code> — si lo necesitas, revisa la arquitectura de tus selectores.</li>
+            <li>Prefiere <code>:focus-visible</code> sobre <code>:focus</code> para los estilos de foco del teclado.</li>
+            <li>Para layout usa Flexbox (componentes en una dimensión) o Grid (layouts en dos dimensiones).</li>
+            <li>Usa variables CSS (<code>--color-primary</code>) para valores que se repiten o que forman un sistema.</li>
+            <li>Respeta el principio de <strong>mobile-first</strong>: escribe los estilos base para móvil y añade <code>@media (min-width: ...)</code> para escritorio.</li>
+            <li>Prefiere <code>100dvh</code> sobre <code>100vh</code> en alturas de pantalla completa para evitar el problema de las barras del navegador móvil.</li>
+            <li>Usa las herramientas de desarrollo del navegador (DevTools) para inspeccionar la cascada y la especificidad en tiempo real.</li>
+          </ul>
+        </div>
+
+        <nav class="section-pager" aria-label="Siguiente sección">
+          <a class="pager-btn pager-next" href="selectores.html">Selectores <span>→</span></a>
+        </nav>
+
+      </main>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+      /* ── Live CSS Playground ───────────────────────────── */
+      (function () {
+        var input = document.getElementById('css-live-input');
+        var style = document.getElementById('css-live-style');
+        if (!input || !style) return;
+        function apply() { style.textContent = input.value; }
+        input.addEventListener('input', apply);
+        apply();
+      })();
+
+      /* ── Specificity Calculator ────────────────────────── */
+      function calcSpec(sel) {
+        if (!sel || !sel.trim()) {
+          document.getElementById('spec-a').textContent = '0';
+          document.getElementById('spec-b').textContent = '0';
+          document.getElementById('spec-c').textContent = '0';
+          document.getElementById('spec-explanation').textContent = 'Escribe un selector para ver su especificidad.';
+          return;
+        }
+        var s = sel.trim();
+
+        // Remove :not(), :is(), :where(), :has() contents for base calc
+        // but keep the args for further counting
+        var isWhere  = s.replace(/:where\([^)]*\)/g, '');
+        var cleaned  = s.replace(/::?[\w-]+\([^)]*\)/g, function(m) {
+          return m.replace(/^::?[\w-]+/, '__PC__');
+        });
+
+        // a — ID selectors
+        var a = (s.match(/#(?![\d])[a-zA-Z_-][\w_-]*/g) || []).length;
+
+        // b — class selectors, attribute selectors, pseudo-classes (not :where)
+        var bClasses = (cleaned.match(/\.[\w_-][\w_-]*/g) || []).length;
+        var bAttrs   = (cleaned.match(/\[[\w\s=^$*|~"'\-]+\]/g) || []).length;
+        var bPseudo  = (cleaned.match(/:(?!:)(?!where\()[\w-]+/g) || []).length;
+        var b = bClasses + bAttrs + bPseudo;
+
+        // c — type selectors and pseudo-elements
+        var cTypes   = (cleaned.replace(/#[\w-]+/g,'').replace(/\.[\w-]+/g,'').replace(/\[[\s\S]*?\]/g,'').match(/(?<![#.\[:])(?:^|[ >+~])([a-zA-Z][a-zA-Z0-9-]*)/g) || []).length;
+        var cPseudo  = (cleaned.match(/::[\w-]+/g) || []).length;
+        var c = cTypes + cPseudo;
+
+        // Universal selector (*) contributes 0
+        if (s === '*') { a = 0; b = 0; c = 0; }
+
+        document.getElementById('spec-a').textContent = a;
+        document.getElementById('spec-b').textContent = b;
+        document.getElementById('spec-c').textContent = c;
+
+        var exp = document.getElementById('spec-explanation');
+        var parts = [];
+        if (a > 0) parts.push('<strong style="color:#9d174d">' + a + ' selector' + (a>1?'es':'') + ' ID</strong>');
+        if (b > 0) {
+          var bParts = [];
+          if (bClasses > 0) bParts.push(bClasses + ' clase' + (bClasses>1?'s':''));
+          if (bAttrs   > 0) bParts.push(bAttrs   + ' atributo' + (bAttrs>1?'s':''));
+          if (bPseudo  > 0) bParts.push(bPseudo  + ' pseudo-clase' + (bPseudo>1?'s':''));
+          parts.push('<strong style="color:#92400e">' + bParts.join(' + ') + '</strong>');
+        }
+        if (c > 0) parts.push('<strong style="color:#1d4ed8">' + c + ' tipo' + (c>1?'s':'') + '/pseudo-elemento' + (c>1?'s':'') + '</strong>');
+        if (parts.length === 0) parts.push('Especificidad <strong>(0, 0, 0)</strong> — selector universal o combinadores sin tipo');
+
+        exp.innerHTML = 'Especificidad <code>(' + a + ', ' + b + ', ' + c + ')</code>: ' + parts.join(' · ');
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var inp = document.getElementById('spec-input');
+        if (inp) calcSpec(inp.value);
+      });
+    </script>
+  </body>
+</html>

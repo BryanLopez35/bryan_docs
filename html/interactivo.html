@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Interactividad y Accesibilidad — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Interactividad y Accesibilidad — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">HTML</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Interactividad y Accesibilidad</span>
+      </nav>
+
+                              <section id="seccion-interactivo" class="category">
+        <h2>Interactividad y Accesibilidad</h2>
+        <p class="category-desc">
+          Etiquetas que mejoran la experiencia de usuario y la accesibilidad
+          web.
+        </p>
+
+        <div class="tags-grid">
+          <article class="tag-card" data-tag="tabindex">
+            <header class="card-header">
+              <code>tabindex</code>
+              <span class="badge badge-a11y">Accesibilidad</span>
+            </header>
+            <p>
+              Controla el enfoque del teclado. <code>tabindex="0"</code> hace
+              el elemento enfocable en el orden natural del DOM.
+              <code>tabindex="-1"</code> lo hace enfocable solo por JavaScript
+              (<code>el.focus()</code>), no con Tab. <strong>Evita valores positivos</strong>
+              (<code>tabindex="2"</code>) — crean un orden de foco imprevisible y rompen la
+              accesibilidad.
+            </p>
+            <div class="demo">
+              <div tabindex="0" class="focusable-demo">
+                Enfocable con Tab (div con tabindex="0")
+              </div>
+              <div tabindex="0" class="focusable-demo">
+                Segundo elemento enfocable
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="contenteditable">
+            <header class="card-header">
+              <code>contenteditable</code>
+              <span class="badge badge-a11y">Interactivo</span>
+            </header>
+            <p>
+              Hace cualquier elemento editable en el navegador. Valores:
+              <code>true</code> (editable), <code>false</code> (no editable),
+              <code>plaintext-only</code> (solo texto sin formato HTML). Base de editores WYSIWYG.
+              El contenido editado existe solo en el DOM del cliente — necesitas JavaScript
+              para guardar cambios (ej. <code>localStorage</code> o una API).
+            </p>
+            <div class="demo">
+              <div
+                contenteditable="true"
+                style="
+                  border: 1px dashed #3498db;
+                  padding: 8px;
+                  border-radius: 4px;
+                  min-height: 40px;
+                  background: #f8fbff;
+                "
+              >
+                Haz clic aquí y edita este texto directamente en el navegador.
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="draggable">
+            <header class="card-header">
+              <code>draggable</code>
+              <span class="badge badge-a11y">Interactivo</span>
+            </header>
+            <p>
+              Atributo global que habilita la API nativa de Drag &amp; Drop HTML5. Valores: <code>true</code> (arrastrable), <code>false</code> (no arrastrable), <code>auto</code> (comportamiento por defecto: solo texto e imágenes). Para una interacción completa, el elemento arrastrado maneja <code>dragstart</code> (guarda datos en <code>dataTransfer</code>) y el destino maneja <code>dragover</code> con <code>preventDefault()</code> y <code>drop</code> para recibir los datos.
+            </p>
+            <p class="tag-warn">La API de Drag &amp; Drop nativa no es accesible por teclado. Para interfaces accesibles, implementa también atajos de teclado alternativos, o usa librerías como <code>dnd-kit</code> que incluyen accesibilidad integrada.</p>
+            <div class="demo">
+              <div
+                id="drag-container"
+                style="
+                  display: flex;
+                  gap: 8px;
+                  min-height: 50px;
+                  align-items: center;
+                "
+              >
+                <div
+                  draggable="true"
+                  class="draggable-item"
+                  ondragstart="dragStart(event)"
+                  id="drag1"
+                >
+                  🔴 Arrástr.
+                </div>
+                <div
+                  draggable="true"
+                  class="draggable-item"
+                  ondragstart="dragStart(event)"
+                  id="drag2"
+                >
+                  🟢 Arrástr.
+                </div>
+                <div
+                  draggable="true"
+                  class="draggable-item"
+                  ondragstart="dragStart(event)"
+                  id="drag3"
+                >
+                  🔵 Arrástr.
+                </div>
+              </div>
+              <div
+                id="drop-zone"
+                ondrop="dropHandler(event)"
+                ondragover="event.preventDefault()"
+                style="
+                  border: 2px dashed #bbb;
+                  padding: 10px;
+                  border-radius: 4px;
+                  text-align: center;
+                  color: #888;
+                  margin-top: 8px;
+                "
+              >
+                Suelta aquí
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="spellcheck">
+            <header class="card-header">
+              <code>spellcheck</code>
+              <span class="badge badge-a11y">Interactivo</span>
+            </header>
+            <p>
+              Atributo global que activa o desactiva la revisión ortográfica del navegador en campos de texto e elementos <code>contenteditable</code>. Valores: <code>true</code> (activo), <code>false</code> (desactivo). El valor por defecto depende del navegador y la configuración del usuario. Se hereda de elementos padre, por lo que establecerlo en <code>&lt;body spellcheck="false"&gt;</code> lo desactiva en toda la página.
+            </p>
+            <p class="tag-tip">Desactiva <code>spellcheck</code> en campos que contienen código, URLs, nombres de usuario o datos técnicos. El subrayado rojo en código o comandos genera confusión y puede activar auto-corrección inesperada en móviles.</p>
+            <div class="demo">
+              <label
+                >Con spell check:
+                <input
+                  type="text"
+                  spellcheck="true"
+                  value="Hllo wrld"
+                  style="width: 160px" /></label
+              ><br />
+              <label
+                >Sin spell check:
+                <input
+                  type="text"
+                  spellcheck="false"
+                  value="Hllo wrld"
+                  style="width: 160px"
+              /></label>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="hidden">
+            <header class="card-header">
+              <code>hidden</code>
+              <span class="badge badge-a11y">Visibilidad</span>
+            </header>
+            <p>
+              Atributo global que oculta un elemento semánticamente: lo elimina del flujo visual y lo hace invisible para los lectores de pantalla. Es equivalente a <code>display: none</code> en términos visuales, pero comunica la intención al navegador y a las tecnologías asistivas. Un elemento <code>hidden</code> no puede recibir foco con Tab y no aparece en la búsqueda de texto del navegador. HTML 2022 añadió <code>hidden="until-found"</code>, que permite búsqueda en el contenido oculto y lo expande al encontrarse.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Valores</span>
+              <code>hidden</code><span class="attr-type">boolean</span><span class="attr-desc">Oculta completamente el elemento (visual + semántico)</span>
+              <code>hidden="until-found"</code><span class="attr-type">string</span><span class="attr-desc">Oculto pero accesible para la búsqueda en página (Ctrl+F); se expande al encontrarse</span>
+            </div>
+            <p class="tag-note">Si necesitas ocultar algo visualmente pero mantenerlo accesible para lectores de pantalla (como texto de ayuda), usa la clase CSS <em>visually-hidden</em> en vez del atributo <code>hidden</code>.</p>
+            <div class="demo">
+              <p id="hidden-demo" hidden>
+                Este párrafo está oculto con el atributo hidden
+              </p>
+              <button class="btn-demo" onclick="toggleHidden()">
+                Mostrar/ocultar párrafo
+              </button>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="data-attrs">
+            <header class="card-header">
+              <code>data-*</code>
+              <span class="badge badge-a11y">Datos</span>
+            </header>
+            <p>
+              Atributos personalizados para almacenar datos privados en elementos HTML, accesibles en JavaScript vía <code>element.dataset</code>. El nombre puede ser cualquier cadena válida en minúsculas después del prefijo <code>data-</code>. En JavaScript, los guiones se convierten en camelCase: <code>data-user-id</code> → <code>element.dataset.userId</code>. Son invisibles para el usuario pero inspeccionables en las DevTools, por lo que no deben contener información sensible.
+            </p>
+            <p class="tag-tip">Los atributos <code>data-*</code> también son accesibles en CSS: <code>[data-estado="activo"] { background: green; }</code> y <code>content: attr(data-label)</code> en pseudo-elementos. Esto permite comunicación CSS↔HTML sin JavaScript adicional.</p>
+            <div class="demo">
+              <button
+                class="btn-demo"
+                data-user-id="42"
+                data-role="admin"
+                data-label="Perfil"
+                onclick="mostrarDataset(this)"
+              >
+                Leer mis data-*
+              </button>
+              <div
+                id="dataset-output"
+                style="
+                  font-size: 0.8rem;
+                  margin-top: 6px;
+                  font-family: monospace;
+                "
+              ></div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="aria">
+            <header class="card-header">
+              <code>aria-*</code>
+              <span class="badge badge-a11y">Accesibilidad</span>
+            </header>
+            <p>
+              Atributos para describir roles, estados y propiedades a tecnologías asistivas.
+              Regla de oro: <strong>usa HTML semántico primero</strong>; añade ARIA solo cuando no
+              existe un elemento nativo equivalente. Los atributos más comunes:
+              <code>aria-label</code> (nombre accesible), <code>aria-hidden="true"</code>
+              (ocultar de lectores), <code>aria-live</code> (anunciar cambios dinámicos),
+              <code>aria-expanded</code>, <code>aria-pressed</code>, <code>aria-selected</code>.
+            </p>
+            <div class="demo">
+              <div
+                role="alert"
+                aria-live="polite"
+                id="aria-demo-output"
+                style="background: #e8f4f8; padding: 8px; border-radius: 4px"
+              ></div>
+              <button
+                class="btn-demo"
+                aria-label="Mostrar alerta de demostración"
+                onclick="demoAria()"
+              >
+                Activar aria-live
+              </button>
+              <div style="margin-top: 6px">
+                <button
+                  aria-pressed="false"
+                  id="aria-toggle"
+                  onclick="toggleAriaBool(this)"
+                >
+                  aria-pressed: false
+                </button>
+              </div>
+            </div>
+          </article>
+        
+          <article class="tag-card wide" data-tag="ARIA landmarks roles banner navigation main contentinfo complementary search form region estados interactivo playground">
+            <header class="card-header">
+              <code>ARIA Landmarks y Estados — Playground</code>
+              <span class="badge badge-a11y">Accesibilidad</span>
+            </header>
+            <p>
+              Los landmarks ARIA permiten que los lectores de pantalla ofrezcan navegación rápida
+              entre regiones. Los elementos semánticos HTML5 los implementan automáticamente.
+              Experimenta con los estados ARIA interactivos.
+            </p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:.78rem;">
+                <div>
+                  <div style="font-weight:700;margin-bottom:6px;color:#555;">HTML5 ↔ ARIA equivalencias:</div>
+                  <div style="display:flex;flex-direction:column;gap:4px;font-size:.72rem;">
+                    <div style="display:flex;align-items:center;gap:6px;"><code style="background:#f0f4ff;padding:2px 6px;border-radius:3px;min-width:140px;">&lt;header&gt;</code><span>→ role="banner"</span></div>
+                    <div style="display:flex;align-items:center;gap:6px;"><code style="background:#f0f4ff;padding:2px 6px;border-radius:3px;min-width:140px;">&lt;nav&gt;</code><span>→ role="navigation"</span></div>
+                    <div style="display:flex;align-items:center;gap:6px;"><code style="background:#f0f4ff;padding:2px 6px;border-radius:3px;min-width:140px;">&lt;main&gt;</code><span>→ role="main"</span></div>
+                    <div style="display:flex;align-items:center;gap:6px;"><code style="background:#f0f4ff;padding:2px 6px;border-radius:3px;min-width:140px;">&lt;aside&gt;</code><span>→ role="complementary"</span></div>
+                    <div style="display:flex;align-items:center;gap:6px;"><code style="background:#f0f4ff;padding:2px 6px;border-radius:3px;min-width:140px;">&lt;footer&gt;</code><span>→ role="contentinfo"</span></div>
+                    <div style="display:flex;align-items:center;gap:6px;"><code style="background:#f0f4ff;padding:2px 6px;border-radius:3px;min-width:140px;">&lt;search&gt;</code><span>→ role="search"</span></div>
+                    <div style="display:flex;align-items:center;gap:6px;"><code style="background:#f0f4ff;padding:2px 6px;border-radius:3px;min-width:140px;">&lt;form&gt;</code><span>→ role="form"</span></div>
+                    <p style="margin-top:6px;color:#dc2626;font-size:.7rem;">Prefiere siempre el elemento HTML5 sobre <code>role=</code></p>
+                  </div>
+                </div>
+                <div>
+                  <div style="font-weight:700;margin-bottom:6px;color:#555;">Estados ARIA — Haz clic para cambiar:</div>
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <button id="aria-exp-pg" class="btn-demo" aria-expanded="false" onclick="toggleAriaPG('expanded',this)">
+                      aria-expanded="false"
+                    </button>
+                    <button id="aria-pressed-pg" class="btn-demo" aria-pressed="false" onclick="toggleAriaPG('pressed',this)" style="background:#fff;color:#374151;border:1px solid #e2e8f0;">
+                      aria-pressed="false"
+                    </button>
+                    <div id="aria-hidden-pg" aria-hidden="false" style="background:#f0f4ff;padding:8px;border-radius:4px;font-size:.75rem;cursor:pointer;transition:opacity .2s;" onclick="toggleAriaHiddenPG()">
+                      aria-hidden="false" — visible para tecnologías asistivas
+                      <div style="font-size:.68rem;color:#888;margin-top:3px;">(Clic para cambiar)</div>
+                    </div>
+                    <div id="aria-live-pg" role="status" aria-live="polite" aria-atomic="true" style="background:#f0fdf4;padding:6px 10px;border-radius:4px;font-size:.75rem;min-height:28px;border:1px solid #86efac;"></div>
+                    <button class="btn-demo" onclick="demoAriaLivePG()">Anunciar con aria-live</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="pointer-events none auto click hover interaccion CSS cursor">
+            <header class="card-header">
+              <code>pointer-events</code>
+              <span class="badge badge-a11y">CSS</span>
+            </header>
+            <p>Controla si un elemento responde a eventos de ratón/táctil. <code>none</code> hace el elemento "invisible" para el cursor sin ocultarlo visualmente.</p>
+            <div class="demo">
+              <div style="position:relative;height:56px;background:#f0f4ff;border-radius:6px;display:flex;align-items:center;justify-content:center;gap:16px;">
+                <button class="btn-demo" onclick="alert('¡Funciona!')">Normal</button>
+                <button class="btn-demo" style="pointer-events:none;opacity:.5;cursor:not-allowed;" title="No puede hacer clic">pointer-events:none</button>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>/* Deshabilita interacción visual sin display:none */
+.disabled { pointer-events: none; opacity: .5; }
+
+/* Útil en overlays */
+.overlay  { pointer-events: none; } /* click pasa a través */
+.overlay.active { pointer-events: all; }
+
+/* En SVG */
+.svg-bg { pointer-events: none; } /* solo formas frontales son clickables */</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="touch-action mobile táctil pan scroll pinch zoom gesture">
+            <header class="card-header">
+              <code>touch-action</code>
+              <span class="badge badge-a11y">Táctil</span>
+            </header>
+            <p>Controla qué gestos táctiles maneja el navegador vs. los que maneja tu JavaScript. Mejora la performance del scroll en móviles.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>touch-action: auto          /* default: el browser decide */
+touch-action: none          /* deshabilita todos los gestos */
+touch-action: pan-x         /* solo scroll horizontal */
+touch-action: pan-y         /* solo scroll vertical */
+touch-action: pan-x pan-y   /* scroll en ambos ejes */
+touch-action: pinch-zoom    /* solo pinch para zoom */
+touch-action: manipulation  /* pan + pinch, sin doble-tap zoom */
+
+/* Común en mapas / sliders personalizados */
+.map     { touch-action: none; }
+.slider  { touch-action: pan-y; } /* scroll vertical libre */</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="keyboard navigation foco focus order taborder skip links accesibilidad teclado">
+            <header class="card-header">
+              <code>Navegación por teclado</code>
+              <span class="badge badge-a11y">Accesibilidad</span>
+            </header>
+            <p>Una web accesible debe ser completamente navegable por teclado. Patrones esenciales para el manejo correcto del foco.</p>
+            <div class="demo">
+              <div style="font-size:.78rem;display:flex;flex-direction:column;gap:6px;">
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:4px;padding:8px;">
+                  <strong style="color:#16a34a;">Tab</strong> → avanza entre elementos enfocables<br>
+                  <strong style="color:#16a34a;">Shift+Tab</strong> → retrocede<br>
+                  <strong style="color:#16a34a;">Enter/Space</strong> → activa botones/links<br>
+                  <strong style="color:#16a34a;">Esc</strong> → cierra modales/menús
+                </div>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>&lt;!-- Skip link (primero en el body) --&gt;
+&lt;a href="#main" class="skip-link"&gt;Saltar al contenido&lt;/a&gt;
+
+/* Skip link visible solo al enfocar */
+.skip-link {
+  position: absolute; top: -100px;
+  transition: top .2s;
+}
+.skip-link:focus { top: 0; }</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="custom element web component shadow dom autonomous customized built-in">
+            <header class="card-header">
+              <code>Custom Elements</code>
+              <span class="badge badge-a11y">Web Components</span>
+            </header>
+            <p>Permite crear tus propias etiquetas HTML con comportamiento encapsulado. Base de los Web Components junto con Shadow DOM y HTML Templates.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>// Definir el elemento
+class MiBoton extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+      &lt;button style="background:var(--accent)"&gt;
+        ${this.getAttribute('label') || 'Click'}
+      &lt;/button&gt;`;
+  }
+}
+customElements.define('mi-boton', MiBoton);
+
+// Uso en HTML
+&lt;mi-boton label="Enviar"&gt;&lt;/mi-boton&gt;
+
+// Extiende elemento existente
+class MiInput extends HTMLInputElement { ... }
+customElements.define('mi-input', MiInput,
+  { extends: 'input' });</code></pre>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="semantica.html"><span>←</span> Semántica HTML5</a>
+        <a class="pager-btn pager-next" href="meta.html">Scripts y Meta <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+      function toggleAriaPG(type, btn) {
+        if (type === 'expanded') {
+          const val = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!val));
+          btn.textContent = 'aria-expanded="' + !val + '"';
+          btn.style.background = !val ? '#3d7ef5' : '';
+          btn.style.color = !val ? 'white' : '';
+        } else if (type === 'pressed') {
+          const val = btn.getAttribute('aria-pressed') === 'true';
+          btn.setAttribute('aria-pressed', String(!val));
+          btn.textContent = 'aria-pressed="' + !val + '"';
+          btn.style.background = !val ? '#1e40af' : '#fff';
+          btn.style.color = !val ? 'white' : '#374151';
+          btn.style.boxShadow = !val ? 'inset 0 2px 4px rgba(0,0,0,.3)' : '';
+        }
+      }
+      function toggleAriaHiddenPG() {
+        const el = document.getElementById('aria-hidden-pg');
+        if (!el) return;
+        const hidden = el.getAttribute('aria-hidden') === 'true';
+        el.setAttribute('aria-hidden', String(!hidden));
+        el.style.opacity = !hidden ? '0.4' : '1';
+        el.style.background = !hidden ? '#fef2f2' : '#f0f4ff';
+        const span = el.querySelector('div:first-of-type') || el;
+        el.childNodes[0].textContent = 'aria-hidden="' + !hidden + '" — ' + (!hidden ? 'INVISIBLE para tecnologías asistivas' : 'visible para tecnologías asistivas');
+      }
+      let _ariaLiveMsgs = [
+        'Formulario enviado correctamente ✓',
+        'Cargando resultados…',
+        '3 nuevas notificaciones',
+        'Error: verifica los campos requeridos',
+      ], _ariaLiveIdx = 0;
+      function demoAriaLivePG() {
+        const el = document.getElementById('aria-live-pg');
+        if (el) el.textContent = _ariaLiveMsgs[_ariaLiveIdx++ % _ariaLiveMsgs.length];
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Texto y Tipografía — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Texto y Tipografía — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">HTML</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Texto y Tipografía</span>
+      </nav>
+
+                              <section id="seccion-texto" class="category">
+        <h2>Texto y Tipografía</h2>
+        <p class="category-desc">
+          Etiquetas para organizar y formatear el contenido textual.
+        </p>
+
+        <div class="tags-grid">
+          <article class="tag-card" data-tag="h1-h6">
+            <header class="card-header">
+              <code>&lt;h1&gt; — &lt;h6&gt;</code>
+              <span class="badge badge-text">Encabezados</span>
+            </header>
+            <p>
+              Seis niveles de encabezados jerárquicos. Reglas clave:
+              <strong>un solo <code>h1</code></strong> por página (título principal),
+              no saltar niveles (<code>h1→h3</code> rompe el outline), no usarlos por
+              tamaño visual sino por <em>jerarquía semántica</em>. Los lectores de pantalla
+              navegan entre encabezados con una tecla.
+            </p>
+            <div class="demo">
+              <h1 style="font-size: 1.4rem; margin: 2px 0">
+                h1 — Título principal
+              </h1>
+              <h2 style="font-size: 1.2rem; margin: 2px 0">h2 — Sección</h2>
+              <h3 style="font-size: 1.05rem; margin: 2px 0">h3 — Subsección</h3>
+              <h4 style="font-size: 0.95rem; margin: 2px 0">
+                h4 — Sub-subsección
+              </h4>
+              <h5 style="font-size: 0.85rem; margin: 2px 0">h5 — Menor</h5>
+              <h6 style="font-size: 0.8rem; margin: 2px 0">h6 — Mínimo</h6>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="p">
+            <header class="card-header">
+              <code>&lt;p&gt;</code>
+              <span class="badge badge-text">Párrafo</span>
+            </header>
+            <p>
+              Elemento de bloque que representa un párrafo de texto. El navegador añade automáticamente un margen superior e inferior (generalmente <code>1em</code>) para separar párrafos visualmente. Es el contenedor de texto más común del documento y no puede contener otros elementos de bloque como <code>&lt;div&gt;</code>, <code>&lt;h1&gt;</code> o <code>&lt;ul&gt;</code>.
+            </p>
+            <p class="tag-warn">No uses <code>&lt;p&gt;&lt;/p&gt;</code> vacíos para añadir espacio vertical — usa <code>margin</code> en CSS. Los lectores de pantalla anuncian párrafos vacíos de forma confusa.</p>
+            <div class="demo">
+              <p
+                style="
+                  background: #f8f9fa;
+                  padding: 8px;
+                  border-left: 3px solid #3498db;
+                "
+              >
+                Este es un párrafo de ejemplo con el elemento
+                <code>&lt;p&gt;</code>.
+              </p>
+              <p
+                style="
+                  background: #f8f9fa;
+                  padding: 8px;
+                  border-left: 3px solid #2ecc71;
+                "
+              >
+                Y este es otro párrafo separado del anterior.
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="strong">
+            <header class="card-header">
+              <code>&lt;strong&gt;</code>
+              <span class="badge badge-text">Énfasis</span>
+            </header>
+            <p>
+              Importancia semántica <strong>alta</strong>. Los lectores de pantalla pueden
+              enfatizarla vocalmente. Úsalo para advertencias, términos clave o información
+              crítica. <code>&lt;b&gt;</code> solo aplica estilo visual sin connotación semántica
+              (nombres de productos, palabras clave en resultados de búsqueda).
+            </p>
+            <div class="demo">
+              <p>
+                Texto normal y
+                <strong>texto con fuerte importancia semántica</strong>.
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="em">
+            <header class="card-header">
+              <code>&lt;em&gt;</code>
+              <span class="badge badge-text">Énfasis</span>
+            </header>
+            <p>
+              Énfasis <strong>lingüístico</strong> que puede cambiar el significado de la oración
+              ("no <em>quiero</em> ir" ≠ "no quiero <em>ir</em>"). Anidados, aumentan el énfasis.
+              <code>&lt;i&gt;</code> se usa para términos técnicos, frases en otro idioma o voz
+              de personaje — sin cambio de entonación.
+            </p>
+            <div class="demo">
+              <p>Texto normal y <em>texto con énfasis semántico</em>.</p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="b">
+            <header class="card-header">
+              <code>&lt;b&gt;</code>
+              <span class="badge badge-text">Formato</span>
+            </header>
+            <p>
+              Aplica negrita sin connotación semántica especial. La especificación HTML5 lo define para texto que merece atención visual sin implicar importancia extra: nombres de productos en una reseña, palabras clave en un resumen, el primer uso de un término. A diferencia de <code>&lt;strong&gt;</code>, no cambia el tono vocal de los lectores de pantalla.
+            </p>
+            <p class="tag-tip">Usa <code>&lt;b&gt;</code> para destacar nombres propios o términos técnicos la primera vez que aparecen, y reserva <code>&lt;strong&gt;</code> para advertencias o información verdaderamente crítica.</p>
+            <div class="demo">
+              <p>Texto <b>en negrita</b> sin connotación semántica especial.</p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="i">
+            <header class="card-header">
+              <code>&lt;i&gt;</code>
+              <span class="badge badge-text">Formato</span>
+            </header>
+            <p>
+              Aplica cursiva sin énfasis semántico. HTML5 lo reserva para texto en "voz alternativa": términos técnicos o científicos (<i>Homo sapiens</i>), frases en otro idioma (<i>lorem ipsum</i>), pensamientos de personajes en narrativa, nombres de barcos o aeronaves, y clasificaciones taxonómicas. A diferencia de <code>&lt;em&gt;</code>, no indica cambio de entonación.
+            </p>
+            <p class="tag-note">Añade el atributo <code>lang</code> cuando el texto en cursiva esté en un idioma diferente al del documento: <code>&lt;i lang="la"&gt;lorem ipsum&lt;/i&gt;</code>. Esto mejora la pronunciación en lectores de pantalla.</p>
+            <div class="demo">
+              <p>
+                El término <i>lorem ipsum</i> viene del latín.
+                <i>Italics</i> sin énfasis.
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="u">
+            <header class="card-header">
+              <code>&lt;u&gt;</code>
+              <span class="badge badge-text">Formato</span>
+            </header>
+            <p>
+              Marca texto con una anotación no textual estilizada como subrayado. Según la especificación HTML5, sus usos correctos son: nombres propios en chino (rubí ortográfico), marcar errores ortográficos (<code>text-decoration: red wavy underline</code>) y anotaciones especiales en tipografía académica. El subrayado azul sigue siendo sinónimo de enlace en la web, por lo que <code>&lt;u&gt;</code> puede confundir a los usuarios si no se personaliza.
+            </p>
+            <p class="tag-warn">Evita usar <code>&lt;u&gt;</code> en texto general para subrayar visualmente — los usuarios lo confundirán con un hipervínculo. Si necesitas subrayado decorativo, usa CSS: <code>text-decoration: underline</code>.</p>
+            <div class="demo">
+              <p>
+                Texto con <u>subrayado</u> y posible
+                <u
+                  style="
+                    text-decoration-color: red;
+                    text-decoration-style: wavy;
+                  "
+                  >error de ortografía</u
+                >.
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="s">
+            <header class="card-header">
+              <code>&lt;s&gt;</code>
+              <span class="badge badge-text">Formato</span>
+            </header>
+            <p>
+              Marca contenido que ya no es relevante o preciso, representado visualmente con tachado. Casos de uso típicos: precios originales junto a ofertas, tareas completadas en una lista visual, información desactualizada que se mantiene por contexto. No se debe confundir con <code>&lt;del&gt;</code>, que indica texto eliminado de un documento con historial de ediciones (como un changelog o diff).
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Diferencia clave</span>
+              <code>&lt;s&gt;</code><span class="attr-type">semántica</span><span class="attr-desc">Ya no es relevante (precio tachado, tarea cancelada)</span>
+              <code>&lt;del&gt;</code><span class="attr-type">semántica</span><span class="attr-desc">Fue eliminado de la versión anterior del documento</span>
+            </div>
+            <p class="tag-tip">Los lectores de pantalla no anuncian <code>&lt;s&gt;</code> de forma especial. Si la información tachada es importante (como un precio original), añade texto oculto visualmente con CSS para el contexto auditivo.</p>
+            <div class="demo">
+              <p>Precio: <s>$100.00</s> <strong>$75.00</strong> — ¡Oferta!</p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="mark">
+            <header class="card-header">
+              <code>&lt;mark&gt;</code>
+              <span class="badge badge-text">Resaltado</span>
+            </header>
+            <p>
+              Resaltado <strong>contextual</strong>: texto relevante en el contexto actual (como
+              un término buscado). No usar como sinónimo de <code>&lt;strong&gt;</code>. El color
+              amarillo es del navegador — personalizable con CSS:
+              <code>mark { background: hotpink; color: black; }</code>.
+            </p>
+            <div class="demo">
+              <p>
+                En el texto de búsqueda, el resultado
+                <mark>palabra clave</mark> se resalta para facilitar la lectura.
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="small">
+            <header class="card-header">
+              <code>&lt;small&gt;</code>
+              <span class="badge badge-text">Formato</span>
+            </header>
+            <p>
+              Representa texto de tamaño reducido para contenido secundario o legal: letra pequeña en contratos, derechos de autor, advertencias, notas al pie y descargos de responsabilidad. El navegador lo renderiza a un tamaño menor (típicamente <code>0.8em</code>). En HTML5 perdió su carácter puramente presentacional — sí tiene valor semántico como "nota menor".
+            </p>
+            <p class="tag-note">No uses <code>&lt;small&gt;</code> para reducir el tamaño de fuente en elementos decorativos — usa CSS. Está semánticamente reservado para contenido que el usuario no necesita leer con igual atención que el texto principal.</p>
+            <div class="demo">
+              <p>Precio: $99.99 <small>(IVA incluido)</small></p>
+              <small>© 2024 Todos los derechos reservados.</small>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="sub-sup">
+            <header class="card-header">
+              <code>&lt;sub&gt; / &lt;sup&gt;</code>
+              <span class="badge badge-text">Formato</span>
+            </header>
+            <p>
+              <code>&lt;sub&gt;</code> crea subíndices (texto bajado y reducido) y <code>&lt;sup&gt;</code> crea superíndices (texto elevado y reducido). Ambos tienen valor semántico y deben usarse únicamente cuando la posición del texto es parte del significado, no por razones puramente visuales. Sus usos principales: fórmulas matemáticas (<code>x²</code>), fórmulas químicas (<code>H₂O</code>), referencias a notas al pie (<code>nota¹</code>) y notación de unidades.
+            </p>
+            <p class="tag-warn">No uses <code>&lt;sub&gt;</code>/<code>&lt;sup&gt;</code> solo para efectos tipográficos decorativos. Si el texto elevado no cambia el significado, usa CSS con <code>vertical-align</code> y <code>font-size</code> en lugar de estos elementos.</p>
+            <div class="demo">
+              <p>H<sub>2</sub>O — Agua</p>
+              <p>E = mc<sup>2</sup> — Einstein</p>
+              <p>Nota<sup>1</sup> al pie de página</p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="abbr">
+            <header class="card-header">
+              <code>&lt;abbr&gt;</code>
+              <span class="badge badge-text">Semántica</span>
+            </header>
+            <p>
+              Marca abreviaturas y acrónimos. El atributo <code>title</code> expone la expansión
+              al pasar el cursor y la anuncia en lectores de pantalla. Pauta: define la expansión
+              la <em>primera vez</em> que aparece en el texto. El navegador aplica un subrayado
+              punteado para indicar que hay más información.
+            </p>
+            <div class="demo">
+              <p>
+                Pasa el cursor:
+                <abbr title="HyperText Markup Language">HTML</abbr>,
+                <abbr title="Cascading Style Sheets">CSS</abbr>,
+                <abbr title="JavaScript">JS</abbr>.
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="cite">
+            <header class="card-header">
+              <code>&lt;cite&gt;</code>
+              <span class="badge badge-text">Semántica</span>
+            </header>
+            <p>
+              Marca el título de una obra creativa: libros, películas, canciones, pinturas, programas de TV, juegos, artículos de investigación, poemas, esculturas. El navegador lo renderiza en cursiva por defecto. Importante: <code>&lt;cite&gt;</code> es para <em>títulos de obras</em>, no para citar el nombre de una persona. Para citas de texto, combínalo con <code>&lt;blockquote&gt;</code> o <code>&lt;q&gt;</code>.
+            </p>
+            <p class="tag-tip">Puedes envolver <code>&lt;cite&gt;</code> en un <code>&lt;a&gt;</code> para enlazar directamente a la fuente: <code>&lt;cite&gt;&lt;a href="..."&gt;El título&lt;/a&gt;&lt;/cite&gt;</code>.</p>
+            <div class="demo">
+              <p>
+                Mi película favorita es <cite>El Padrino</cite> de Francis Ford
+                Coppola.
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="q">
+            <header class="card-header">
+              <code>&lt;q&gt;</code>
+              <span class="badge badge-text">Cita</span>
+            </header>
+            <p>
+              Cita corta en línea. El navegador añade automáticamente comillas tipográficas adecuadas al idioma del documento (<code>«»</code> en español, <code>""</code> en inglés). El atributo <code>cite</code> acepta una URL para indicar la fuente original — no se muestra visualmente pero es accesible para herramientas de búsqueda. Para citas largas que requieran su propio bloque, usa <code>&lt;blockquote&gt;</code>.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos principales</span>
+              <code>cite</code><span class="attr-type">URL</span><span class="attr-desc">URL de la fuente original de la cita</span>
+            </div>
+            <p class="tag-note">Las comillas automáticas del navegador dependen del atributo <code>lang</code> del documento o del elemento. Si necesitas comillas específicas, personalízalas con CSS: <code>q { quotes: "«" "»" "‹" "›"; }</code></p>
+            <div class="demo">
+              <p>
+                Como dijo Einstein:
+                <q>La imaginación es más importante que el conocimiento.</q>
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="blockquote">
+            <header class="card-header">
+              <code>&lt;blockquote&gt;</code>
+              <span class="badge badge-text">Cita</span>
+            </header>
+            <p>
+              Cita larga de otra fuente. El atributo <code>cite</code> acepta una URL para
+              indicar la fuente (no visible, pero útil para motores de búsqueda). Combina con
+              <code>&lt;footer&gt;</code> + <code>&lt;cite&gt;</code> para la atribución visible.
+              <strong>No uses <code>&lt;blockquote&gt;</code> para sangrías visuales</strong>
+              — eso es solo CSS.
+            </p>
+            <div class="demo">
+              <blockquote cite="https://ejemplo.com">
+                <p>
+                  El software es como la entropía. Es difícil de captar, no pesa
+                  nada y obedece a la Segunda Ley de la Termodinámica, es decir,
+                  siempre aumenta.
+                </p>
+                <footer>— <cite>Norman Augustine</cite></footer>
+              </blockquote>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="code">
+            <header class="card-header">
+              <code>&lt;code&gt;</code>
+              <span class="badge badge-text">Código</span>
+            </header>
+            <p>
+              Marca un fragmento de código de computadora — nombre de variable, función, comando, expresión o fragmento de programa. El navegador lo renderiza en fuente monoespaciada (<code>monospace</code>). Para código de múltiples líneas que preserve indentación y saltos de línea, siempre combínalo con <code>&lt;pre&gt;</code>: el patrón correcto es <code>&lt;pre&gt;&lt;code&gt;...&lt;/code&gt;&lt;/pre&gt;</code>. Solo <code>&lt;code&gt;</code> solo es para fragmentos en línea dentro del texto.
+            </p>
+            <p class="tag-tip">Las librerías de resaltado de sintaxis como Prism.js o highlight.js buscan <code>&lt;code&gt;</code> dentro de <code>&lt;pre&gt;</code>. Añade la clase del lenguaje: <code>&lt;code class="language-js"&gt;</code>.</p>
+            <div class="demo">
+              <p>
+                La función <code>console.log()</code> imprime en la consola.
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="pre">
+            <header class="card-header">
+              <code>&lt;pre&gt;</code>
+              <span class="badge badge-text">Código</span>
+            </header>
+            <p>
+              Preserva espacios y saltos de línea exactos del HTML. Ideal para código y
+              arte ASCII. Atención: el contenido desborda si hay líneas muy largas —
+              añade <code>overflow-x: auto</code> en el CSS. Combina con
+              <code>&lt;code&gt;</code> dentro: <code>&lt;pre&gt;&lt;code&gt;…&lt;/code&gt;&lt;/pre&gt;</code>.
+            </p>
+            <div class="demo">
+              <pre
+                style="
+                  background: #1e1e1e;
+                  color: #d4d4d4;
+                  padding: 10px;
+                  border-radius: 4px;
+                  font-size: 0.8rem;
+                "
+              >
+function saludar(nombre) {
+  return `Hola, ${nombre}!`;
+}</pre
+              >
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="kbd">
+            <header class="card-header">
+              <code>&lt;kbd&gt;</code>
+              <span class="badge badge-text">Interacción</span>
+            </header>
+            <p>
+              Representa entrada del usuario a través del teclado, voz u otro mecanismo. Se usa principalmente en documentación técnica para mostrar atajos de teclado y comandos. El navegador lo muestra en fuente monoespaciada. Para combinaciones de teclas, anida múltiples <code>&lt;kbd&gt;</code>: <code>&lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;S&lt;/kbd&gt;</code>. También puede indicar entrada de menú anidando <code>&lt;kbd&gt;</code> dentro de otro.
+            </p>
+            <p class="tag-tip">CSS personalizado hace que <code>&lt;kbd&gt;</code> parezca una tecla física: <code>kbd { border: 1px solid #ccc; border-radius: 3px; padding: 1px 6px; box-shadow: 0 2px 0 #999; }</code></p>
+            <div class="demo">
+              <p>
+                Presiona <kbd>Ctrl</kbd> + <kbd>C</kbd> para copiar y
+                <kbd>Ctrl</kbd> + <kbd>V</kbd> para pegar.
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card wide" data-tag="compositor texto inline formatter strong em mark code s u small abbr editor playground">
+            <header class="card-header">
+              <code>Compositor de Texto — Playground</code>
+              <span class="badge badge-text">Interactivo</span>
+            </header>
+            <p>
+              Selecciona texto en el editor y haz clic en un botón para envolver con esa etiqueta.
+              Observa el resultado renderizado y el HTML generado en tiempo real.
+            </p>
+            <div class="demo">
+              <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
+                <button class="btn-demo" onclick="tcWrap('strong')" title="Importancia">&lt;strong&gt;</button>
+                <button class="btn-demo" onclick="tcWrap('em')" title="Énfasis lingüístico">&lt;em&gt;</button>
+                <button class="btn-demo" onclick="tcWrap('mark')" title="Resaltado contextual">&lt;mark&gt;</button>
+                <button class="btn-demo" onclick="tcWrap('code')" title="Código">&lt;code&gt;</button>
+                <button class="btn-demo" onclick="tcWrap('s')" title="Tachado">&lt;s&gt;</button>
+                <button class="btn-demo" onclick="tcWrap('u')" title="Subrayado">&lt;u&gt;</button>
+                <button class="btn-demo" onclick="tcWrap('small')" title="Texto secundario">&lt;small&gt;</button>
+                <button class="btn-demo" onclick="tcWrap('kbd')" title="Tecla">&lt;kbd&gt;</button>
+                <button type="button" onclick="tcReset()" style="padding:7px 12px;border:1px solid #e2e8f0;border-radius:6px;cursor:pointer;font-size:.78rem;background:transparent;">Reset</button>
+              </div>
+              <div id="tc-editor" contenteditable="true"
+                style="border:1px dashed #3d7ef5;padding:12px;border-radius:6px;min-height:52px;font-size:.9rem;line-height:1.8;background:#f8fbff;outline:none;"
+                spellcheck="false"
+                oninput="tcUpdateCode()">
+                Selecciona <strong>estas palabras</strong> y aplica etiquetas, o escribe tu propio texto aquí.
+              </div>
+              <p style="font-size:.72rem;color:#888;margin:4px 0 6px;">Selecciona texto en el editor y luego haz clic en un botón.</p>
+              <pre id="tc-code" style="font-size:.72rem;background:#1e1e2e;color:#cdd6f4;padding:8px;border-radius:5px;overflow-x:auto;max-height:120px;white-space:pre-wrap;word-break:break-all;"></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="samp">
+            <header class="card-header">
+              <code>&lt;samp&gt;</code>
+              <span class="badge badge-text">Código</span>
+            </header>
+            <p>
+              Marca la salida de un programa o sistema informático: mensajes de error de terminal, respuestas de una API mostradas textualmente, salida de la consola del navegador. Se renderiza en fuente monoespaciada. Junto con <code>&lt;kbd&gt;</code>, <code>&lt;code&gt;</code> y <code>&lt;var&gt;</code> forma el conjunto semántico para documentación técnica, cada uno con su rol diferenciado: entrada, código fuente, variable y salida.
+            </p>
+            <p class="tag-tip">En documentación interactiva, <code>&lt;samp&gt;</code> puede combinarse con <code>&lt;kbd&gt;</code>: muestra el comando con <code>&lt;kbd&gt;</code> y la respuesta del sistema con <code>&lt;samp&gt;</code> para máxima claridad.</p>
+            <div class="demo">
+              <p>
+                El sistema respondió:
+                <samp>Error 404: Página no encontrada</samp>
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="var">
+            <header class="card-header">
+              <code>&lt;var&gt;</code>
+              <span class="badge badge-text">Código</span>
+            </header>
+            <p>
+              Marca una variable en el contexto de programación o matemáticas: nombres de variables en código (<var>x</var>, <var>count</var>), incógnitas matemáticas (<var>n</var>), parámetros de funciones y constantes simbólicas. El navegador lo renderiza en cursiva por defecto. Aporta semántica precisa en documentación técnica donde la distinción entre código literal y variables es importante.
+            </p>
+            <p class="tag-note">En contexto matemático, considera usar MathML (<code>&lt;math&gt;</code>) para expresiones complejas. <code>&lt;var&gt;</code> es útil solo para referencias simples a variables dentro del texto prosa.</p>
+            <div class="demo">
+              <p>
+                La ecuación <var>x</var> = <var>y</var><sup>2</sup> +
+                <var>z</var>.
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="time">
+            <header class="card-header">
+              <code>&lt;time&gt;</code>
+              <span class="badge badge-text">Semántica</span>
+            </header>
+            <p>
+              Dato temporal legible por máquinas. El atributo <code>datetime</code> usa
+              formatos ISO 8601: <code>2024-12-25</code> (fecha), <code>18:30</code> (hora),
+              <code>2024-12-25T18:30</code> (fecha+hora), <code>2024-W04</code> (semana),
+              <code>P1D</code> (duración). Esencial para calendarios, Google Rich Results
+              y lectores de pantalla.
+            </p>
+            <div class="demo">
+              <p>
+                El evento es el
+                <time datetime="2024-12-25">25 de diciembre</time> a las
+                <time datetime="18:00">6 de la tarde</time>.
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="data valor maquina legible">
+            <header class="card-header">
+              <code>&lt;data&gt;</code>
+              <span class="badge badge-text">Semántica</span>
+            </header>
+            <p>
+              Vincula contenido textual legible por humanos con un valor estructurado legible por máquinas mediante el atributo <code>value</code>. Es el equivalente de <code>&lt;time&gt;</code> pero para datos arbitrarios no temporales: códigos de producto (SKU), identificadores internos, valores numéricos normalizados. El texto visible puede ser cualquier representación amigable, mientras que <code>value</code> expone el valor técnico a scripts y motores de búsqueda.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos principales</span>
+              <code>value</code><span class="attr-type">string</span><span class="attr-desc">Valor legible por máquinas asociado al contenido visible</span>
+            </div>
+            <p class="tag-tip">Útil con JavaScript: <code>el.value</code> devuelve el valor del atributo directamente, permitiendo lógica de negocio sin tocar el texto que ve el usuario.</p>
+            <div class="demo">
+              <p>Producto: <data value="398">Manzanas</data></p>
+              <p>Código: <data value="SKU-4471">Camiseta azul</data></p>
+              <pre><code>&lt;data value="398"&gt;Manzanas&lt;/data&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="address">
+            <header class="card-header">
+              <code>&lt;address&gt;</code>
+              <span class="badge badge-text">Semántica</span>
+            </header>
+            <p>
+              Proporciona información de contacto del autor del <code>&lt;article&gt;</code> o <code>&lt;body&gt;</code> más cercano. Su contenido puede incluir dirección física, email, teléfono, redes sociales o cualquier método de contacto. El navegador lo renderiza en cursiva. Si está dentro de un <code>&lt;article&gt;</code>, es el contacto del autor de ese artículo; si está directamente en <code>&lt;body&gt;</code> o <code>&lt;footer&gt;</code>, es el contacto de la organización completa.
+            </p>
+            <p class="tag-warn">No uses <code>&lt;address&gt;</code> para direcciones postales genéricas que no sean de contacto del documento (como una dirección en un mapa o en un perfil). Para eso usa simplemente <code>&lt;p&gt;</code> con el texto.</p>
+            <div class="demo">
+              <address>
+                <strong>Empresa Ejemplo S.A.</strong><br />
+                Av. Principal 123<br />
+                Ciudad, País<br />
+                <a href="mailto:info@ejemplo.com">info@ejemplo.com</a>
+              </address>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="dfn">
+            <header class="card-header">
+              <code>&lt;dfn&gt;</code>
+              <span class="badge badge-text">Semántica</span>
+            </header>
+            <p>
+              Marca el término que está siendo definido en ese preciso momento. Su texto es el término en sí, no la definición. El párrafo o sección que lo contiene actúa como la definición. Puede combinarse con <code>title</code> para mostrar la forma expandida al hacer hover, o con <code>id</code> para que otros puntos del documento puedan enlazarlo con <code>&lt;a href="#def-html"&gt;</code>. Se usa convenientemente en glosarios y documentación técnica.
+            </p>
+            <p class="tag-tip">Combina <code>&lt;dfn id="def-termino"&gt;</code> con <code>&lt;a href="#def-termino"&gt;</code> en el resto del documento para crear referencias cruzadas semánticamente correctas dentro de un glosario.</p>
+            <div class="demo">
+              <p>
+                <dfn>HTML</dfn> es el lenguaje de marcado estándar para crear
+                páginas web.
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="ins-del">
+            <header class="card-header">
+              <code>&lt;ins&gt; / &lt;del&gt;</code>
+              <span class="badge badge-text">Edición</span>
+            </header>
+            <p>
+              <code>&lt;ins&gt;</code> marca texto <u>insertado</u> y <code>&lt;del&gt;</code>
+              texto <del>eliminado</del>. Ambos aceptan <code>datetime</code> (cuándo ocurrió el
+              cambio) y <code>cite</code> (URL que justifica el cambio). Ideales para changelogs,
+              precios actualizados y documentos con historial de ediciones.
+            </p>
+            <div class="demo">
+              <p>
+                El precio es <del>$200</del> <ins>$150</ins> hasta fin de mes.
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="wbr">
+            <header class="card-header">
+              <code>&lt;wbr&gt;</code>
+              <span class="badge badge-text">Formato</span>
+            </header>
+            <p>
+              Indica una oportunidad de salto de línea: el navegador solo rompe la palabra en ese punto si necesita hacerlo por falta de espacio. Es un elemento vacío (sin cierre). Ideal para URLs largas, palabras compuestas técnicas, nombres de archivos y cadenas sin espacios que deben mostrarse en contenedores estrechos. A diferencia de un guión (<code>-</code>), no añade ningún carácter visible al romper.
+            </p>
+            <p class="tag-tip">Alternativa CSS: <code>word-break: break-all</code> rompe en cualquier punto, mientras que <code>overflow-wrap: break-word</code> rompe solo cuando hay desbordamiento. <code>&lt;wbr&gt;</code> te da control preciso sobre los puntos de ruptura.</p>
+            <div class="demo">
+              <p style="width: 150px; border: 1px dashed #ccc; padding: 5px">
+                Palabra<wbr />MuyLarga<wbr />QuePuede<wbr />Romperse
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="bdo-bdi">
+            <header class="card-header">
+              <code>&lt;bdo&gt; / &lt;bdi&gt;</code>
+              <span class="badge badge-text">Dirección</span>
+            </header>
+            <p>
+              <code>&lt;bdo&gt;</code> (Bi-Directional Override) anula el algoritmo bidireccional del navegador para forzar la dirección del texto. Requiere el atributo <code>dir</code> con valor <code>ltr</code> o <code>rtl</code>. <code>&lt;bdi&gt;</code> (Bi-Directional Isolation) aísla un fragmento de texto cuya dirección se desconoce o puede variar — útil cuando se mezclan nombres de usuario u otro contenido dinámico que podría ser árabe, hebreo u otro idioma RTL con texto LTR.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos principales</span>
+              <code>dir</code><span class="attr-type">enum</span><span class="attr-desc">Dirección del texto: <code>ltr</code> (izquierda a derecha) o <code>rtl</code> (derecha a izquierda). Requerido en <code>&lt;bdo&gt;</code></span>
+            </div>
+            <p class="tag-note">En aplicaciones con contenido generado por usuarios (UGC) de distintos idiomas, usa siempre <code>&lt;bdi&gt;</code> o el atributo <code>dir="auto"</code> para evitar que texto árabe o hebreo rompa el layout de la página.</p>
+            <div class="demo">
+              <p>Normal: Hola Mundo</p>
+              <p><bdo dir="rtl">Hola Mundo — Al revés</bdo></p>
+              <p>Usuario: <bdi>مرحبا</bdi> (árabe aislado)</p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="ruby">
+            <header class="card-header">
+              <code>&lt;ruby&gt; / &lt;rt&gt; / &lt;rp&gt;</code>
+              <span class="badge badge-text">Tipografía</span>
+            </header>
+            <p>
+              Implementa anotaciones ruby: pequeño texto sobre o al lado de caracteres base para indicar la pronunciación. Originario del este asiático (kanji japonés, caracteres chinos), también se usa para texto en lenguas antiguas o textos de aprendizaje de idiomas. <code>&lt;rt&gt;</code> contiene la anotación de pronunciación. <code>&lt;rp&gt;</code> es un fallback para navegadores sin soporte: su contenido (típicamente paréntesis) se muestra en su lugar cuando ruby no está soportado.
+            </p>
+            <p class="tag-note">El soporte de <code>&lt;ruby&gt;</code> es universal en navegadores modernos. <code>&lt;rp&gt;</code> sigue siendo útil como fallback accesible — los paréntesis en texto normal son aceptables en lectores de pantalla sin soporte ruby.</p>
+            <div class="demo">
+              <p>
+                <ruby>漢<rp>(</rp><rt>かん</rt><rp>)</rp></ruby>
+                <ruby>字<rp>(</rp><rt>じ</rt><rp>)</rp></ruby>
+              </p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="br-hr">
+            <header class="card-header">
+              <code>&lt;br&gt; / &lt;hr&gt;</code>
+              <span class="badge badge-layout">Separadores</span>
+            </header>
+            <p>
+              <code>&lt;br&gt;</code> es un salto de línea semánticamente significativo, no solo presentacional: poesía, direcciones postales, letras de canciones — contextos donde la división de líneas forma parte del contenido. <code>&lt;hr&gt;</code> representa una ruptura temática o transición de escena dentro de una sección — no es una línea decorativa sino un separador de contenido con significado. Ambos son elementos vacíos (no necesitan cierre en HTML5).
+            </p>
+            <p class="tag-warn">No uses <code>&lt;br&gt;&lt;br&gt;</code> para crear espacio entre párrafos — usa <code>&lt;p&gt;</code> con <code>margin</code> en CSS. Y no uses <code>&lt;hr&gt;</code> solo para dibujar una línea horizontal decorativa; para eso, usa CSS con <code>border-top</code> en un <code>&lt;div&gt;</code>.</p>
+            <div class="demo">
+              <p>Línea uno<br />Línea dos<br />Línea tres</p>
+              <hr style="border-color: #3498db; margin: 8px 0" />
+              <p>Después del separador temático.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="estructura.html"><span>←</span> Estructura del Documento</a>
+        <a class="pager-btn pager-next" href="listas.html">Listas <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+      function tcWrap(tag) {
+        const editor = document.getElementById('tc-editor');
+        if (!editor) return;
+        const sel = window.getSelection();
+        if (!sel || sel.rangeCount === 0 || sel.isCollapsed) {
+          editor.style.borderColor = '#e74c3c';
+          setTimeout(() => { editor.style.borderColor = '#3d7ef5'; }, 800);
+          return;
+        }
+        if (!editor.contains(sel.anchorNode)) return;
+        const range = sel.getRangeAt(0);
+        const el = document.createElement(tag);
+        try {
+          range.surroundContents(el);
+        } catch (e) {
+          const text = range.toString();
+          if (!text) return;
+          const newEl = document.createElement(tag);
+          newEl.textContent = text;
+          range.deleteContents();
+          range.insertNode(newEl);
+        }
+        sel.removeAllRanges();
+        tcUpdateCode();
+      }
+      function tcReset() {
+        const editor = document.getElementById('tc-editor');
+        if (editor) {
+          editor.innerHTML = 'Selecciona <strong>estas palabras</strong> y aplica etiquetas, o escribe tu propio texto aquí.';
+          tcUpdateCode();
+        }
+      }
+      function tcUpdateCode() {
+        const editor = document.getElementById('tc-editor');
+        const code = document.getElementById('tc-code');
+        if (editor && code) {
+          code.textContent = editor.innerHTML
+            .replace(/&amp;/g, '&')
+            .replace(/ style=""/g, '')
+            .trim();
+        }
+      }
+      document.addEventListener('DOMContentLoaded', tcUpdateCode);
+    </script>
+  </body>
+</html>

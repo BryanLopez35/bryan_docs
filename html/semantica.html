@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Semántica HTML5 — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Semántica HTML5 — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">HTML</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Semántica HTML5</span>
+      </nav>
+
+                              <section id="seccion-semantica" class="category">
+        <h2>Semántica HTML5</h2>
+        <p class="category-desc">
+          Etiquetas que dan significado y estructura semántica al contenido.
+        </p>
+
+        <div class="tags-grid">
+          <article class="tag-card" data-tag="header-html">
+            <header class="card-header">
+              <code>&lt;header&gt;</code>
+              <span class="badge badge-semantic">Semántica</span>
+            </header>
+            <p>
+              Encabezado de sección o de la página completa. Puede haber
+              <strong>varios</strong> en un documento (uno por <code>&lt;article&gt;</code> o
+              <code>&lt;section&gt;</code>). Contiene típicamente logo, título y navegación.
+              No confundir con <code>&lt;head&gt;</code> — ese es para metadatos invisibles,
+              este es contenido visible.
+            </p>
+            <div class="demo">
+              <div class="semantic-demo">
+                <div class="sem-header">header</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="nav">
+            <header class="card-header">
+              <code>&lt;nav&gt;</code>
+              <span class="badge badge-semantic">Semántica</span>
+            </header>
+            <p>
+              Sección de navegación principal con enlaces. Los lectores de pantalla exponen los <code>&lt;nav&gt;</code> como landmarks y permiten saltar entre ellos. Un documento puede tener varios: navegación principal del sitio, breadcrumb, tabla de contenidos, paginación. No todos los grupos de enlaces necesitan <code>&lt;nav&gt;</code>: reservalo para bloques de navegación importantes. Si hay más de uno, añade <code>aria-label</code> para distinguirlos.
+            </p>
+            <p class="tag-tip">Cuando hay más de un <code>&lt;nav&gt;</code> en la página, añade <code>aria-label="Navegación principal"</code> a cada uno. Los lectores de pantalla listan todos los landmarks con su nombre para que el usuario pueda saltar directamente.</p>
+            <div class="demo">
+              <nav
+                style="background: #2c3e50; padding: 8px; border-radius: 4px"
+              >
+                <a href="#" style="color: white; margin: 0 8px">Inicio</a>
+                <a href="#" style="color: white; margin: 0 8px">Blog</a>
+                <a href="#" style="color: white; margin: 0 8px">Contacto</a>
+              </nav>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="search busqueda landmark formulario">
+            <header class="card-header">
+              <code>&lt;search&gt;</code>
+              <span class="badge badge-semantic">Semántica</span>
+            </header>
+            <p>
+              Elemento landmark introducido en HTML 2023 que identifica semánticamente una región de búsqueda o filtrado. Es el equivalente HTML nativo de <code>&lt;div role="search"&gt;</code>: los lectores de pantalla lo anuncian como región de búsqueda y los usuarios pueden saltar directamente a ella. Puede usarse múltiples veces — para búsqueda global del sitio, búsqueda dentro de una sección, filtros de productos, etc. Puede contener cualquier tipo de control: formularios, campos de texto, checkboxes o botones.
+            </p>
+            <p class="tag-note">El soporte de <code>&lt;search&gt;</code> es universal en navegadores modernos desde 2023. Para proyectos que necesiten soporte en navegadores más antiguos, el fallback es <code>&lt;div role="search"&gt;</code>, que es semánticamente equivalente.</p>
+            <div class="demo">
+              <search>
+                <form action="#" style="display:flex;gap:6px;align-items:center;">
+                  <label for="s-demo" style="font-size:.8rem;color:#555">Buscar:</label>
+                  <input id="s-demo" type="search" placeholder="Término…" style="padding:4px 8px;border:1px solid #ccc;border-radius:4px;font-size:.8rem;">
+                  <button type="submit" class="btn-demo" style="padding:4px 10px;">Ir</button>
+                </form>
+              </search>
+              <pre style="margin-top:8px;"><code>&lt;search&gt;
+  &lt;form action="/buscar"&gt;
+    &lt;input type="search" name="q"&gt;
+    &lt;button type="submit"&gt;Buscar&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/search&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="main">
+            <header class="card-header">
+              <code>&lt;main&gt;</code>
+              <span class="badge badge-semantic">Semántica</span>
+            </header>
+            <p>
+              Contenido <strong>principal único</strong> de la página. Solo puede haber uno visible
+              por documento (<code>hidden</code> permite tener varios). Los lectores de pantalla y
+              el atajo de teclado en algunos navegadores saltan a él directamente. No puede estar
+              dentro de <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>,
+              <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code> o <code>&lt;nav&gt;</code>.
+            </p>
+            <div class="demo">
+              <div class="semantic-demo">
+                <div class="sem-header">header</div>
+                <div class="sem-main">main — contenido único</div>
+                <div class="sem-footer">footer</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="article">
+            <header class="card-header">
+              <code>&lt;article&gt;</code>
+              <span class="badge badge-semantic">Semántica</span>
+            </header>
+            <p>
+              Contenido <strong>independiente y autocontenido</strong>: tiene sentido por sí solo
+              si se extrae del contexto. Pregunta: "¿tendría sentido en un feed RSS o en otro
+              sitio?" Si sí → <code>&lt;article&gt;</code>. Si no → <code>&lt;section&gt;</code>.
+              Puede tener su propio <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code> y
+              <code>&lt;h1&gt;</code>.
+            </p>
+            <div class="demo">
+              <article
+                style="
+                  border: 1px solid #ddd;
+                  padding: 10px;
+                  border-radius: 4px;
+                "
+              >
+                <h4 style="margin: 0 0 4px">Título del artículo</h4>
+                <time datetime="2024-01-15">15 de enero, 2024</time>
+                <p style="margin: 4px 0 0">
+                  Contenido independiente del artículo...
+                </p>
+              </article>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="section">
+            <header class="card-header">
+              <code>&lt;section&gt;</code>
+              <span class="badge badge-semantic">Semántica</span>
+            </header>
+            <p>
+              Sección temática con identidad propia — debe tener su
+              <strong>propio encabezado</strong> (<code>h2</code>–<code>h6</code>). Diferencia con
+              <code>&lt;article&gt;</code>: una sección es parte de un todo mayor; un artículo
+              es autónomo. Diferencia con <code>&lt;div&gt;</code>: section aparece en el outline
+              del documento; div no.
+            </p>
+            <div class="demo">
+              <pre><code>&lt;section&gt;
+  &lt;h2&gt;Título de sección&lt;/h2&gt;
+  &lt;p&gt;Contenido relacionado...&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="aside">
+            <header class="card-header">
+              <code>&lt;aside&gt;</code>
+              <span class="badge badge-semantic">Semántica</span>
+            </header>
+            <p>
+              Contenido <strong>tangencialmente relacionado</strong> con el contenido principal que lo rodea: barras laterales, biografías del autor, bloques de publicidad, definiciones de glosario, notas al margen, cajas de "lectura relacionada". No es sinónimo de "columna lateral" en el diseño — su uso debe estar justificado semánticamente. Los lectores de pantalla exponen <code>&lt;aside&gt;</code> como landmark <code>complementary</code>, permitiendo saltar directamente a él o ignorarlo.
+            </p>
+            <p class="tag-warn">No uses <code>&lt;aside&gt;</code> simplemente porque algo está en la columna derecha. Si el contenido es parte esencial del flujo del documento, usa <code>&lt;section&gt;</code>. Si es completamente independiente y reutilizable, considera <code>&lt;article&gt;</code>.</p>
+            <div class="demo">
+              <div
+                class="semantic-demo"
+                style="display: grid; grid-template-columns: 1fr auto; gap: 6px"
+              >
+                <div class="sem-main">Contenido principal</div>
+                <aside
+                  style="
+                    background: #f0e6ff;
+                    padding: 8px;
+                    border-radius: 4px;
+                    font-size: 0.75rem;
+                    color: #6c3483;
+                  "
+                >
+                  aside: barra lateral
+                </aside>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="footer">
+            <header class="card-header">
+              <code>&lt;footer&gt;</code>
+              <span class="badge badge-semantic">Semántica</span>
+            </header>
+            <p>
+              Pie de página de su sección contenedora o del documento. Puede haber <strong>varios</strong> en un documento: uno global (pie del sitio con copyright, enlaces legales, redes sociales) y uno por <code>&lt;article&gt;</code> o <code>&lt;section&gt;</code> (fecha, autor, etiquetas). Cuando el <code>&lt;footer&gt;</code> está dentro de <code>&lt;body&gt;</code> directamente, el navegador le asigna el rol ARIA <code>contentinfo</code>. Dentro de <code>&lt;article&gt;</code>, no tiene rol landmark y es simplemente contenido de cierre.
+            </p>
+            <p class="tag-note">El <code>&lt;footer&gt;</code> global no debe contener el elemento <code>&lt;main&gt;</code>. Si incluyes un formulario de suscripción o mapa en el pie, envuélvelos en sus propias secciones semánticas dentro del footer.</p>
+            <div class="demo">
+              <footer
+                style="
+                  background: #2c3e50;
+                  color: white;
+                  padding: 10px;
+                  border-radius: 4px;
+                  font-size: 0.8rem;
+                "
+              >
+                <p style="margin: 0">
+                  © 2024 Mi Sitio —
+                  <a href="#" style="color: #3498db">Privacidad</a>
+                </p>
+              </footer>
+            </div>
+          </article>
+
+          <article class="tag-card wide" data-tag="estructura pagina layout semantica header nav main aside article section footer outline playground">
+            <header class="card-header">
+              <code>Estructura de Página — Playground</code>
+              <span class="badge badge-semantic">Interactivo</span>
+            </header>
+            <p>
+              Activa o desactiva elementos semánticos y observa cómo cambia la estructura visual
+              y el HTML generado. La combinación correcta mejora accesibilidad y SEO.
+            </p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:160px 1fr;gap:12px;font-size:.78rem;">
+                <div style="display:flex;flex-direction:column;gap:5px;">
+                  <div style="font-weight:700;margin-bottom:2px;color:#555;">Elementos:</div>
+                  <label style="display:flex;gap:5px;align-items:center;cursor:pointer;"><input type="checkbox" data-sem="header" checked onchange="updateSemPG()"> <span style="color:#3d7ef5;font-weight:600;">&lt;header&gt;</span></label>
+                  <label style="display:flex;gap:5px;align-items:center;cursor:pointer;"><input type="checkbox" data-sem="nav" checked onchange="updateSemPG()"> <span style="color:#8b5cf6;font-weight:600;">&lt;nav&gt;</span></label>
+                  <label style="display:flex;gap:5px;align-items:center;cursor:pointer;"><input type="checkbox" data-sem="main" checked onchange="updateSemPG()"> <span style="color:#059669;font-weight:600;">&lt;main&gt;</span></label>
+                  <label style="display:flex;gap:5px;align-items:center;cursor:pointer;"><input type="checkbox" data-sem="aside" onchange="updateSemPG()"> <span style="color:#f59e0b;font-weight:600;">&lt;aside&gt;</span></label>
+                  <label style="display:flex;gap:5px;align-items:center;cursor:pointer;"><input type="checkbox" data-sem="article" onchange="updateSemPG()"> <span style="color:#06b6d4;font-weight:600;">&lt;article&gt;</span></label>
+                  <label style="display:flex;gap:5px;align-items:center;cursor:pointer;"><input type="checkbox" data-sem="section" onchange="updateSemPG()"> <span style="color:#10b981;font-weight:600;">&lt;section&gt;</span></label>
+                  <label style="display:flex;gap:5px;align-items:center;cursor:pointer;"><input type="checkbox" data-sem="footer" checked onchange="updateSemPG()"> <span style="color:#6366f1;font-weight:600;">&lt;footer&gt;</span></label>
+                </div>
+                <div>
+                  <div id="sem-pg-preview" style="display:flex;flex-direction:column;gap:4px;min-height:100px;"></div>
+                </div>
+              </div>
+              <pre id="sem-pg-code" style="margin-top:8px;font-size:.72rem;background:#1e1e2e;color:#cdd6f4;padding:8px;border-radius:5px;overflow-x:auto;max-height:130px;"></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="hgroup">
+            <header class="card-header">
+              <code>&lt;hgroup&gt;</code>
+              <span class="badge badge-semantic">Semántica</span>
+            </header>
+            <p>
+              Agrupa un encabezado (<code>h1</code>–<code>h6</code>) con uno o más párrafos de subtítulo o eslogan. Solo el encabezado contribuye al outline del documento — los párrafos adicionales son texto de apoyo sin efecto en la jerarquía. Fue redefinido en HTML 2022 para este propósito específico. Útil en páginas de inicio, artículos y secciones donde el título principal tiene un subtítulo inseparable.
+            </p>
+            <p class="tag-tip">Usa <code>&lt;hgroup&gt;</code> cuando el subtítulo forma parte esencial del nombre del artículo o sección, no cuando es descripción independiente. Para descripciones separadas del encabezado, usa un <code>&lt;p&gt;</code> fuera del <code>&lt;hgroup&gt;</code>.</p>
+            <div class="demo">
+              <hgroup>
+                <h3 style="margin: 0">Título principal</h3>
+                <p style="margin: 0; color: #888">
+                  Subtítulo descriptivo del contenido
+                </p>
+              </hgroup>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="details">
+            <header class="card-header">
+              <code>&lt;details&gt; / &lt;summary&gt;</code>
+              <span class="badge badge-semantic">Interactivo</span>
+            </header>
+            <p>
+              Widget desplegable nativo sin JavaScript. <code>&lt;summary&gt;</code> es el texto visible del toggle — si se omite, el navegador usa "Detalles" por defecto. El contenido del <code>&lt;details&gt;</code> que no está en <code>&lt;summary&gt;</code> se muestra u oculta al hacer clic. El atributo <code>open</code> lo hace visible por defecto. Ideal para FAQs, acordeones simples, notas opcionales y configuraciones avanzadas.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos principales</span>
+              <code>open</code><span class="attr-type">boolean</span><span class="attr-desc">Muestra el contenido expandido por defecto al cargar la página</span>
+              <code>name</code><span class="attr-type">string</span><span class="attr-desc">Grupo de acordeón exclusivo: solo uno del grupo puede estar abierto a la vez (HTML 2023)</span>
+            </div>
+            <p class="tag-tip">En 2023 se añadió el atributo <code>name</code> al elemento <code>&lt;details&gt;</code>. Todos los <code>&lt;details name="faq"&gt;</code> forman un acordeón donde al abrir uno se cierran los demás — sin JavaScript.</p>
+            <div class="demo">
+              <details>
+                <summary>Haz clic para expandir</summary>
+                <p>
+                  Este contenido está oculto por defecto y se muestra al hacer
+                  clic en el summary. ¡Sin JavaScript!
+                </p>
+                <ul>
+                  <li>Punto 1</li>
+                  <li>Punto 2</li>
+                </ul>
+              </details>
+              <details open>
+                <summary>Ya abierto por defecto (atributo open)</summary>
+                <p>
+                  Este details tiene el atributo <code>open</code> por lo que
+                  comienza expandido.
+                </p>
+              </details>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="dialog">
+            <header class="card-header">
+              <code>&lt;dialog&gt;</code>
+              <span class="badge badge-semantic">Interactivo</span>
+            </header>
+            <p>
+              Modal nativo de HTML. <code>show()</code> abre no-modal; <code>showModal()</code>
+              abre modal real (backdrop, trampa de foco, cierra con <kbd>Esc</kbd>). Un
+              <code>&lt;form method="dialog"&gt;</code> dentro cierra el diálogo al enviarse.
+              La propiedad <code>dialog.returnValue</code> indica qué botón lo cerró. No requiere
+              librerías externas ni gestión manual del foco.
+            </p>
+            <div class="demo">
+              <button
+                class="btn-demo"
+                onclick="document.getElementById('demo-dialog').showModal()"
+              >
+                Abrir Modal
+              </button>
+              <dialog id="demo-dialog">
+                <h3>Soy un &lt;dialog&gt;</h3>
+                <p>
+                  Este es un modal nativo de HTML5 sin JavaScript adicional para
+                  estructurarlo.
+                </p>
+                <form method="dialog">
+                  <button>Cerrar (method=dialog)</button>
+                </form>
+              </dialog>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="template">
+            <header class="card-header">
+              <code>&lt;template&gt;</code>
+              <span class="badge badge-semantic">Web Components</span>
+            </header>
+            <p>
+              Fragmento HTML inerte: no se renderiza, sus scripts no se ejecutan y sus imágenes no se descargan al cargar la página. Su contenido vive en un <code>DocumentFragment</code> accesible mediante <code>template.content</code>. Se usa con JavaScript para clonar e insertar instancias: <code>template.content.cloneNode(true)</code>. Es la base de los Web Components junto con Custom Elements y Shadow DOM.
+            </p>
+            <p class="tag-tip">A diferencia de mantener HTML comentado o en strings de JavaScript, <code>&lt;template&gt;</code> es parseado por el navegador al cargar (detectando errores), pero no renderizado — lo mejor de ambos mundos para plantillas reutilizables.</p>
+            <div class="demo">
+              <template id="card-template">
+                <div class="template-card">
+                  <span class="tc-name"></span> — <span class="tc-val"></span>
+                </div>
+              </template>
+              <div id="template-output"></div>
+              <button class="btn-demo" onclick="usarTemplate()">
+                Crear desde template
+              </button>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="slot">
+            <header class="card-header">
+              <code>&lt;slot&gt;</code>
+              <span class="badge badge-semantic">Web Components</span>
+            </header>
+            <p>
+              Marcador de posición dentro del Shadow DOM de un Web Component. Permite proyectar ("distribuir") nodos del Light DOM (HTML del usuario) hacia posiciones específicas dentro del componente encapsulado. Un slot sin <code>name</code> es el slot por defecto que recibe todo el contenido no asignado. Los slots nombrados (<code>&lt;slot name="icon"&gt;</code>) reciben exactamente el elemento con <code>slot="icon"</code>.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos principales</span>
+              <code>name</code><span class="attr-type">string</span><span class="attr-desc">Identifica el slot nombrado; el contenido con <code>slot="nombre"</code> se proyecta aquí</span>
+            </div>
+            <p class="tag-note">El contenido entre las etiquetas <code>&lt;slot&gt;&lt;/slot&gt;</code> es el <em>fallback</em>: se muestra si el usuario del componente no proporciona contenido para ese slot.</p>
+            <div class="demo">
+              <pre><code>&lt;!-- Dentro del Shadow DOM --&gt;
+&lt;div class="card"&gt;
+  &lt;slot name="title"&gt;Título default&lt;/slot&gt;
+  &lt;slot&gt;Contenido default&lt;/slot&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="formularios.html"><span>←</span> Formularios</a>
+        <a class="pager-btn pager-next" href="interactivo.html">Interactividad y Accesibilidad <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+      var _semColors = {
+        header:'#3d7ef5', nav:'#8b5cf6', main:'#059669',
+        aside:'#f59e0b', article:'#06b6d4', section:'#10b981', footer:'#6366f1'
+      };
+
+      function updateSemPG() {
+        var preview = document.getElementById('sem-pg-preview');
+        var code    = document.getElementById('sem-pg-code');
+        if (!preview || !code) return;
+
+        var keys = ['header','nav','main','aside','article','section','footer'];
+        var active = keys.filter(function(k) {
+          var cb = document.querySelector('[data-sem="' + k + '"]');
+          return cb && cb.checked;
+        });
+
+        var blocks = [];
+        var codeLines = ['<body>'];
+
+        if (active.indexOf('header') !== -1) {
+          blocks.push('<div style="background:' + _semColors.header + ';color:white;padding:6px 10px;border-radius:4px;text-align:center;font-size:.78rem;font-weight:600;">&lt;header&gt;</div>');
+          codeLines.push('  <header><!-- logo, título, nav principal --></header>');
+        }
+
+        if (active.indexOf('nav') !== -1) {
+          blocks.push('<div style="background:' + _semColors.nav + ';color:white;padding:5px 10px;border-radius:4px;text-align:center;font-size:.75rem;font-weight:600;">&lt;nav&gt;</div>');
+          codeLines.push('  <nav><!-- enlaces de navegación --></nav>');
+        }
+
+        if (active.indexOf('main') !== -1) {
+          var hasAside   = active.indexOf('aside')   !== -1;
+          var hasSection = active.indexOf('section') !== -1;
+          var hasArticle = active.indexOf('article') !== -1;
+
+          var innerBlocks = '';
+          if (hasSection) {
+            innerBlocks += '<div style="background:' + _semColors.section + ';color:white;padding:4px 8px;border-radius:3px;font-size:.72rem;margin-bottom:3px;">&lt;section&gt;</div>';
+          }
+          if (hasArticle) {
+            innerBlocks += '<div style="background:' + _semColors.article + ';color:white;padding:4px 8px;border-radius:3px;font-size:.72rem;">&lt;article&gt;</div>';
+          }
+          if (!innerBlocks) {
+            innerBlocks = '<div style="font-size:.72rem;opacity:.7;padding:2px;">contenido principal</div>';
+          }
+
+          var mainHtml = '<div style="background:' + _semColors.main + ';color:white;padding:8px 10px;border-radius:4px;flex:1;">'
+            + '<div style="font-size:.78rem;font-weight:600;margin-bottom:4px;">&lt;main&gt;</div>'
+            + innerBlocks
+            + '</div>';
+
+          if (hasAside) {
+            blocks.push('<div style="display:flex;gap:4px;">'
+              + mainHtml
+              + '<div style="background:' + _semColors.aside + ';color:white;padding:8px 6px;border-radius:4px;text-align:center;font-size:.72rem;font-weight:600;min-width:56px;">&lt;aside&gt;</div>'
+              + '</div>');
+            codeLines.push('  <main>');
+            if (hasSection) codeLines.push('    <section>...</section>');
+            if (hasArticle) codeLines.push('    <article>...</article>');
+            codeLines.push('  </main>');
+            codeLines.push('  <aside><!-- contenido relacionado --></aside>');
+          } else {
+            blocks.push(mainHtml);
+            codeLines.push('  <main>');
+            if (hasSection) codeLines.push('    <section>...</section>');
+            if (hasArticle) codeLines.push('    <article>...</article>');
+            codeLines.push('  </main>');
+          }
+        }
+
+        if (active.indexOf('footer') !== -1) {
+          blocks.push('<div style="background:' + _semColors.footer + ';color:white;padding:5px 10px;border-radius:4px;text-align:center;font-size:.78rem;font-weight:600;">&lt;footer&gt;</div>');
+          codeLines.push('  <footer><!-- copyright, enlaces --></footer>');
+        }
+
+        codeLines.push('</body>');
+
+        if (blocks.length === 0) {
+          preview.innerHTML = '<p style="color:#888;font-size:.75rem;padding:12px;text-align:center;">Activa al menos un elemento</p>';
+        } else {
+          preview.innerHTML = blocks.join('');
+        }
+        code.textContent = codeLines.join('\n');
+      }
+
+      /* Llamar directamente — el script está al final del body, el DOM ya existe */
+      updateSemPG();
+    </script>
+  </body>
+</html>

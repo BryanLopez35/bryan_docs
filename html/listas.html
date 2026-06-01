@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Listas — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Listas — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">HTML</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Listas</span>
+      </nav>
+
+                              <section id="seccion-listas" class="category">
+        <h2>Listas</h2>
+        <p class="category-desc">
+          Etiquetas para organizar información en listas ordenadas, desordenadas
+          y de definición.
+        </p>
+
+        <div class="tags-grid">
+          <article class="tag-card" data-tag="ul">
+            <header class="card-header">
+              <code>&lt;ul&gt;</code>
+              <span class="badge badge-list">Lista</span>
+            </header>
+            <p>
+              Lista desordenada: los ítems no tienen orden significativo entre sí. El navegador los muestra con viñetas (bullet <code>disc</code> por defecto) y cada ítem debe ser un <code>&lt;li&gt;</code>. Se usa para menús de navegación, listas de características, grupos de opciones sin jerarquía de prioridad. Los lectores de pantalla anuncian el número de ítems al entrar a la lista.
+            </p>
+            <p class="tag-tip">Para menús de navegación, siempre envuelve el <code>&lt;ul&gt;</code> en un <code>&lt;nav&gt;</code>. El CSS <code>list-style: none; padding: 0;</code> elimina las viñetas para layouts de navegación sin perder la semántica de lista.</p>
+            <div class="demo">
+              <ul>
+                <li>Manzanas</li>
+                <li>Naranjas</li>
+                <li>Plátanos</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="ol">
+            <header class="card-header">
+              <code>&lt;ol&gt;</code>
+              <span class="badge badge-list">Lista</span>
+            </header>
+            <p>
+              Lista ordenada (numerada). Atributos clave: <code>type</code>
+              (<code>1</code>, <code>A</code>, <code>a</code>, <code>I</code>, <code>i</code>),
+              <code>start</code> (número inicial), <code>reversed</code> (cuenta hacia atrás).
+              Usa <code>value</code> en un <code>&lt;li&gt;</code> específico para saltar la
+              numeración.
+            </p>
+            <div class="demo">
+              <ol>
+                <li>Primero</li>
+                <li>Segundo</li>
+                <li>Tercero</li>
+              </ol>
+              <ol type="A" start="3">
+                <li>C — desde letra</li>
+                <li>D</li>
+              </ol>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="li">
+            <header class="card-header">
+              <code>&lt;li&gt;</code>
+              <span class="badge badge-list">Lista</span>
+            </header>
+            <p>
+              Elemento de lista, válido dentro de <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code> y <code>&lt;menu&gt;</code>. Puede contener cualquier tipo de contenido: texto, imágenes, botones, incluso listas anidadas. En una <code>&lt;ol&gt;</code>, el atributo <code>value</code> sobreescribe el número del ítem y hace que la numeración continúe desde ese valor en los ítems siguientes.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Atributos principales</span>
+              <code>value</code><span class="attr-type">integer</span><span class="attr-desc">Solo en <code>&lt;ol&gt;</code>: establece el valor del contador para este ítem y los siguientes</span>
+            </div>
+            <p class="tag-note">Un <code>&lt;li&gt;</code> con <code>list-style: none</code> y sin contexto de lista puede confundir a lectores de pantalla. Si usas listas como layout puro, añade <code>role="list"</code> explícitamente en Safari/VoiceOver.</p>
+            <div class="demo">
+              <ul>
+                <li>Ítem simple</li>
+                <li>
+                  Ítem con sublista:
+                  <ul>
+                    <li>Sub-ítem A</li>
+                    <li>Sub-ítem B</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="tag-card wide" data-tag="constructor lista builder ol ul type start reversed list-style playground interactivo">
+            <header class="card-header">
+              <code>Constructor de Listas — Playground</code>
+              <span class="badge badge-list">Interactivo</span>
+            </header>
+            <p>
+              Configura dinámicamente el tipo, estilo y atributos de tu lista.
+              Cambia entre ordenada y desordenada, modifica el marcador y agrega ítems.
+            </p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:200px 1fr;gap:16px;">
+                <div style="display:flex;flex-direction:column;gap:8px;font-size:.78rem;">
+                  <label style="font-weight:600;">Tipo de lista:
+                    <select id="lb-type" onchange="updateLB()" style="display:block;width:100%;padding:5px;border:1px solid #e2e8f0;border-radius:4px;margin-top:3px;font-size:.78rem;">
+                      <option value="ul">ul — desordenada</option>
+                      <option value="ol">ol — ordenada</option>
+                    </select>
+                  </label>
+                  <div id="lb-ol-opts" style="display:none;flex-direction:column;gap:6px;">
+                    <label>type:
+                      <select id="lb-ol-type" onchange="updateLB()" style="display:block;width:100%;padding:4px;border:1px solid #e2e8f0;border-radius:4px;margin-top:2px;font-size:.75rem;">
+                        <option value="1">1 — números</option>
+                        <option value="A">A — mayúsculas</option>
+                        <option value="a">a — minúsculas</option>
+                        <option value="I">I — romano May.</option>
+                        <option value="i">i — romano min.</option>
+                      </select>
+                    </label>
+                    <label>start: <input type="number" id="lb-start" value="1" min="1" max="20" onchange="updateLB()" style="width:56px;padding:3px 5px;border:1px solid #e2e8f0;border-radius:4px;font-size:.75rem;"></label>
+                    <label style="display:flex;gap:6px;align-items:center;"><input type="checkbox" id="lb-rev" onchange="updateLB()"> reversed (invertido)</label>
+                  </div>
+                  <div id="lb-ul-opts" style="display:flex;flex-direction:column;gap:6px;">
+                    <label>list-style-type:
+                      <select id="lb-ul-type" onchange="updateLB()" style="display:block;width:100%;padding:4px;border:1px solid #e2e8f0;border-radius:4px;margin-top:2px;font-size:.75rem;">
+                        <option value="disc">disc (default)</option>
+                        <option value="circle">circle</option>
+                        <option value="square">square</option>
+                        <option value="none">none</option>
+                        <option value="'✓ '">✓ custom string</option>
+                        <option value="'→ '">→ custom string</option>
+                        <option value="'🔹 '">🔹 emoji</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div style="display:flex;gap:6px;margin-top:4px;">
+                    <input type="text" id="lb-input" placeholder="Nuevo ítem…" style="flex:1;padding:5px;border:1px solid #e2e8f0;border-radius:4px;font-size:.75rem;" onkeydown="if(event.key==='Enter')addLBItem()">
+                    <button class="btn-demo" onclick="addLBItem()">+</button>
+                  </div>
+                </div>
+                <div>
+                  <div id="lb-preview" style="padding:8px;background:#f8fafc;border-radius:6px;min-height:80px;font-size:.85rem;"></div>
+                </div>
+              </div>
+              <pre id="lb-code" style="margin-top:8px;font-size:.72rem;background:#1e1e2e;color:#cdd6f4;padding:8px;border-radius:5px;overflow-x:auto;"></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="dl">
+            <header class="card-header">
+              <code>&lt;dl&gt; / &lt;dt&gt; / &lt;dd&gt;</code>
+              <span class="badge badge-list">Definición</span>
+            </header>
+            <p>
+              Lista de definiciones: <code>&lt;dt&gt;</code> es el término y
+              <code>&lt;dd&gt;</code> su descripción. Un <code>&lt;dt&gt;</code> puede tener
+              múltiples <code>&lt;dd&gt;</code>. Ideal para glosarios, metadatos, FAQs y pares
+              clave-valor. Los lectores de pantalla anuncian la relación semántica entre
+              término y definición.
+            </p>
+            <div class="demo">
+              <dl>
+                <dt>HTML</dt>
+                <dd>Lenguaje de marcado para páginas web</dd>
+                <dt>CSS</dt>
+                <dd>Lenguaje de estilos para documentos HTML</dd>
+                <dt>JavaScript</dt>
+                <dd>Lenguaje de programación para la web</dd>
+              </dl>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="menu">
+            <header class="card-header">
+              <code>&lt;menu&gt;</code>
+              <span class="badge badge-list">Lista</span>
+            </header>
+            <p>
+              Lista de comandos o acciones de interfaz de usuario. Es semánticamente equivalente a <code>&lt;ul&gt;</code> en la mayoría de navegadores modernos (el soporte como menú contextual fue eliminado), pero expresa intención semántica diferente: se usa cuando los ítems de la lista son acciones que el usuario puede ejecutar (botones, acciones de toolbar) en lugar de ser contenido informativo. Cada ítem debe ser un <code>&lt;li&gt;</code> con botones u otras acciones.
+            </p>
+            <p class="tag-note">La especificación HTML eliminó los atributos <code>type="context"</code> y <code>type="toolbar"</code> de <code>&lt;menu&gt;</code>. Hoy es básicamente un alias semántico de <code>&lt;ul&gt;</code> para grupos de comandos. Para toolbars accesibles, añade <code>role="toolbar"</code>.</p>
+            <div class="demo">
+              <menu>
+                <li><button onclick="alert('Nuevo archivo')">Nuevo</button></li>
+                <li><button onclick="alert('Abrir archivo')">Abrir</button></li>
+                <li>
+                  <button onclick="alert('Guardar archivo')">Guardar</button>
+                </li>
+              </menu>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="list-style type disc circle square none custom icon emoji viñeta">
+            <header class="card-header">
+              <code>list-style-type · list-style-image</code>
+              <span class="badge badge-list">Estilos</span>
+            </header>
+            <p>
+              Propiedad CSS que cambia el símbolo del marcador de los ítems de lista. Acepta valores predefinidos (<code>disc</code>, <code>circle</code>, <code>square</code>, numerales romanos, letras), strings personalizados (<code>'→ '</code>, <code>'✓ '</code>), emojis e imágenes con <code>list-style-image: url()</code>. La propiedad shorthand <code>list-style</code> combina tipo, posición e imagen. Para control total del marcador en navegadores modernos, usa el pseudoelemento <code>::marker</code>.
+            </p>
+            <p class="tag-tip">Con CSS moderno puedes usar emojis directamente: <code>list-style-type: '✅ '</code>. El espacio al final del string evita que el emoji quede pegado al texto del ítem.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.78rem;">
+                <ul style="list-style-type:disc;padding-left:20px;"><li>disc (default)</li><li>Ítem 2</li></ul>
+                <ul style="list-style-type:circle;padding-left:20px;"><li>circle</li><li>Ítem 2</li></ul>
+                <ul style="list-style-type:square;padding-left:20px;"><li>square</li><li>Ítem 2</li></ul>
+                <ul style="list-style-type:'→ ';padding-left:20px;"><li>string custom</li><li>Ítem 2</li></ul>
+                <ul style="list-style-type:disclosure-closed;padding-left:20px;"><li>disclosure</li><li>Ítem 2</li></ul>
+                <ul style="list-style-type:none;padding-left:0;"><li style="padding-left:20px;position:relative;"><span style="position:absolute;left:0;">🚀</span>Emoji marker</li><li style="padding-left:20px;position:relative;"><span style="position:absolute;left:0;">✅</span>Con CSS</li></ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="marker pseudo element estilo viñeta color tamaño personalizado">
+            <header class="card-header">
+              <code>::marker</code>
+              <span class="badge badge-list">Personalización</span>
+            </header>
+            <p>
+              Pseudoelemento CSS que representa directamente la viñeta o número de un ítem de lista, permitiendo estilizarlo de forma independiente al texto. Es más elegante que trucos previos con <code>list-style: none</code> y pseudo-elementos <code>::before</code>. Está limitado a propiedades tipográficas y de color: <code>color</code>, <code>font-*</code>, <code>content</code>, <code>text-decoration</code>, <code>unicode-bidi</code> y <code>animation</code>/<code>transition</code>. No acepta <code>background</code>, <code>padding</code> ni <code>margin</code>.
+            </p>
+            <p class="tag-note">El soporte de <code>::marker</code> es universal en navegadores modernos (Chrome 86+, Firefox 68+, Safari 11.1+). Para listas ordenadas, también puedes usar <code>font-variant-numeric: tabular-nums</code> para alinear números correctamente.</p>
+            <div class="demo">
+              <ul style="padding-left:28px;">
+                <li style="font-size:.85rem;margin-bottom:4px;"><span style="color:#3d7ef5;font-weight:900;margin-left:-20px;margin-right:6px;">•</span>Viñeta azul y bold</li>
+                <li style="font-size:.85rem;margin-bottom:4px;"><span style="color:#a855f7;font-size:1.2em;margin-left:-20px;margin-right:6px;">•</span>Viñeta más grande</li>
+              </ul>
+              <pre style="margin-top:6px;font-size:.72rem;"><code>li::marker {
+  color: #3d7ef5;
+  font-weight: 900;
+  font-size: 1.2em;
+}
+
+/* Número de listas ordenadas */
+ol li::marker {
+  color: #a855f7;
+  font-variant-numeric: tabular-nums;
+}</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="counter-reset counter-increment counter css contadores automaticos numeracion personalizada">
+            <header class="card-header">
+              <code>counter-reset · counter-increment · counter()</code>
+              <span class="badge badge-list">Contadores</span>
+            </header>
+            <p>
+              Los contadores CSS permiten numerar automáticamente elementos sin JavaScript. <code>counter-reset</code> crea e inicializa un contador en un elemento padre. <code>counter-increment</code> avanza el contador en cada elemento que lo usa. <code>counter(nombre)</code> o <code>counters(nombre, separador)</code> en la propiedad <code>content</code> de un pseudo-elemento insertan el valor actual. Son perfectos para numeración de secciones, figuras, tablas, notas al pie y listas ordenadas con estilos personalizados.
+            </p>
+            <p class="tag-tip">Los contadores anidados se crean automáticamente: usa <code>counters(sección, '.')</code> para obtener numeración jerárquica tipo <code>1.2.3</code> sin lógica adicional.</p>
+            <div class="demo">
+              <div style="counter-reset:section;font-size:.82rem;">
+                <div style="counter-increment:section;"><span style="font-weight:700;color:#3d7ef5;">1. </span>Sección uno</div>
+                <div style="counter-increment:section;margin-left:16px;counter-reset:subsection;">
+                  <div style="counter-increment:subsection;"><span style="font-weight:700;color:#a855f7;">1.1 </span>Subsección</div>
+                  <div style="counter-increment:subsection;"><span style="font-weight:700;color:#a855f7;">1.2 </span>Otra subsección</div>
+                </div>
+                <div style="counter-increment:section;"><span style="font-weight:700;color:#3d7ef5;">2. </span>Sección dos</div>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>body { counter-reset: section; }
+h2 {
+  counter-increment: section;
+}
+h2::before {
+  content: counter(section) ". ";
+  color: var(--accent);
+}</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="lista anidada nested sublista profundidad niveles jerarquica">
+            <header class="card-header">
+              <code>Listas anidadas y accesibilidad</code>
+              <span class="badge badge-list">A11y</span>
+            </header>
+            <p>
+              Las listas anidadas deben colocarse <em>dentro</em> de un <code>&lt;li&gt;</code>, nunca como hijo directo de <code>&lt;ul&gt;</code> o <code>&lt;ol&gt;</code> — esto es un error de validación HTML. Los lectores de pantalla anuncian el nivel de anidación ("lista, nivel 2"), lo que orienta al usuario. Para listas que usan <code>list-style: none</code> como layout, Safari/VoiceOver puede quitarles el rol de lista; añade <code>role="list"</code> explícitamente para preservar la semántica.
+            </p>
+            <p class="tag-note">No anides listas más de 3-4 niveles de profundidad. A partir de cierto nivel la estructura se vuelve difícil de navegar tanto visualmente como con lectores de pantalla. Si necesitas jerarquías profundas, considera un árbol accesible con <code>role="tree"</code>.</p>
+            <div class="demo">
+              <ul style="font-size:.8rem;padding-left:16px;">
+                <li>Frontend
+                  <ul style="padding-left:16px;list-style-type:circle;">
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript
+                      <ul style="padding-left:16px;list-style-type:square;">
+                        <li>React</li>
+                        <li>Vue</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>Backend</li>
+              </ul>
+              <pre style="margin-top:6px;font-size:.72rem;"><code>&lt;!-- ❌ Error común --&gt;
+&lt;ul&gt;
+  &lt;li&gt;Padre&lt;/li&gt;
+  &lt;ul&gt;&lt;li&gt;Hijo&lt;/li&gt;&lt;/ul&gt; &lt;!-- MALO --&gt;
+&lt;/ul&gt;
+&lt;!-- ✓ Correcto --&gt;
+&lt;ul&gt;
+  &lt;li&gt;Padre
+    &lt;ul&gt;&lt;li&gt;Hijo&lt;/li&gt;&lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="texto.html"><span>←</span> Texto y Tipografía</a>
+        <a class="pager-btn pager-next" href="media.html">Imágenes y Media <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+      const _lbItems = ['Primer ítem', 'Segundo ítem', 'Tercer ítem'];
+      function updateLB() {
+        const type    = document.getElementById('lb-type')?.value || 'ul';
+        const preview = document.getElementById('lb-preview');
+        const code    = document.getElementById('lb-code');
+        const olOpts  = document.getElementById('lb-ol-opts');
+        const ulOpts  = document.getElementById('lb-ul-opts');
+        if (olOpts) olOpts.style.display = type === 'ol' ? 'flex' : 'none';
+        if (ulOpts) ulOpts.style.display = type === 'ul' ? 'flex' : 'none';
+
+        const list = document.createElement(type);
+        let attrs = '';
+        if (type === 'ol') {
+          const t   = document.getElementById('lb-ol-type')?.value || '1';
+          const s   = parseInt(document.getElementById('lb-start')?.value) || 1;
+          const rev = document.getElementById('lb-rev')?.checked || false;
+          list.setAttribute('type', t);
+          list.start = s;
+          if (rev) list.reversed = true;
+          attrs = ` type="${t}" start="${s}"${rev ? ' reversed' : ''}`;
+        } else {
+          const t = document.getElementById('lb-ul-type')?.value || 'disc';
+          list.style.listStyleType = t;
+          attrs = ` style="list-style-type: ${t}"`;
+        }
+        list.style.padding = '0 0 0 24px';
+        _lbItems.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          list.appendChild(li);
+        });
+        if (preview) { preview.innerHTML = ''; preview.appendChild(list); }
+        const rows = _lbItems.map(i => '  <li>' + i + '</li>').join('\n');
+        if (code) code.textContent = '<' + type + attrs + '>\n' + rows + '\n</' + type + '>';
+      }
+      function addLBItem() {
+        const input = document.getElementById('lb-input');
+        if (!input || !input.value.trim()) return;
+        _lbItems.push(input.value.trim());
+        input.value = '';
+        updateLB();
+      }
+      document.addEventListener('DOMContentLoaded', updateLB);
+    </script>
+  </body>
+</html>

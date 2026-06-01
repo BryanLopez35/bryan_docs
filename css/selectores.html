@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Selectores — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Selectores — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">CSS</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Selectores</span>
+      </nav>
+
+                              <section id="css-selectores" class="category css-section">
+        <h2><span class="lang-tag css-tag">CSS</span> Selectores</h2>
+        <p class="category-desc">Patrones que indican a qué elementos se aplica una regla CSS.</p>
+        <div class="tags-grid">
+
+          <article class="tag-card" data-tag="selector universal tipo clase id">
+            <header class="card-header">
+              <code>* · tipo · .clase · #id</code>
+              <span class="badge badge-css-sel">Básicos</span>
+            </header>
+            <p>Los cuatro selectores fundamentales: universal, de tipo, de clase y de ID.</p>
+            <div class="demo">
+              <div id="sel-basic-demo" class="sel-demo">
+                <p class="highlight-me">Párrafo con .clase</p>
+                <p>Párrafo sin clase</p>
+                <span id="el-unico">Span con #id</span>
+              </div>
+              <div class="sel-controls">
+                <button class="btn-demo" onclick="demoCSSSelector(this,'sel-basic-demo','*')">*</button>
+                <button class="btn-demo" onclick="demoCSSSelector(this,'sel-basic-demo','p')">p</button>
+                <button class="btn-demo" onclick="demoCSSSelector(this,'sel-basic-demo','.highlight-me')">.clase</button>
+                <button class="btn-demo" onclick="demoCSSSelector(this,'sel-basic-demo','#el-unico')">#id</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="selector combinador descendiente hijo adyacente hermano">
+            <header class="card-header">
+              <code>A B · A &gt; B · A + B · A ~ B</code>
+              <span class="badge badge-css-sel">Combinadores</span>
+            </header>
+            <p>Seleccionan elementos según su relación en el árbol DOM.</p>
+            <div class="demo">
+              <div id="comb-demo" class="comb-demo">
+                <div class="parent"><span>span en div</span><p>p en div <span>span en p</span></p></div>
+                <p>p adyacente al div</p>
+                <p>p hermano</p>
+              </div>
+              <div class="sel-controls">
+                <button class="btn-demo" onclick="demoCSSSelector(this,'comb-demo','span')">div span</button>
+                <button class="btn-demo" onclick="demoCSSSelector(this,'comb-demo','.parent > span')">div > span</button>
+                <button class="btn-demo" onclick="demoCSSSelector(this,'comb-demo','.parent + p')">div + p</button>
+                <button class="btn-demo" onclick="demoCSSSelector(this,'comb-demo','.parent ~ p')">div ~ p</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="selector atributo attribute href type">
+            <header class="card-header">
+              <code>[attr] · [attr=val] · [attr^=] · [attr$=] · [attr*=]</code>
+              <span class="badge badge-css-sel">Atributo</span>
+            </header>
+            <p>Seleccionan elementos por sus atributos: si existe, valor exacto, prefijo, sufijo o contenido.</p>
+            <div class="demo">
+              <pre><code>[href]            /* tiene href */
+[type="submit"]   /* valor exacto */
+[href^="https"]   /* empieza con */
+[href$=".pdf"]    /* termina con */
+[href*="google"]  /* contiene    */
+[class~="btn"]    /* palabra en lista */
+[lang|="es"]      /* es o empieza con es- */</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="especificidad cascada specificity peso selector">
+            <header class="card-header">
+              <code>Especificidad</code>
+              <span class="badge badge-css-sel">Cascada</span>
+            </header>
+            <p>El peso de un selector determina qué regla gana en conflicto. Se calcula como (ID, clase/pseudo/attr, tipo).</p>
+            <div class="demo">
+              <div class="specificity-chart">
+                <div class="spec-row"><code>*</code><span class="spec-bar" style="--w:0%">0,0,0</span></div>
+                <div class="spec-row"><code>p</code><span class="spec-bar" style="--w:5%">0,0,1</span></div>
+                <div class="spec-row"><code>.clase</code><span class="spec-bar" style="--w:30%">0,1,0</span></div>
+                <div class="spec-row"><code>p.clase</code><span class="spec-bar" style="--w:35%">0,1,1</span></div>
+                <div class="spec-row"><code>#id</code><span class="spec-bar" style="--w:70%">1,0,0</span></div>
+                <div class="spec-row"><code>!important</code><span class="spec-bar" style="--w:100%;--c:#e74c3c">∞</span></div>
+              </div>
+            </div>
+          </article>
+
+        
+          <article class="tag-card" data-tag="css nesting anidamiento & selector padre hijo moderno">
+            <header class="card-header">
+              <code>CSS Nesting — &amp;</code>
+              <span class="badge badge-css-sel">Moderno</span>
+            </header>
+            <p>CSS nativo permite anidar reglas dentro de otras (como Sass). El selector <code>&amp;</code> referencia el padre. Disponible desde 2023 en navegadores modernos.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>.card {
+  background: white;
+  border-radius: 8px;
+
+  /* Hijo directo */
+  &amp; .title { font-weight: 700; }
+
+  /* Pseudo-clase */
+  &amp;:hover { box-shadow: 0 4px 20px rgba(0,0,0,.1); }
+
+  /* Estado modificador */
+  &amp;.featured { border: 2px solid var(--accent); }
+
+  /* Media query anidada */
+  @media (max-width: 768px) {
+    padding: 12px;
+  }
+}</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card wide" data-tag="selector rendimiento performance evitar lento rapido especificidad reflow">
+            <header class="card-header">
+              <code>Rendimiento de selectores</code>
+              <span class="badge badge-css-sel">Performance</span>
+            </header>
+            <p>El navegador evalúa los selectores de <strong>derecha a izquierda</strong>. Selectores muy profundos o con <code>*</code> pueden degradar el rendimiento en DOMs grandes.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:.75rem;">
+                <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:6px;padding:10px;">
+                  <p style="font-weight:700;color:#dc2626;margin-bottom:6px;">⚠️ Evitar</p>
+                  <pre style="font-size:.68rem;margin:0;background:none;padding:0;color:#7f1d1d;"><code>* { margin: 0; }
+.nav ul li a span { ... }
+[class*="col-"] { ... }
+div &gt; * &gt; span { ... }</code></pre>
+                </div>
+                <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:10px;">
+                  <p style="font-weight:700;color:#16a34a;margin-bottom:6px;">✓ Preferir</p>
+                  <pre style="font-size:.68rem;margin:0;background:none;padding:0;color:#14532d;"><code>.nav-link { ... }
+.card-title { ... }
+.col-6 { ... }
+.icon { ... }</code></pre>
+                </div>
+              </div>
+              <p style="font-size:.73rem;color:#555;margin-top:8px;">El <em>selector key</em> (el más a la derecha) determina el conjunto inicial que el navegador debe filtrar.</p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="selector lista grupo multiple :is :where :has cualquiera">
+            <header class="card-header">
+              <code>:is() · :where() · :has()</code>
+              <span class="badge badge-css-sel">Moderno</span>
+            </header>
+            <p>Selectores funcionales modernos que simplifican CSS complejo. <code>:is()</code> hereda la especificidad del selector más alto de su lista, <code>:where()</code> siempre 0.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>/* :is() — agrupa (especificidad del mayor) */
+:is(h1, h2, h3) + p { margin-top: .5em; }
+:is(article, section) :is(h2, h3) { ... }
+
+/* :where() — agrupa sin especificidad */
+:where(header, main, footer) a { color: blue; }
+
+/* :has() — selector "padre" */
+figure:has(figcaption) { border-bottom: none; }
+form:has(input:invalid) .submit { opacity: .5; }
+li:has(ul) &gt; a { font-weight: bold; } /* tiene sublista */</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="pseudo element before after first-line first-letter placeholder selection marker content">
+            <header class="card-header">
+              <code>Pseudoelementos esenciales</code>
+              <span class="badge badge-css-sel">Pseudoelemento</span>
+            </header>
+            <p>Los pseudoelementos crean elementos virtuales o seleccionan partes específicas del contenido. Siempre usan <code>::</code> doble.</p>
+            <div class="demo">
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;">
+                <div style="padding:6px 10px;border:1px solid #e2e8f0;border-radius:4px;position:relative;">
+                  <span style="content:'';display:inline-block;width:8px;height:8px;background:#3d7ef5;border-radius:50%;margin-right:6px;"></span>
+                  <code>::before</code> / <code>::after</code> — contenido generado
+                </div>
+                <div style="padding:6px 10px;border:1px solid #e2e8f0;border-radius:4px;">
+                  <span style="font-size:1.4em;font-weight:900;color:#a855f7;float:left;line-height:.85;margin-right:4px;">P</span>
+                  <code>::first-letter</code> — inicial decorativa
+                </div>
+                <div style="padding:6px 10px;border:1px solid #e2e8f0;border-radius:4px;">
+                  <code>::marker</code> — personaliza viñetas de lista <span style="display:inline-block;margin-left:6px;">▶ ítem</span>
+                </div>
+                <div style="padding:6px 10px;border:1px solid #e2e8f0;border-radius:4px;background:linear-gradient(90deg,rgba(168,85,247,.2) 40%,transparent 40%);background-repeat:no-repeat;">
+                  <code>::selection</code> — selección de texto
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        
+        <a class="pager-btn pager-next" href="boxmodel.html">Box Model <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

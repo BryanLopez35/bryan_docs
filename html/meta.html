@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Scripts y Meta — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Scripts y Meta — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">HTML</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Scripts y Meta</span>
+      </nav>
+
+                              <section id="seccion-meta" class="category">
+        <h2>Scripts, Estilos Avanzados y Meta</h2>
+        <p class="category-desc">
+          Etiquetas para scripts, estilos y metadatos avanzados.
+        </p>
+
+        <div class="tags-grid">
+          <article class="tag-card" data-tag="script">
+            <header class="card-header">
+              <code>&lt;script&gt;</code>
+              <span class="badge badge-meta">Scripts</span>
+            </header>
+            <p>
+              Incrusta o referencia JavaScript. Sin atributos, bloquea el parser HTML.
+              <code>defer</code> descarga en paralelo y ejecuta en orden tras parsear el documento.
+              <code>async</code> ejecuta en cuanto descarga, sin orden garantizado.
+              <code>type="module"</code> activa módulos ES6 e implica <code>defer</code>.
+              <strong>Regla general:</strong> pon los scripts al final del <code>&lt;body&gt;</code>
+              o usa <code>defer</code>.
+            </p>
+            <div class="demo">
+              <pre><code>&lt;!-- Inline --&gt;
+&lt;script&gt;
+  console.log('Hola');
+&lt;/script&gt;
+
+&lt;!-- Externo con defer --&gt;
+&lt;script src="app.js" defer&gt;&lt;/script&gt;
+
+&lt;!-- Async (sin orden) --&gt;
+&lt;script src="plugin.js" async&gt;&lt;/script&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="noscript">
+            <header class="card-header">
+              <code>&lt;noscript&gt;</code>
+              <span class="badge badge-meta">Scripts</span>
+            </header>
+            <p>
+              Define contenido alternativo que se muestra cuando JavaScript está deshabilitado o no soportado. En el <code>&lt;head&gt;</code> solo puede contener <code>&lt;link&gt;</code>, <code>&lt;style&gt;</code> y <code>&lt;meta&gt;</code>. En el <code>&lt;body&gt;</code> puede incluir cualquier HTML. Es útil para mensajes de aviso, redirecciones de emergencia (<code>&lt;meta http-equiv="refresh"&gt;</code> dentro) y garantizar que el contenido crítico sea accesible en entornos sin JavaScript.
+            </p>
+            <p class="tag-note">Aunque pocos usuarios desactivan JavaScript, algunos bots y crawlers no lo ejecutan. Un <code>&lt;noscript&gt;</code> con contenido alternativo mejora la indexación en motores de búsqueda menos avanzados y sirve como red de seguridad para progressive enhancement.</p>
+            <div class="demo">
+              <pre><code>&lt;noscript&gt;
+  &lt;p&gt;Por favor, activa JavaScript
+  para usar este sitio.&lt;/p&gt;
+&lt;/noscript&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="loading">
+            <header class="card-header">
+              <code>loading="lazy"</code>
+              <span class="badge badge-meta">Performance</span>
+            </header>
+            <p>
+              Atributo para <code>&lt;img&gt;</code> e <code>&lt;iframe&gt;</code> que aplaza la carga hasta que el elemento está a punto de entrar al viewport (lazy loading nativo, sin JavaScript). Valores: <code>lazy</code> (carga diferida), <code>eager</code> (carga inmediata, por defecto), <code>auto</code> (decisión del navegador). Reduce significativamente el tiempo de carga inicial y el consumo de datos, especialmente en páginas con muchas imágenes.
+            </p>
+            <div class="tag-attrs">
+              <span class="tag-attrs-header">Valores</span>
+              <code>lazy</code><span class="attr-type">enum</span><span class="attr-desc">Carga diferida: el recurso se descarga cuando entra en el viewport</span>
+              <code>eager</code><span class="attr-type">enum</span><span class="attr-desc">Carga inmediata sin importar la posición (comportamiento por defecto)</span>
+            </div>
+            <p class="tag-warn">Nunca uses <code>loading="lazy"</code> en imágenes que están en el viewport al cargar la página (above-the-fold). Retrasaría el LCP (Largest Contentful Paint) y perjudicaría los Core Web Vitals. Úsalo solo para imágenes por debajo del fold.</p>
+            <div class="demo">
+              <pre><code>&lt;img src="foto.jpg"
+     alt="Foto"
+     loading="lazy"
+     width="800" height="600"&gt;
+
+&lt;iframe src="mapa.html"
+        loading="lazy"&gt;
+&lt;/iframe&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="picture-responsive">
+            <header class="card-header">
+              <code>srcset / sizes</code>
+              <span class="badge badge-meta">Responsivo</span>
+            </header>
+            <p>
+              <code>srcset</code> lista versiones de la imagen con su ancho (descriptor <code>w</code>)
+              o densidad de píxeles (<code>2x</code>). <code>sizes</code> le dice al navegador
+              cuánto espacio ocupará la imagen en diferentes viewports, para que pueda elegir
+              la fuente óptima antes de descargar CSS. <strong>Siempre incluye un
+              <code>src</code> como fallback</strong> para navegadores sin soporte.
+            </p>
+            <div class="demo">
+              <pre><code>&lt;img
+  srcset="img-320.jpg 320w,
+          img-768.jpg 768w,
+          img-1280.jpg 1280w"
+  sizes="(max-width:600px) 320px,
+         (max-width:1024px) 768px,
+         1280px"
+  src="img-1280.jpg"
+  alt="Imagen responsiva"&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="open-graph">
+            <header class="card-header">
+              <code>Open Graph / Twitter Cards</code>
+              <span class="badge badge-meta">Social</span>
+            </header>
+            <p>
+              Meta tags que controlan la presentación en redes sociales y aplicaciones de mensajería.
+              <strong>Open Graph</strong> (Facebook, LinkedIn, WhatsApp): usa prefijo <code>property="og:…"</code>.
+              <strong>Twitter/X Cards</strong>: usa prefijo <code>name="twitter:…"</code>.
+              La imagen OG ideal: <strong>1200×630 px</strong>, menos de 1 MB.
+              Verifica tu resultado en las herramientas de depuración de cada red.
+            </p>
+            <div class="demo">
+              <pre><code>&lt;!-- Open Graph --&gt;
+&lt;meta property="og:title"
+      content="Mi Página"&gt;
+&lt;meta property="og:image"
+      content="thumb.jpg"&gt;
+&lt;meta property="og:description"
+      content="Descripción"&gt;
+
+&lt;!-- Twitter Card --&gt;
+&lt;meta name="twitter:card"
+      content="summary_large_image"&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card wide" data-tag="open graph og social preview card twitter linkedin whatsapp meta previsualizador playground">
+            <header class="card-header">
+              <code>Previsualizador Open Graph — Playground</code>
+              <span class="badge badge-meta">Interactivo</span>
+            </header>
+            <p>
+              Edita los campos y observa en tiempo real cómo se vería tu página al compartirla
+              en redes sociales. El contador indica si el texto supera los límites recomendados.
+            </p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:.78rem;">
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <label>og:title
+                    <input type="text" id="og-title" value="BryanDocs — Guía de HTML y CSS" oninput="updateOGPrev()" style="display:block;width:100%;padding:5px;border:1px solid #e2e8f0;border-radius:4px;margin-top:2px;font-size:.75rem;">
+                  </label>
+                  <label>og:description
+                    <textarea id="og-desc" rows="3" oninput="updateOGPrev()" style="display:block;width:100%;padding:5px;border:1px solid #e2e8f0;border-radius:4px;margin-top:2px;font-size:.75rem;resize:vertical;">Guía interactiva para aprender HTML y CSS con ejemplos y playgrounds en tiempo real.</textarea>
+                  </label>
+                  <label>og:site_name
+                    <input type="text" id="og-site" value="webexplorer.dev" oninput="updateOGPrev()" style="display:block;width:100%;padding:5px;border:1px solid #e2e8f0;border-radius:4px;margin-top:2px;font-size:.75rem;">
+                  </label>
+                  <div id="og-counter" style="font-size:.72rem;line-height:1.6;"></div>
+                </div>
+                <div>
+                  <div style="font-weight:600;margin-bottom:6px;color:#555;font-size:.78rem;">Vista previa (tarjeta social):</div>
+                  <div style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;max-width:300px;box-shadow:0 2px 8px rgba(0,0,0,.08);">
+                    <div style="height:80px;background:linear-gradient(135deg,#3d7ef5 0%,#a855f7 100%);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-size:.72rem;">og:image — 1200×630 px</div>
+                    <div style="padding:10px;">
+                      <div id="og-prev-site" style="color:#6b7280;font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;"></div>
+                      <div id="og-prev-title" style="font-weight:700;font-size:.82rem;line-height:1.3;margin-bottom:4px;color:#111;"></div>
+                      <div id="og-prev-desc" style="color:#555;font-size:.72rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <pre id="og-code" style="margin-top:10px;font-size:.72rem;background:#1e1e2e;color:#cdd6f4;padding:8px;border-radius:5px;overflow-x:auto;"></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="charset-viewport">
+            <header class="card-header">
+              <code>charset + viewport</code>
+              <span class="badge badge-meta">Esencial</span>
+            </header>
+            <p>
+              Los dos <code>&lt;meta&gt;</code> más importantes de cualquier página. <code>charset="UTF-8"</code> debe ser el <strong>primero</strong> en el <code>&lt;head&gt;</code> (antes del <code>&lt;title&gt;</code>) para que el navegador codifique correctamente el título y todo el documento, incluyendo caracteres especiales. <code>viewport</code> controla el comportamiento en pantallas móviles: sin él, los móviles simulan una pantalla de escritorio y hacen zoom out, rompiendo cualquier diseño responsive.
+            </p>
+            <p class="tag-warn">No añadas <code>user-scalable=no</code> ni <code>maximum-scale=1</code> al viewport. Deshabilitar el zoom del usuario viola las pautas de accesibilidad (WCAG 1.4.4) y perjudica a personas con baja visión que necesitan ampliar el contenido.</p>
+            <div class="demo">
+              <pre><code>&lt;!-- Siempre los primeros en head --&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport"
+  content="width=device-width,
+           initial-scale=1.0"&gt;</code></pre>
+            </div>
+          </article>
+        
+          <article class="tag-card" data-tag="preload prefetch preconnect dns-prefetch modulepreload resource hints performance carga">
+            <header class="card-header">
+              <code>Resource Hints — preload · prefetch · preconnect</code>
+              <span class="badge badge-meta">Performance</span>
+            </header>
+            <p>Instrucciones al navegador para optimizar la carga de recursos críticos o anticipar conexiones futuras.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>&lt;!-- preload: recurso crítico para el render actual --&gt;
+&lt;link rel="preload" href="hero.jpg" as="image"&gt;
+&lt;link rel="preload" href="font.woff2" as="font" crossorigin&gt;
+
+&lt;!-- prefetch: recurso probable en la próxima navegación --&gt;
+&lt;link rel="prefetch" href="/pagina-siguiente"&gt;
+
+&lt;!-- preconnect: abre conexión a un origen externo --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+
+&lt;!-- dns-prefetch: solo resuelve DNS (fallback) --&gt;
+&lt;link rel="dns-prefetch" href="//cdn.ejemplo.com"&gt;
+
+&lt;!-- modulepreload: módulo JS con sus dependencias --&gt;
+&lt;link rel="modulepreload" href="/js/app.js"&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="json-ld structured data schema.org rich snippets datos estructurados google seo">
+            <header class="card-header">
+              <code>JSON-LD · Datos estructurados</code>
+              <span class="badge badge-meta">SEO</span>
+            </header>
+            <p>Describe el contenido de tu página en un formato legible por máquinas. Google lo usa para <em>Rich Snippets</em> en los resultados de búsqueda.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Guía de HTML y CSS",
+  "author": {
+    "@type": "Person",
+    "name": "Tu Nombre"
+  },
+  "datePublished": "2024-01-15",
+  "image": "https://ejemplo.com/thumb.jpg"
+}
+&lt;/script&gt;
+&lt;!-- Otros tipos: Product, Recipe, FAQ,
+     HowTo, BreadcrumbList, Event... --&gt;</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="manifest PWA progressive web app installable aplicacion web instalable icon theme">
+            <header class="card-header">
+              <code>Web App Manifest</code>
+              <span class="badge badge-meta">PWA</span>
+            </header>
+            <p>Archivo JSON que hace tu sitio instalable como app nativa. Controla nombre, iconos, colores y comportamiento al lanzarse.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>&lt;!-- En el &lt;head&gt; --&gt;
+&lt;link rel="manifest" href="/manifest.json"&gt;
+&lt;meta name="theme-color" content="#0f172a"&gt;
+
+// manifest.json
+{
+  "name": "BryanDocs",
+  "short_name": "Explorer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f6fb",
+  "theme_color": "#0f172a",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "sizes": "512x512" }
+  ]
+}</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="defer async module type script carga orden bloqueo parsing">
+            <header class="card-header">
+              <code>defer · async · type="module"</code>
+              <span class="badge badge-meta">Scripts</span>
+            </header>
+            <p>Controlan cuándo se descarga y ejecuta el JavaScript respecto al parsing del HTML. La elección incorrecta puede bloquear el render.</p>
+            <div class="demo">
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:.75rem;">
+                <div style="display:flex;align-items:center;gap:8px;"><div style="width:60px;text-align:right;font-weight:700;color:#e74c3c;">normal</div><div style="flex:1;height:12px;background:linear-gradient(90deg,#e74c3c 0%,#e74c3c 30%,#3d7ef5 30%,#3d7ef5 60%,#2ecc71 60%);border-radius:2px;"></div></div>
+                <div style="display:flex;align-items:center;gap:8px;"><div style="width:60px;text-align:right;font-weight:700;color:#f39c12;">async</div><div style="flex:1;height:12px;background:linear-gradient(90deg,transparent 0%,transparent 20%,#f39c12 20%,#f39c12 50%,#2ecc71 50%);border-radius:2px;position:relative;"><div style="position:absolute;top:0;left:0;width:50%;height:100%;background:rgba(61,126,245,.3);border-radius:2px;"></div></div></div>
+                <div style="display:flex;align-items:center;gap:8px;"><div style="width:60px;text-align:right;font-weight:700;color:#3d7ef5;">defer</div><div style="flex:1;height:12px;background:linear-gradient(90deg,transparent 0%,transparent 70%,#3d7ef5 70%,#3d7ef5 90%,#2ecc71 90%);border-radius:2px;"></div></div>
+                <div style="font-size:.68rem;color:#555;display:flex;gap:10px;padding-left:68px;"><span style="color:#e74c3c;">■</span>parse HTML <span style="color:#3d7ef5;">■</span>descarga <span style="color:#2ecc71;">■</span>ejecuta</div>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>type="module"  → siempre defer + scope propio
+defer          → ejecuta en orden tras parsear
+async          → ejecuta al terminar descarga (sin orden)
+(sin nada)     → bloquea el parser</code></pre>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="interactivo.html"><span>←</span> Interactividad y Accesibilidad</a>
+        
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+      function updateOGPrev() {
+        const title   = document.getElementById('og-title')?.value  || '';
+        const desc    = document.getElementById('og-desc')?.value   || '';
+        const site    = document.getElementById('og-site')?.value   || '';
+        const pTitle  = document.getElementById('og-prev-title');
+        const pDesc   = document.getElementById('og-prev-desc');
+        const pSite   = document.getElementById('og-prev-site');
+        const counter = document.getElementById('og-counter');
+        const code    = document.getElementById('og-code');
+
+        if (pTitle) pTitle.textContent = title;
+        if (pDesc)  pDesc.textContent  = desc;
+        if (pSite)  pSite.textContent  = site;
+
+        function indicator(len, ok, warn) {
+          if (len === 0)   return '<span style="color:#9ca3af">0</span>';
+          if (len <= ok)   return '<span style="color:#16a34a">' + len + '</span>';
+          if (len <= warn) return '<span style="color:#f59e0b">' + len + '</span>';
+          return '<span style="color:#dc2626">' + len + '</span>';
+        }
+        if (counter) {
+          counter.innerHTML =
+            'Título: ' + indicator(title.length, 60, 70) + '/60 recomendado &nbsp;·&nbsp; ' +
+            'Descripción: ' + indicator(desc.length, 155, 165) + '/155 recomendado';
+        }
+
+        if (code) code.textContent =
+          '<!-- En el <head> de tu página -->\n' +
+          '<meta property="og:title"       content="' + title + '">\n' +
+          '<meta property="og:description" content="' + desc  + '">\n' +
+          '<meta property="og:site_name"   content="' + site  + '">\n' +
+          '<meta property="og:type"        content="website">\n' +
+          '<meta property="og:image"       content="https://ejemplo.com/og-1200x630.jpg">\n' +
+          '<meta property="og:url"         content="https://ejemplo.com/esta-pagina">\n' +
+          '<!-- Twitter/X Card -->\n' +
+          '<meta name="twitter:card"       content="summary_large_image">\n' +
+          '<meta name="twitter:title"      content="' + title + '">';
+      }
+      document.addEventListener('DOMContentLoaded', updateOGPrev);
+    </script>
+  </body>
+</html>

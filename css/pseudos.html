@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pseudoclases y Pseudoelementos — BryanDocs, documentación interactiva de HTML &amp; CSS" />
+    <title>Pseudoclases y Pseudoelementos — BryanDocs</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+  <body>
+
+    <div class="page-layout">
+
+      <!-- ===== CONTENIDO PRINCIPAL ===== -->
+      <main>
+
+      <nav class="breadcrumb" aria-label="Ruta de navegación">
+        <a href="../index.html">BryanDocs</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <a href="index.html">CSS</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Pseudoclases y Pseudoelementos</span>
+      </nav>
+
+                              <section id="css-pseudos" class="category css-section">
+        <h2><span class="lang-tag css-tag">CSS</span> Pseudoclases &amp; Pseudoelementos</h2>
+        <p class="category-desc">Selectores especiales para estados, posición en el DOM y partes virtuales de los elementos.</p>
+        <div class="tags-grid">
+
+          <article class="tag-card" data-tag="hover focus active visited link pseudo-class estado">
+            <header class="card-header">
+              <code>:hover · :focus · :active · :visited</code>
+              <span class="badge badge-css-pseudo">Estado</span>
+            </header>
+            <p>Las pseudoclases de interacción más usadas. Definen estilos según el estado de interacción del usuario.</p>
+            <div class="demo">
+              <div class="pseudo-state-demos">
+                <a href="#" class="psd-link" onclick="return false">:link / :visited</a>
+                <button class="psd-btn">:hover aquí</button>
+                <input type="text" class="psd-input" placeholder=":focus al hacer clic">
+                <button class="psd-btn psd-active-demo">:active (mantén click)</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="nth-child nth-of-type first-child last-child only-child not estructural">
+            <header class="card-header">
+              <code>:nth-child · :first · :last · :not()</code>
+              <span class="badge badge-css-pseudo">Estructural</span>
+            </header>
+            <p>Seleccionan elementos por su posición en el DOM.</p>
+            <div class="demo">
+              <div id="nth-demo">
+                <div class="nth-item">ítem 1</div>
+                <div class="nth-item">ítem 2</div>
+                <div class="nth-item">ítem 3</div>
+                <div class="nth-item">ítem 4</div>
+                <div class="nth-item">ítem 5</div>
+                <div class="nth-item">ítem 6</div>
+              </div>
+              <div class="sel-controls" style="margin-top:8px;flex-wrap:wrap;">
+                <button class="btn-demo" onclick="demoNth('odd')">odd</button>
+                <button class="btn-demo" onclick="demoNth('3n')">3n</button>
+                <button class="btn-demo" onclick="demoNth('first')">first</button>
+                <button class="btn-demo" onclick="demoNth('last')">last</button>
+                <button class="btn-demo" onclick="demoNth('')">reset</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="before after content pseudo-element placeholder selection first-line first-letter generated content">
+            <header class="card-header">
+              <code>::before · ::after · ::placeholder · ::selection</code>
+              <span class="badge badge-css-pseudo">Pseudoelemento</span>
+            </header>
+            <p>Crean elementos virtuales o seleccionan partes del contenido. <code>::before/::after</code> requieren <code>content</code>.</p>
+            <div class="demo">
+              <p class="pseudo-before-after">Texto con ::before y ::after</p>
+              <p class="pseudo-first-letter">La primera letra se estiliza con ::first-letter aplicado a este párrafo de ejemplo.</p>
+              <input type="text" placeholder="::placeholder con color personalizado" class="pseudo-placeholder" style="width:100%;padding:6px;border:1px solid #ddd;border-radius:4px;margin-top:6px;">
+              <p class="pseudo-selection" style="margin-top:6px;font-size:.8rem;">Selecciona este texto para ver ::selection con color personalizado.</p>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="is where has pseudo-class moderno selector padre">
+            <header class="card-header">
+              <code>:is() · :where() · :has()</code>
+              <span class="badge badge-css-pseudo">Moderno</span>
+            </header>
+            <p><code>:is()</code> agrupa selectores (alta especificidad), <code>:where()</code> igual pero sin especificidad, <code>:has()</code> es el selector "padre".</p>
+            <div class="demo">
+              <pre><code>/* :is() agrupa */
+:is(h1, h2, h3) { color: blue; }
+
+/* :where() sin especificidad */
+:where(section, article) p { ... }
+
+/* :has() — selector "padre" */
+div:has(img) { border: 2px solid; }
+form:has(:invalid) { outline: red; }</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="focus-within focus-visible checked disabled required valid invalid placeholder-shown formulario">
+            <header class="card-header">
+              <code>:focus-within · :checked · :disabled · :valid</code>
+              <span class="badge badge-css-pseudo">Formulario</span>
+            </header>
+            <p>Pseudoclases de estado en formularios para estilos condicionales de validación e interacción.</p>
+            <div class="demo">
+              <form class="pseudo-form-demo">
+                <label class="fw-label">:focus-within activo al enfocar hijo
+                  <input type="text" placeholder="haz clic aquí">
+                </label>
+                <label><input type="checkbox" class="pseudo-check"> :checked</label>
+                <input type="text" disabled placeholder=":disabled">
+                <input type="email" required placeholder=":required · escribe email inválido">
+              </form>
+            </div>
+          </article>
+
+        
+          <article class="tag-card" data-tag="focus-visible teclado keyboard accessibility anillo foco outline visible solo">
+            <header class="card-header">
+              <code>:focus-visible</code>
+              <span class="badge badge-css-pseudo">Accesibilidad</span>
+            </header>
+            <p>Aplica el estilo de foco <em>solo cuando el usuario navega con teclado</em> (no con ratón). Soluciona el dilema de quitar el outline sin romper la accesibilidad.</p>
+            <div class="demo">
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+                <button style="padding:6px 14px;border:1px solid #e2e8f0;border-radius:6px;cursor:pointer;font-size:.8rem;outline:none;" class="fv-demo">Haz clic (no anillo)</button>
+                <button style="padding:6px 14px;border:1px solid #e2e8f0;border-radius:6px;cursor:pointer;font-size:.8rem;" class="fv-demo">Tab aquí (anillo visible)</button>
+              </div>
+              <pre style="font-size:.72rem;"><code>/* ✓ La solución correcta */
+button:focus         { outline: none; }
+button:focus-visible { outline: 2px solid #3d7ef5;
+                       outline-offset: 2px; }
+
+/* ✗ Nunca hacer esto */
+*:focus { outline: none; } /* rompe accesibilidad */</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="placeholder-shown empty not filled input estado vacio contenido">
+            <header class="card-header">
+              <code>:placeholder-shown · :empty · :not()</code>
+              <span class="badge badge-css-pseudo">Estado</span>
+            </header>
+            <p>Pseudoclases para detectar si un input muestra su placeholder (vacío), si un elemento no tiene hijos, y para negar selectores.</p>
+            <div class="demo">
+              <div style="display:flex;flex-direction:column;gap:8px;font-size:.78rem;">
+                <div style="position:relative;">
+                  <input type="text" placeholder="Escribe algo" id="psh-input" style="width:100%;padding:8px 10px;border:1px solid #e2e8f0;border-radius:6px;font-size:.82rem;outline:none;">
+                  <label for="psh-input" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:.7rem;color:#9ca3af;pointer-events:none;" id="psh-label">vacío</label>
+                </div>
+              </div>
+              <pre style="margin-top:8px;font-size:.72rem;"><code>/* Mientras el input está vacío */
+input:placeholder-shown { border-color: #d1d5db; }
+input:not(:placeholder-shown) { border-color: #3d7ef5; }
+
+/* Elemento sin hijos */
+.list:empty::before { content: "Sin elementos"; }
+
+/* Negar múltiples */
+:not(h1, h2, h3) { font-size: .9rem; }</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="nth-of-type first-of-type last-of-type only estructural posicion tipo">
+            <header class="card-header">
+              <code>:nth-of-type · :first-of-type · :only-child</code>
+              <span class="badge badge-css-pseudo">Estructural</span>
+            </header>
+            <p>Variantes de <code>:nth-child</code> que filtran por tipo de elemento. <code>:nth-of-type(n)</code> cuenta solo entre hermanos del mismo tag.</p>
+            <div class="demo">
+              <pre style="font-size:.72rem;"><code>/* Solo el primer <p> aunque haya divs antes */
+p:first-of-type { font-size: 1.1em; }
+
+/* Cada 2do párrafo */
+p:nth-of-type(2n) { background: #f8fafc; }
+
+/* Un único hijo */
+li:only-child { list-style: none; }
+
+/* Diferencia clave */
+/* :nth-child cuenta TODOS los hermanos (cualquier tag) */
+/* :nth-of-type cuenta solo los del mismo tipo */</code></pre>
+            </div>
+          </article>
+
+          <article class="tag-card" data-tag="before after marker first-line first-letter selection placeholder backdrop pseudo element">
+            <header class="card-header">
+              <code>Tabla de pseudoelementos</code>
+              <span class="badge badge-css-pseudo">Referencia</span>
+            </header>
+            <p>Guía completa de todos los pseudoelementos CSS con su caso de uso.</p>
+            <div class="demo">
+              <div style="display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:.73rem;align-items:baseline;">
+                <code>::before</code><span>Contenido generado antes del elemento</span>
+                <code>::after</code><span>Contenido generado después del elemento</span>
+                <code>::first-letter</code><span>Primera letra del primer bloque</span>
+                <code>::first-line</code><span>Primera línea del texto</span>
+                <code>::selection</code><span>Texto seleccionado por el usuario</span>
+                <code>::placeholder</code><span>Texto placeholder de inputs</span>
+                <code>::marker</code><span>Viñeta o número de lista</span>
+                <code>::backdrop</code><span>Fondo de dialog/fullscreen</span>
+                <code>::cue</code><span>Subtítulos WebVTT en video</span>
+                <code>::part()</code><span>Parte expuesta de un Web Component</span>
+                <code>::slotted()</code><span>Elemento en un slot del Shadow DOM</span>
+                <code>::view-transition</code><span>Transición de vistas (2024)</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <nav class="section-pager" aria-label="Anterior y siguiente sección">
+        <a class="pager-btn pager-prev" href="variables.html"><span>←</span> Variables y Funciones</a>
+        <a class="pager-btn pager-next" href="responsive.html">Responsive y @Rules <span>→</span></a>
+      </nav>
+
+      </main>
+    </div><!-- /.page-layout -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="page-footer"></footer>
+
+    <script src="../js/search-index.js"></script>
+    <script src="../js/components.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>
